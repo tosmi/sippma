@@ -1,0 +1,37 @@
+@startuml
+class Patient {
+      id: Integer
+      firstname: String
+      lastname: String
+      street: String
+      zip: String
+      city: String
+      phonenumber1: String
+      phonenumber2: String
+      mother_id: Integer
+      father_id: Interger
+}
+
+note "A patient has exactly one mother and/or father.\nMother/father are in the same table." as N1
+Patient .. N1
+
+class LogEntry {
+      id: Integer
+      patient_id: Interger
+      date: Date
+      logentry: Text
+}
+
+class Receipt {
+      id: Integer
+      patient_id: Integer
+      date: Date
+      text: text
+}
+
+Patient "1" --> "1" Patient: has_mother
+Patient "1" --> "1" Patient: has_father
+Patient "1" --> "many" LogEntry
+Patient "1" --> "many" Receipt
+
+@enduml
