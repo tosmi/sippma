@@ -1,6 +1,6 @@
 @startuml
 class Patient {
-      id: Integer
+      *id: Integer
       firstname: String
       lastname: String
       street: String
@@ -8,6 +8,8 @@ class Patient {
       city: String
       phonenumber1: String
       phonenumber2: String
+      insurance: String
+      ssn: String
       mother_id: Integer
       father_id: Interger
 }
@@ -15,23 +17,33 @@ class Patient {
 note "A patient has exactly one mother and/or father.\nMother/father are in the same table." as N1
 Patient .. N1
 
-class LogEntry {
-      id: Integer
-      patient_id: Interger
+class Diagnosis {
+      *id: Integer
+      *patient_id: Interger
       date: Date
       logentry: Text
 }
 
 class Receipt {
-      id: Integer
-      patient_id: Integer
+      *id: Integer
+      *entryline_id: Integer
+      *patient_id: Integer
+      diagnosis_id: Integer
       date: Date
-      text: text
+      fee: Float
+}
+
+class EntryLine {
+      *id: Integer
+      abbrev: String
+      text: String
 }
 
 Patient "1" --> "1" Patient: has_mother
 Patient "1" --> "1" Patient: has_father
-Patient "1" --> "many" LogEntry
+Patient "1" --> "many" Diagnosis
 Patient "1" --> "many" Receipt
+Receipt "1" --> "1" Diagnosis
+Receipt "1" --> "many" EntryLine
 
 @enduml
