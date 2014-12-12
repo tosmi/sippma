@@ -10,16 +10,20 @@ class Patient {
       phonenumber2: String
       insurance: String
       ssn: String
-      mother_id: Integer
-      father_id: Interger
 }
 
 note "A patient has exactly one mother and/or father.\nMother/father are in the same table." as N1
 Patient .. N1
 
+class Relationship {
+      *id: Integer
+      mother_id: Integer
+      father_id: Integer
+}
+
 class Diagnosis {
       *id: Integer
-      *patient_id: Interger
+      *patient_id: Integer
       date: Date
       logentry: Text
 }
@@ -39,8 +43,7 @@ class EntryLine {
       text: String
 }
 
-Patient "1" --> "1" Patient: has_mother
-Patient "1" --> "1" Patient: has_father
+Patient "1" <--> "1" Relationship
 Patient "1" --> "many" Diagnosis
 Patient "1" --> "many" Receipt
 Receipt "1" --> "1" Diagnosis
