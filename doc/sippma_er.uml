@@ -1,19 +1,23 @@
 @startuml
+class User {
+      email: String
+      password_digest: String
+}
+
 class Patient {
       *id: Integer
+      *user_id: Integer
       firstname: String
       lastname: String
       street: String
       zip: String
       city: String
+      email: String
       phonenumber1: String
       phonenumber2: String
       insurance: String
       ssn: String
 }
-
-note "A patient has exactly one mother and/or father.\nMother/father are in the same table." as N1
-Patient .. N1
 
 class Relationship {
       *id: Integer
@@ -43,6 +47,7 @@ class EntryLine {
       text: String
 }
 
+User    "1" --> "many" Patient
 Patient "1" <--> "1" Relationship
 Patient "1" --> "many" Diagnosis
 Patient "1" --> "many" Receipt
