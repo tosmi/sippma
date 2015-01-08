@@ -1,10 +1,10 @@
 @startuml
-class User {
+class Users {
       email: String
       password_digest: String
 }
 
-class Patient {
+class Patients {
       *id: Integer
       *user_id: Integer
       firstname: String
@@ -19,39 +19,40 @@ class Patient {
       ssn: String
 }
 
-class Relationship {
+class Relationships {
       *id: Integer
-      mother_id: Integer
-      father_id: Integer
+      patient_id: Integer
+      relative_id: Integer
 }
 
-class Diagnosis {
+class LogEntries {
       *id: Integer
       *patient_id: Integer
       date: Date
       logentry: Text
+      diagnose: Text
 }
 
-class Receipt {
+class Receipts {
       *id: Integer
       *entryline_id: Integer
       *patient_id: Integer
-      diagnosis_id: Integer
+      receiptnumber: Text
+      diagnosis: Text
       date: Date
       fee: Float
 }
 
-class EntryLine {
+class EntryLines {
       *id: Integer
       abbrev: String
       text: String
 }
 
-User    "1" --> "many" Patient
-Patient "1" <--> "1" Relationship
-Patient "1" --> "many" Diagnosis
-Patient "1" --> "many" Receipt
-Receipt "1" --> "1" Diagnosis
-Receipt "1" --> "many" EntryLine
+Patients "1" <--> "1" Relationships
+Patients "1" --> "many" LogEntries
+Patients "1" --> "many" Receipts
+Receipts "1" --> "1" LogEntries
+Receipts "1" --> "many" EntryLines
 
 @enduml
