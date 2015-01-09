@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/tosmi/sippma/badges/gpa.svg)](https://codeclimate.com/github/tosmi/sippma)
+[![Build Status](https://secure.travis-ci.org/tosmi/sippma.png)](https://travis-ci.org/tosmi/sippma)
 
 # SIPPMA #
 
