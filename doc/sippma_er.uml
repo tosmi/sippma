@@ -1,6 +1,7 @@
 @startuml
 class Users {
-      name: String
+      username: String
+      fullname: String
       email: String
       password_digest: String
       permissions: Integer
