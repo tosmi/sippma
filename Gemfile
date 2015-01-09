@@ -23,4 +23,7 @@ end
 group :test do
   gem 'minitest-reporters', '1.0.8'
   gem 'mini_backtrace', '0.1.3'
+
+  # rake gem is required by travis
+  gem 'rake'
 end
