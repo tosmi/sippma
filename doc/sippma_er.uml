@@ -1,7 +1,9 @@
 @startuml
 class Users {
+      name: String
       email: String
       password_digest: String
+      permissions: Integer
 }
 
 class Patients {
@@ -52,7 +54,6 @@ class EntryLines {
 Patients "1" <--> "1" Relationships
 Patients "1" --> "many" LogEntries
 Patients "1" --> "many" Receipts
-Receipts "1" --> "1" LogEntries
 Receipts "1" --> "many" EntryLines
 
 @enduml
