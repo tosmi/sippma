@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'bootstrap-sass', '3.3.1'
 
+gem 'bcrypt', '3.1.9'
+
 group :development, :test do
   gem 'byebug'
   gem 'spring'
