@@ -1,10 +1,21 @@
-<h1>Log in</h1>
-<%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username, class: 'form-control' %>
+<div class="container-fluid">
+  <div class="row loginimg">
+     <img src="/assets/sippma.jpg" alt="SIPPMA" id="sippmaimg">
+  </div>
+  <div class="row">
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-4 loginform">
+      <%= form_for(:session, url: login_path) do |f| %>
+	<%= f.text_field :username, placeholder: 'Username', class: 'form-control' %>
+	<%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+	<%= f.submit "Log in", class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+    <div class="col-md-8 sippma">SIPPMA</div>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-
-  <%= f.submit "Log in" %>
-<% end %>
+</div>
