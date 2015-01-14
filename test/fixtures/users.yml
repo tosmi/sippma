@@ -1,1 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+admin:
+  username: 'admin'
+  fullname: 'SIPPMA Adminstrator'
+  email: 'sippma@stderr.at'
+  permissions: 0
+  password_digest: <%= User.digest('changeme') %>
