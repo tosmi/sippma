@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       render :inline =>  '<h1>logged in</h1>'
     else
-      flash[:danger] = 'Invalid username/password!'
-      redirect_to root_url
+      flash.now[:danger] = 'Invalid username/password!'
+      render 'new'
     end
   end
 
