@@ -1,8 +1,9 @@
 <% if logged_in?  %>
-<header class="navbar navbar-fixed-top">
+<header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
+    <%= link_to "SIPPMA", patients_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav pull-right">
 	<li><%= link_to 'Patients', '#' %></li>
 	<li><%= link_to 'Settings', '#' %></li>
 	<li><%= link_to 'Logout', logout_path, method: :delete %></li>
