@@ -10,7 +10,7 @@ class PatientsControllerTest < ActionController::TestCase
     if not have_patients?
       assert_redirected_to 'no_patients'
     else
-      assert_redirected_to 'new'
+      assert_template 'index'
     end
   end
 
