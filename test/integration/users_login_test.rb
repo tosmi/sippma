@@ -22,10 +22,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post login_path, session: { username: @admin.username, password: 'changeme' }
     assert is_logged_in?
     assert_redirected_to patients_path
-    get root_path
-    assert_redirected_to patients_path
     follow_redirect!
-    assert_template 'patients/index'
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
