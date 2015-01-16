@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114183645) do
+ActiveRecord::Schema.define(version: 20150116165557) do
 
   create_table "patients", force: :cascade do |t|
     t.string   "firstname"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20150114183645) do
     t.string   "street"
     t.string   "zip"
     t.string   "city"
-    t.string   "string"
     t.string   "email"
     t.string   "phonenumber1"
     t.string   "phonenumber2"
