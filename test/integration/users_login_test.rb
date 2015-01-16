@@ -23,6 +23,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     assert_redirected_to patients_path
     follow_redirect!
+    # if we acces the login page with a valid session cookie
+    # we should get redirected to patients
+    get root_path
+    assert_redirected_to patients_path
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
