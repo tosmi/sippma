@@ -8,7 +8,7 @@ class PatientsControllerTest < ActionController::TestCase
   test "show welcome if there are no patients" do
     get :index
     if not have_patients?
-      assert_redirected_to 'no_patients'
+      assert_template 'welcome'
     else
       assert_template 'index'
     end
