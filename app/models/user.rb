@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include SippmaRegex
+
   before_save { self.email = email.downcase }
 
   VALID_USERNAME_REGEX = /\A[a-zA-Z\d]+\z/
@@ -7,7 +9,6 @@ class User < ActiveRecord::Base
   VALID_FULLNAME_REGEX = /\A[a-z]+\s([a-z]+\s)*[a-z]+\z/i
   validates :fullname, presence: true, length: { maximum: 50 }, format: { with: VALID_FULLNAME_REGEX }
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
 
   validates :password, length: { minimum: 6 }
