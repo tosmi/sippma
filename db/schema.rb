@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150114183645) do
     t.string   "phonenumber1"
     t.string   "phonenumber2"
     t.string   "insurance",    null: false
-    t.integer  "ssn",          null: false
+    t.string   "ssn",          null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
