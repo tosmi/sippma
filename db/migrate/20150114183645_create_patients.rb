@@ -11,7 +11,7 @@ class CreatePatients < ActiveRecord::Migration
       t.string :phonenumber1
       t.string :phonenumber2
       t.string :insurance, :null => false
-      t.integer :ssn, :null => false
+      t.string :ssn, :null => false
 
       t.timestamps null: false
     end
