@@ -35,6 +35,7 @@ class PatientsController < ApplicationController
                                     :insurance,
                                     :phonenumber1,
                                     :phonenumber2,
+                                    :birthdate,
                                     :email)
   end
 end
