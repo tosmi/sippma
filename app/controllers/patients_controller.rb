@@ -4,6 +4,7 @@ class PatientsController < ApplicationController
     if not Patient.any?
       render 'welcome'
     end
+    @patients = Patient.all
   end
 
   def show
