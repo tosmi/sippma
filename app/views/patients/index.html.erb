@@ -1,1 +1,36 @@
-list of patients
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Firstname</th>
+	<th>Lastname</th>
+	<th>Address</th>
+	<th>SSN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for patient in @patients %>
+	<tr>
+	  <td><%= patient.firstname %></td>
+	  <td><%= patient.lastname %></td>
+	  <td><%= patient.zip %> <%= patient.city %> <%= patient.street %></td>
+	  <td><%= patient.ssn %> <%= patient.birthdate %></td>
+	  <td>
+	    <div class="btn-toolbar">
+	      <div class="btn-group">
+		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		  New Log Entry <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+		  <li><a href="# =>">Edit</a></li>
+		  <li><a href="#">Delete</a></li>
+		  <li><a href="#">Billing</a></li>
+		</ul>
+	      </div>
+	    </div>
+	  </td>
+	</tr>
+      <% end %>
+    </tbody>
+</table>
+</div>
