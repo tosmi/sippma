@@ -1,0 +1,54 @@
+<div class="container center">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-2 col-md-offset-3 text-right">
+	<strong>Name:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.firstname%> <%= @patient.lastname %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-3 text-right">
+	<strong>Adress:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.zip%> <%= @patient.city %> <%= @patient.street %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2 text-right">
+	<strong>Social Security Number:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.ssn%> <%= @patient.birthdate %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2 text-right">
+	<strong>Phonenumber 1:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.phonenumber1 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2 text-right">
+	<strong>Phonenumber 2:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.phonenumber2 %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-2 text-right">
+	<strong>E-Mail address:</strong>
+      </div>
+      <div class="col-md-4 text-left">
+	<%= @patient.email %>
+    </div>
+  </div>
+  </div>
+  <%= link_to 'Back', patients_path, class: "btn btn-primary" %>
+  <%= link_to 'Edit', edit_patient_path, class: "btn btn-primary" %>
+</div>
