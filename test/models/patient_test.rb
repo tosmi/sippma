@@ -26,12 +26,7 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "firstname/lastname should be present" do
-    @patient.firstname = ""
-    @patient.lastname = ""
-  end
-
-  test "firstname/lastname should only accept valid firstnames/lastnames" do
+  test "firstname/lastname validation should only accept valid firstnames/lastnames" do
     valid_names = ['Max Friedrich Heinrich', 'Max Friedrich']
     valid_names.each do |name|
       @patient.firstname = name
@@ -40,8 +35,8 @@ class PatientTest < ActiveSupport::TestCase
     end
   end
 
-  test "firstname/lastname should not accept invalid firstnames/lastnames" do
-    valid_names = ['1ax Friedrich', '!Max', 'Max  Anton', 'Max Anton ']
+  test "firstname/lastname validation should not accept invalid firstnames/lastnames" do
+    valid_names = ['1ax Friedrich', '!Max', 'Max  Anton', 'Max Anton ', '']
     valid_names.each do |name|
       @patient.firstname = name
       @patient.lastname = name
@@ -54,7 +49,7 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "zip should only accept valid zip codes" do
+  test "zip validation should only accept valid zip codes" do
     valid_zip_codes = %w[1 12 123 1234 12345]
     valid_zip_codes.each do |zip|
       @patient.zip = zip
@@ -62,7 +57,7 @@ class PatientTest < ActiveSupport::TestCase
     end
   end
 
-  test "zip should no accept invalid zip codes" do
+  test "zip validation should no accept invalid zip codes" do
     invalid_zip_codes = %w[123456 a1234 12a34 1234ab]
     invalid_zip_codes.each do |zip|
       @patient.zip = zip
@@ -75,7 +70,7 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "phonenumbers should only accept valid phonenumbers" do
+  test "phonenumbers validation should only accept valid phonenumbers" do
     valid_phonenumbers = ['+43 664 123434',
                           '0043 664 123345',
                           '066412334556',
@@ -89,7 +84,7 @@ class PatientTest < ActiveSupport::TestCase
     end
   end
 
-  test "phonenumbers should not accept invalid phonenumbers" do
+  test "phonenumbers validation should not accept invalid phonenumbers" do
     invalid_phonenumbers = ['+43 a664 123434',
                           '0043--664123345',
                           '0664//12334556',
@@ -106,20 +101,16 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "insurance should be present" do
-    @patient.insurance = ""
-  end
-
-  test "insurance should only accept a valid insurance name" do
-    valid_names = ['WGKK', 'Wiener Gebietskrankenkasse', 'Krankenkasse',]
+  test "insurance validation should only accept a valid insurance name" do
+    valid_names = ['WGKK', 'Wiener Gebietskrankenkasse', 'Krankenkasse', ]
     valid_names.each do |name|
       @patient.insurance = name
-      assert @patient.valid?
+      assert @patient.valid?, @patient.insurance
     end
   end
 
-  test "insurance should not accept invalid insurance name" do
-    valid_names = ['!WGKK', '1XYZ', 'Test  Krankenkasse']
+  test "insurance validation should not accept invalid insurance name" do
+    valid_names = ['!WGKK', '1XYZ', 'Test  Krankenkasse', '']
     valid_names.each do |name|
       @patient.insurance = name
       assert_not @patient.valid?, name
@@ -131,7 +122,7 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "ssn should only accept valid ssn codes" do
+  test "ssn validation should only accept valid ssn codes" do
     valid_ssn_codes = %w[1 12 123 1234 12345]
     valid_ssn_codes.each do |ssn|
       @patient.ssn = ssn
@@ -139,17 +130,12 @@ class PatientTest < ActiveSupport::TestCase
     end
   end
 
-  test "ssn should no accept invalid ssn codes" do
-    invalid_ssn_codes = %w[123456 a1234 12a34 1234ab]
+  test "ssn validation should no accept invalid ssn codes" do
+    invalid_ssn_codes = %w[123456 a1234 12a34 1234ab ""]
     invalid_ssn_codes.each do |ssn|
       @patient.ssn = ssn
       assert_not @patient.valid?, ssn
     end
-  end
-
-  test "email should not be valid" do
-    @patient.email = "  "
-    assert_not @patient.valid?
   end
 
   test "email should not be too long" do
@@ -157,7 +143,15 @@ class PatientTest < ActiveSupport::TestCase
     assert_not @patient.valid?
   end
 
-  test "email should only accept valid emails" do
+  test "email validation should reject invalid addresses" do
+    invalid_addresses = %w[ user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com foo@bar..com ]
+    invalid_addresses.each do |invalid_address|
+      @patient.email = invalid_address
+      assert_not @patient.valid?, "#{invalid_address.inspect} should be invalid"
+      end
+  end
+
+  test "email validation should only accept valid emails" do
     valid_emails = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
     valid_emails.each do |email|
       @patient.email = email
