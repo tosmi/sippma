@@ -8,6 +8,7 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @patient = Patient.find(params[:id])
   end
 
   def new
@@ -22,6 +23,12 @@ class PatientsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Patient.find(params[:id]).destroy
+    flash[:success] = "Patient deleted"
+    redirect_to patients_url
   end
 
   private
