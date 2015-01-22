@@ -27,10 +27,13 @@
 		  Options<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu" role="menu">
-		  <li><a href="#">New Log</a></li>
-		  <li><a href="#">Edit</a></li>
-		  <li><a href="#">Delete</a></li>
-		  <li><a href="#">Billing</a></li>
+		  <li><a href="#">New consultation</a></li>
+		  <li><a href="#">List consultations</a></li>
+		  <li><a href="#">New receipt</a></li>
+		  <li><a href="#">List receipts</a></li>
+		  <li><%= link_to 'Show details', patient %></li>
+		  <li><%= link_to 'Edit', edit_patient_path(patient) %></li>
+		  <li><%= link_to 'Delete', patient, method: :delete, data: { confirm: "Are you sure?"} %></li>
 		</ul>
 	      </div>
 	    </div>
