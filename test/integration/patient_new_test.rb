@@ -26,7 +26,12 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to patients_url
     follow_redirect!
-    assert_template 'patients/index'
+    assert_select 'div.alert'
+    assert_select 'div.alert-success'
+    delete logout_path
+    follow_redirect!
+    assert_select 'div.alert', false, "Must not contain success flash after logout"
+    assert_select 'div.alert-success', false, "Must not contain success flash after logout"
   end
 
   test "reject invalid patient" do
