@@ -25,6 +25,20 @@ class PatientsController < ApplicationController
     end
   end
 
+  def edit
+    @patient = Patient.find(params[:id])
+  end
+
+  def update
+    @patient = Patient.find(params[:id])
+    if @patient.update_attributes(patient_params)
+      flash[:success] = "Patient updated"
+      redirect_to patients_url
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     Patient.find(params[:id]).destroy
     flash[:success] = "Patient deleted"
