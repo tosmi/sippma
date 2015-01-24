@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20150124200717) do
 
   create_table "consultations", force: :cascade do |t|
     t.text     "content"
-    t.text     "diagnosis"
+    t.text     "diagnosis",  null: false
     t.integer  "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
