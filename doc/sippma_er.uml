@@ -28,7 +28,7 @@ class Relationships {
       relative_id: Integer
 }
 
-class LogEntries {
+class Consultations {
       *id: Integer
       *patient_id: Integer
       date: Date
@@ -53,7 +53,7 @@ class EntryLines {
 }
 
 Patients "1" <--> "1" Relationships
-Patients "1" --> "many" LogEntries
+Patients "1" --> "many" Consultations
 Patients "1" --> "many" Receipts
 Receipts "1" --> "many" EntryLines
 
