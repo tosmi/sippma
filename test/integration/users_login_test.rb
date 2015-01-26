@@ -32,4 +32,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "unauthorized access should redirect to login" do
+    get patients_path
+    assert_redirected_to login_path
+    follow_redirect!
+    assert_not flash.empty?
+    assert_match 'Please log in.', response.body
+    log_in_as(@admin)
+    follow_redirect!
+    assert_template 'patients/welcome'
+  end
+
+
 end
