@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  resources :patients
+  resources :patients, shallow: true do
+    resources :consultations
+  end
+
 end
