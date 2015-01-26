@@ -22,8 +22,10 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "creating the first patient record" do
-    log_in_as(@admin)
     get patients_path
+    assert_redirected_to login_path
+    log_in_as(@admin)
+    follow_redirect!
     assert_match "Welcome to SIPPMA", response.body
     assert_select "a[href=?]", new_patient_path
     get new_patient_path
