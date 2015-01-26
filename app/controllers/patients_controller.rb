@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  before_action :logged_in_user
 
   def index
     if not Patient.any?
