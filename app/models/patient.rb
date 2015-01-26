@@ -1,4 +1,6 @@
 class Patient < ActiveRecord::Base
+  has_many :consultations
+
   include SippmaRegex
   default_scope { order('lastname DESC') }
 
