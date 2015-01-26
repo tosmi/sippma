@@ -3,6 +3,7 @@ require 'test_helper'
 class PatientNewTest < ActionDispatch::IntegrationTest
 
   def setup
+    @admin = users(:admin)
     @new_patient = { patient: { firstname: 'Kurt',
                                 lastname: 'Froehlich',
                                 zip: '1234',
@@ -20,7 +21,8 @@ class PatientNewTest < ActionDispatch::IntegrationTest
 
   test "create a new patient" do
     get new_patient_path
-    assert_template 'patients/new'
+    log_in_as(@admin)
+    assert_redirected_to new_patient_path
     assert_difference 'Patient.count', 1 do
       post patients_path, @new_patient
     end
@@ -36,7 +38,8 @@ class PatientNewTest < ActionDispatch::IntegrationTest
 
   test "reject invalid patient" do
     get new_patient_path
-    assert_template 'patients/new'
+    log_in_as(@admin)
+    assert_redirected_to new_patient_path
     assert_no_difference 'Patient.count' do
       @new_patient[:patient][:firstname] = ''
       post patients_path, @new_patient

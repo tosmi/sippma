@@ -3,6 +3,7 @@ require 'test_helper'
 class PatientIndexTest < ActionDispatch::IntegrationTest
 
   def setup
+    @admin = User.find_by username: 'admin'
     @patient_params = {
       patient: {
         firstname: 'First',
@@ -21,6 +22,7 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "creating the first patient record" do
+    log_in_as(@admin)
     get patients_path
     assert_match "Welcome to SIPPMA", response.body
     assert_select "a[href=?]", new_patient_path
@@ -37,6 +39,7 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "deleting a patient" do
+    log_in_as(@admin)
     assert_difference 'Patient.count', 1 do
       post patients_path, @patient_params
     end
@@ -50,6 +53,7 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "show patient details" do
+    log_in_as(@admin)
     assert_difference 'Patient.count', 1 do
       post patients_path, @patient_params
     end

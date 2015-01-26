@@ -3,6 +3,7 @@ require 'test_helper'
 class PatientEditTest < ActionDispatch::IntegrationTest
 
   def setup
+    @admin = users(:admin)
     @new_patient = { patient: { firstname: 'Kurt',
                                 lastname: 'Froehlich',
                                 zip: '1234',
@@ -20,6 +21,8 @@ class PatientEditTest < ActionDispatch::IntegrationTest
 
   test "unsuccessful edit" do
     get new_patient_path
+    log_in_as(@admin)
+    assert_redirected_to new_patient_path
     assert_difference 'Patient.count', 1 do
       post patients_path, @new_patient
     end
@@ -35,6 +38,8 @@ class PatientEditTest < ActionDispatch::IntegrationTest
 
   test "successful edit" do
     get new_patient_path
+    log_in_as(@admin)
+    assert_redirected_to new_patient_path
     assert_difference 'Patient.count', 1 do
       post patients_path, @new_patient
     end
