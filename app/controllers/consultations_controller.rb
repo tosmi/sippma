@@ -4,8 +4,13 @@ class ConsultationsController < ApplicationController
     @consultation = @patient.consultations.build
   end
 
+  def index
+    @patient = Patient.find(params[:patient_id])
+    @consultations = @patient.consultations.all
+  end
+
   def create
-    @patient = Patient.find(params[:id])
+    @patient = Patient.find(params[:patient_id])
     @consultation = @patient.consultations.build(consultation_params)
     if @consultation.save
       flash[:success] = "Consultation for #{@patient.firstname} #{@patient.lastname} saved!"
