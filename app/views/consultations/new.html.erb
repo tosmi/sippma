@@ -1,16 +1,15 @@
-<div class="container center">
-  <h1>New consultation for <%= @patient.firstname %> <%= @patient.lastname %></h1>
+<div class="container">
+  <div class="jumbotron">
+  <h3>New consultation for <%= @patient.firstname %> <%= @patient.lastname %></h3>
   <%= form_for(@consultation, url: patient_consultations_path) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-	<%= f.text_area :content, class: 'form_control', placeholder: 'Content' %>
+    <div class="form-group">
+      <%= f.label 'Content' %>
+      <%= f.text_area :content, class: 'form_control consultation_content' %>
+      <%= f.label 'Diagnosis' %>
+      <%= f.text_field :diagnosis, class: 'form_control' %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-	<%= f.text_field :diagnosis, class: 'form_control', placeholder: 'Diagnosis' %>
-      </div>
     <div class="row">
       <div class="col-md-2 col-md-offset-4">
 	<%= f.submit "Save consulation", class: "btn btn-primary btn-block"%>
@@ -20,4 +19,5 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>
