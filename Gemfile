@@ -17,6 +17,7 @@ gem 'bootstrap-sass', '3.3.3'
 gem 'bcrypt', '3.1.9'
 
 group :development, :test do
+  gem 'factory_girl_rails', '~> 4.5'
   gem 'byebug'
   gem 'spring'
   gem 'web-console', '~> 2.0'
