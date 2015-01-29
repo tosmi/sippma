@@ -1,1 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+max:
+  firstname: Max
+  lastname: Mustermann
+  zip: 1234
+  street: Mustergasse 8
+  city: Wien
+  ssn: 4321
+  insurance: WGKK
+  phonenumber1: 01 12345
+  phonenumber2: 01 12346
+  email: max@mustermann.at
+  birthdate: 5.years.ago
