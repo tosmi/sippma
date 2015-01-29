@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class PatientIndexTest < ActionDispatch::IntegrationTest
+  fixtures :users
 
   def setup
-    @admin = User.find_by username: 'admin'
+    @admin = users(:admin)
     @patient_params = {
       patient: {
         firstname: 'First',

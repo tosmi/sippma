@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PatientsControllerTest < ActionController::TestCase
+  fixtures :users
 
   def setup
     @admin = users(:admin)
