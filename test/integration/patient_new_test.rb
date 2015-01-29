@@ -27,6 +27,7 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     log_in_as(@admin)
     assert_redirected_to new_patient_path
+    follow_redirect!
     assert_difference 'Patient.count', 1 do
       post patients_path, @new_patient
     end
