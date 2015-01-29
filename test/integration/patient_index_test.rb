@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PatientIndexTest < ActionDispatch::IntegrationTest
-  fixtures :users, :patients
+  fixtures :users, :patients, :consultations
 
   def setup
     @admin = users(:admin)
