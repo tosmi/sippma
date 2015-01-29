@@ -55,6 +55,7 @@ input {
   }
 }
 
+
 #consultation_content {
   height: 200px;
   float: none;
@@ -110,4 +111,12 @@ footer small {
 /* typography */
 h3 {
     margin-top: 1px;
+}
+
+a {
+  font-weight: bold !important;
+}
+
+a[href="#"] {
+  color: #777 !important;
 }
