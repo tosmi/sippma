@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
+  fixtures :users
 
   def setup
     @admin = users(:admin)
@@ -40,7 +41,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_match 'Please log in.', response.body
     log_in_as(@admin)
     follow_redirect!
-    assert_template 'patients/welcome'
+    assert_template 'patients/index'
   end
 
 
