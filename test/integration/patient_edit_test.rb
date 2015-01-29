@@ -1,58 +1,43 @@
 require 'test_helper'
 
 class PatientEditTest < ActionDispatch::IntegrationTest
+  fixtures :users, :patients
 
   def setup
     @admin = users(:admin)
-    @new_patient = { patient: { firstname: 'Kurt',
-                                lastname: 'Froehlich',
-                                zip: '1234',
-                                street: 'Teststrasse 8',
-                                city: 'Wien',
-                                ssn: '4321',
-                                insurance: 'WGKK',
-                                phonenumber1: '01 123456',
-                                phonenumber2: '01 654321',
-                                email: 'kurt@froehlich.at',
-                                birthdate: Date.today,
-                              }
-                   }
+    @max   = patients(:max)
   end
 
   test "unsuccessful edit" do
-    get new_patient_path
+    get edit_patient_path(@max)
     log_in_as(@admin)
-    assert_redirected_to new_patient_path
-    assert_difference 'Patient.count', 1 do
-      post patients_path, @new_patient
-    end
-    patient = assigns(:patient)
-    get edit_patient_path(patient)
+    assert_redirected_to edit_patient_path(@max)
+    follow_redirect!
     assert_select 'h1', 'Edit Patient'
-    assert_select 'input[value=?]', patient.lastname
-    @new_patient[:patient][:lastname] = ''
-    patch patient_path(patient), @new_patient
+    assert_select 'input[value=?]', @max.lastname
+    @max.lastname = ''
+    patch patient_path(@max), patient: { street: '' }
     assert_template 'patients/edit'
     assert_not flash.empty?
+    assert_select 'div#error_explanation'
+    assert_select 'div.alert'
+    assert_select 'div.alert-danger'
   end
 
   test "successful edit" do
-    get new_patient_path
+    get edit_patient_path(@max)
     log_in_as(@admin)
-    assert_redirected_to new_patient_path
-    assert_difference 'Patient.count', 1 do
-      post patients_path, @new_patient
-    end
-    patient = assigns(:patient)
-    get edit_patient_path(patient)
-    assert_select 'h1', 'Edit Patient'
-    assert_select 'input[value=?]', patient.lastname
-    @new_patient[:patient][:lastname] = 'Traurig'
-    patch patient_path(patient), @new_patient
-    assert_redirected_to patients_path
+    assert_redirected_to edit_patient_path(@max)
     follow_redirect!
+    assert_select 'h1', 'Edit Patient'
+    assert_select 'input[value=?]', @max.lastname
+    @max.lastname = ''
+    patch patient_path(@max), patient: { street: 'Mustergasse 9' }
+    follow_redirect!
+    assert_template 'patients/index'
     assert_not flash.empty?
-    assert_match 'Traurig', response.body
+    assert_select 'div.alert'
+    assert_select 'div.alert-success'
   end
 
 end
