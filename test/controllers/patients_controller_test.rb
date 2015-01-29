@@ -21,6 +21,7 @@ class PatientsControllerTest < ActionController::TestCase
   end
 
   test "show welcome if there are no patients" do
+    Patient.destroy_all
     get :index
     assert_redirected_to login_path
     log_in_as(@admin)
@@ -29,6 +30,7 @@ class PatientsControllerTest < ActionController::TestCase
   end
 
   test "create a new valid patient" do
+    Patient.destroy_all
     get :index
     assert_redirected_to login_path
     log_in_as(@admin)
