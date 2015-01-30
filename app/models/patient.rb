@@ -27,4 +27,6 @@ class Patient < ActiveRecord::Base
 
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, :allow_blank => true
 
+  validates :birthdate, presence: true
+
 end
