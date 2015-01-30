@@ -22,18 +22,15 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
     assert_redirected_to patients_path
   end
 
-  test "reject creating an invalid consultation" do
+  test "allow empty consultation and diagnosis" do
     log_in_as(@admin)
     get new_patient_consultation_path(@max)
-    assert_difference 'Consultation.count', 0 do
+    assert_difference 'Consultation.count', 1 do
       post patient_consultations_path(@max), consultation: {
              diagnosis: '',
-             content: 'a diagnosis during testing'
+             content: ''
            }
     end
-    assert_template 'consultations/new'
-    assert_select 'div#error_explanation'
-    assert_select 'div.alert'
-    assert_select 'div.alert-danger'
+    assert_redirected_to patients_path
   end
 end
