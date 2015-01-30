@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="jumbotron">
+    <h3>Edit consultation for <%= @patient.firstname %> <%= @patient.lastname %></h3>
+    <%= form_for(@consultation, url: consultation_path) do |f| %>
+      <%= render 'edit_consultation', f: f %>
+    <% end %>
+  </div>
+</div>

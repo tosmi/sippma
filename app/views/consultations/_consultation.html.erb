@@ -1,0 +1,9 @@
+<div class="row">
+  Date: <%= consultation.created_at %><br/>
+  Diagnosis: <%= consultation.diagnosis %><br/>
+  <%= consultation.content %>
+</div>
+<div class="row text-right">
+  <%= link_to "Edit", edit_consultation_path(consultation), class: "btn btn-default btn-sm" %>
+</div>
+<hr/>
