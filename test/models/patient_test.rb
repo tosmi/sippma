@@ -159,4 +159,9 @@ class PatientTest < ActiveSupport::TestCase
     end
   end
 
+  test "birthdate should be present" do
+    @patient.birthdate = nil
+    assert_not @patient.valid?
+  end
+
 end
