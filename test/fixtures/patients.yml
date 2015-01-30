@@ -10,7 +10,7 @@ max:
   phonenumber1: 01 12345
   phonenumber2: 01 12346
   email: max@mustermann.at
-  birthdate: 5.years.ago
+  birthdate: <%= 5.years.ago %>
 
 moritz:
   firstname: Moritz
@@ -23,4 +23,4 @@ moritz:
   phonenumber1: 01 12345
   phonenumber2: 01 12346
   email: moritz@mustermann.at
-  birthdate: 6.years.ago
+  birthdate: <%= 6.years.ago %>
