@@ -22,6 +22,23 @@ class ConsultationsController < ApplicationController
     end
   end
 
+  def edit
+    @consultation = Consultation.find(params[:id])
+    @patient = Patient.find(@consultation.patient_id)
+  end
+
+  def update
+    @consultation = Consultation.find(params[:id])
+    @patient = Patient.find(@consultation.patient_id)
+    if @consultation.update_attributes(consultation_params)
+      flash[:success] = 'Consultation updated'
+      redirect_to patient_consultations_path(@patient)
+    else
+
+      render 'edit'
+    end
+  end
+
   private
 
   def consultation_params
