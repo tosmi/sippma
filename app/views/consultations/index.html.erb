@@ -4,33 +4,35 @@
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-	<th>Date</th>
-	<th>Diagnosis</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for consultation in @consultations %>
-	<tr>
-	  <td><%= consultation.updated_at %></td>
-	  <td><%= consultation.diagnosis  %></td>
-	  <td>
-	    <div class="btn-toolbar">
-	      <div class="btn-group">
-		<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		  Options<span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu">
-		  <li><%= link_to 'Show Details', consultation_path(consultation) %></li>
-		  <li><a href="#">Delete consultation</a></li>
-		</ul>
-	      </div>
-	    </div>
-	  </td>
-	</tr>
-      <% end %>
-    </tbody>
-</table>
+  <div class="row">
+    <aside class="col-md-2">
+      <section class="patient_info">
+	<div class="row">
+	  <%= @patient.firstname %>
+	  <%= @patient.lastname  %>
+	</div>
+	<div class="row">
+	  <%= @patient.birthdate %> <%= @patient.ssn%>
+	</div>
+	<div class="row">
+	  <%= @patient.zip %> <%= @patient.city%>
+	</div>
+	<div class="row">
+	  <%= @patient.street %>
+	</div>
+	<div class="row">
+	  <%= @patient.phonenumber1 %>
+	</div>
+	<div class="row">
+	  <%= @patient.phonenumber2 %>
+	</div>
+	<div class="row">
+	  <%= mail_to @patient.email %>
+	</div>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <%= render @consultations %>
+    </div>
+  </div>
 </div>
