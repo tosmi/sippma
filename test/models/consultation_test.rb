@@ -26,11 +26,6 @@ class ConsultationTest < ActiveSupport::TestCase
     assert_not @consultation.valid?
   end
 
-  test "diagnosis should be present" do
-    @consultation.diagnosis = nil
-    assert_not @consultation.valid?
-  end
-
   test "diagnosis should not be too long" do
     @consultation.diagnosis = "a" * 201
     assert_not @consultation.valid?
