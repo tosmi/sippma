@@ -2,7 +2,7 @@ class CreateConsultations < ActiveRecord::Migration
   def change
     create_table :consultations do |t|
       t.text :content
-      t.text :diagnosis, null: false
+      t.text :diagnosis
       t.references :patient, index: true
 
       t.timestamps null: false
