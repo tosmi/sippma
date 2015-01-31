@@ -34,9 +34,16 @@ class ConsultationsController < ApplicationController
       flash[:success] = 'Consultation updated'
       redirect_to patient_consultations_path(@patient)
     else
-
       render 'edit'
     end
+  end
+
+  def destroy
+    @consultation = Consultation.find(params[:id])
+    patient_id = @consultation.patient_id
+    @consultation.destroy
+    flash[:success] = "Consultation deleted"
+    redirect_to patient_consultations_path(patient_id)
   end
 
   private
