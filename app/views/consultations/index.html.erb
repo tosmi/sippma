@@ -32,7 +32,11 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <%= render @consultations %>
+      <% if @consultations.empty? %>
+	<h3>There are currently no consulations</h3>
+      <% else %>
+	<%= render @consultations %>
+      <% end %>
     </div>
   </div>
 </div>
