@@ -22,4 +22,26 @@ class ConsultationEditDeleteTestTest < ActionDispatch::IntegrationTest
     assert_match 'another diagnosis', response.body
   end
 
+  test "does not save if diagnosis is not valid" do
+    log_in_as(@admin)
+    get new_patient_consultation_path(@max)
+    assert_difference 'Consultation.count', 0 do
+      patch consultation_path(@first), consultation: {
+             diagnosis: 'a' * 201,
+           }
+    end
+    assert_template 'edit'
+  end
+
+  test "deleting a consultation" do
+    assert_difference 'Consultation.count', 0 do
+      delete consultation_path(@first)
+    end
+    assert_redirected_to login_path
+    log_in_as(@admin)
+    assert_difference 'Consultation.count', -1 do
+      delete consultation_path(@first)
+    end
+  end
+
 end
