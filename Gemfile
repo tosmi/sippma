@@ -16,6 +16,11 @@ gem 'bootstrap-sass', '3.3.3'
 
 gem 'bcrypt', '3.1.9'
 
+group :development do
+  gem 'guard'
+  gem 'guard-minitest'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'spring'
