@@ -1,11 +1,11 @@
 <%= render 'shared/error_messages', object: f.object %>
-
 <div class="form-group">
   <%= f.label 'Content' %>
   <%= f.text_area :content, class: 'form_control consultation_content' %>
+</div>
+<div class="form-group">
   <%= f.label 'Diagnosis' %>
   <%= f.text_field :diagnosis, class: 'form_control' %>
-</div>
 </div>
 <div class="row">
   <div class="col-md-2 col-md-offset-4">
