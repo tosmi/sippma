@@ -38,7 +38,7 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     assert_select 'td', 'Kurt'
     assert_select 'td', 'Froehlich'
     assert_select 'td', '1234 Wien, Teststrasse 8'
-    assert_select 'td', '4321 2010-01-30'
+    assert_select 'td', /4321 /
     assert_select 'div.btn-toolbar'
     delete logout_path
     follow_redirect!
