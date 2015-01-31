@@ -14,6 +14,7 @@ class ConsultationEditDeleteTestTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_path
     log_in_as(@admin)
     assert_redirected_to edit_consultation_path(@first)
+    follow_redirect!
     patch consultation_path(@first), consultation: {
             diagnosis: 'another diagnosis'
           }
