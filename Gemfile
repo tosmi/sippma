@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'bootstrap-sass', '3.3.3'
 
-gem 'bcrypt', '3.1.9'
+gem 'bcrypt', '~> 3.1'
 
 group :development do
   gem 'guard'
