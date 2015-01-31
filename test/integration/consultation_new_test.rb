@@ -33,4 +33,17 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to patients_path
   end
+
+  test "does not save if diagnosis is not valid" do
+    log_in_as(@admin)
+    get new_patient_consultation_path(@max)
+    assert_difference 'Consultation.count', 0 do
+      post patient_consultations_path(@max), consultation: {
+             diagnosis: 'a' * 201,
+             content: ''
+           }
+    end
+    assert_template 'new'
+  end
+
 end
