@@ -41,7 +41,11 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_match 'Please log in.', response.body
     log_in_as(@admin)
     follow_redirect!
-    assert_template 'patients/index'
+    if Patient.any?
+      assert_template 'patients/index'
+    else
+      assert_template 'patients/welcome'
+    end
   end
 
 
