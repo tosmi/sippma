@@ -38,18 +38,24 @@ class Consultations {
 
 class Receipts {
       *id: Integer
-      *entryline_id: Integer
       *patient_id: Integer
       receiptnumber: Text
       diagnosis: Text
       date: Date
-      fee: Float
+      totalfee: Float
 }
 
 class EntryLines {
       *id: Integer
-      abbrev: String
+      receipt_id: Integer
+      fee: float
       text: String
+}
+
+class Abbrevations {
+      *id: Integer
+      abbrev: String
+      expanded: String
 }
 
 Patients "1" <--> "1" Relationships
