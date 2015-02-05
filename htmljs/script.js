@@ -1,3 +1,16 @@
+var at;
+if (!at) {
+    at = {};
+} else if (typeof org != 'object') {
+    throw new Error('at already exists and is not an object.');
+}
+
+if(!at.stderr) {
+    at.stderr = {};
+} else if (typeof at.stderr != 'object') {
+    throw new Error('at already exists and is not an object.');
+}
+
 function addEntry() {
     var entries   = document.getElementsByClassName("entry");
     var newentry  = entries[0].cloneNode(true);
