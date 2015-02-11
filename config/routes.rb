@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     resources :consultations
   end
 
+  resources :abbrevations
+
 end
