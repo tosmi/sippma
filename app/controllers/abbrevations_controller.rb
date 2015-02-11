@@ -1,0 +1,2 @@
+class AbbrevationsController < ApplicationController
+end
