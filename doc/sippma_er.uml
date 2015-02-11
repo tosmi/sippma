@@ -55,7 +55,7 @@ class EntryLines {
 class Abbrevations {
       *id: Integer
       abbrev: String
-      expanded: String
+      text: String
 }
 
 Patients "1" <--> "1" Relationships
