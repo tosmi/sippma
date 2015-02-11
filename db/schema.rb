@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124200717) do
+ActiveRecord::Schema.define(version: 20150211191702) do
+
+  create_table "abbrevations", force: :cascade do |t|
+    t.string   "abbrev"
+    t.string   "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "consultations", force: :cascade do |t|
     t.text     "content"
@@ -41,13 +48,13 @@ ActiveRecord::Schema.define(version: 20150124200717) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
+    t.string   "username",        null: false
+    t.string   "fullname",        null: false
+    t.string   "email",           null: false
     t.string   "password_digest"
     t.integer  "permissions"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "fullname"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
