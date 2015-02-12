@@ -22,7 +22,6 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', patient_path(@max)
     assert_select 'a[href=?]', edit_patient_path(@max)
     assert_select 'a[href=?][data-method=delete]', patient_path(@max)
-
   end
 
   test "show patient details" do
@@ -31,6 +30,14 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
     assert_match 'Max Mustermann', response.body
     assert_select 'a[href=?]', patients_path
     assert_select 'a[href=?]', edit_patient_path(@max)
+  end
+
+  test "show welcome if there are no patients" do
+    log_in_as(@admin)
+    Patient.delete_all
+    get patients_path
+    assert_select 'a[href=?]', new_patient_path
+    assert_match 'Welcome to SIPPMA', response.body
   end
 
 end
