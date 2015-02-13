@@ -27,6 +27,12 @@ class AbbrevationsController < ApplicationController
     end
   end
 
+  def destroy
+    Abbrevation.find(params[:id]).destroy
+    flash[:success] = "Abbrevation deleted"
+    redirect_to abbrevations_path
+  end
+
   private
 
   def abbrevation_params

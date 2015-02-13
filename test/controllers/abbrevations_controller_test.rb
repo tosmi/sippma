@@ -1,10 +1,11 @@
 require 'test_helper'
 
 class AbbrevationsControllerTest < ActionController::TestCase
-  fixtures :users
+  fixtures :users, :abbrevations
 
   def setup
     @admin = users(:admin)
+    @one   = abbrevations(:one)
   end
 
   test "should return ok if format html" do
@@ -38,5 +39,13 @@ class AbbrevationsControllerTest < ActionController::TestCase
                                    text: 'Controller Test' }
     end
     assert_redirected_to abbrevations_url
+  end
+
+  test "deleting an abbrevation" do
+    log_in_as(@admin)
+    assert_difference 'Abbrevation.count', -1 do
+      delete :destroy, id: @one.id
+    end
+    assert_redirected_to abbrevations_path
   end
 end
