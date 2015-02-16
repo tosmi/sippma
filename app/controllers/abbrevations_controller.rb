@@ -33,6 +33,20 @@ class AbbrevationsController < ApplicationController
     redirect_to abbrevations_path
   end
 
+  def edit
+    @abbrevation = Abbrevation.find(params[:id])
+  end
+
+  def update
+    @abbrevation = Abbrevation.find(params[:id])
+    if @abbrevation.update_attributes(abbrevation_params)
+      flash[:success] = 'Abbrevation updated'
+      redirect_to abbrevations_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def abbrevation_params
