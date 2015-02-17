@@ -1,3 +1,7 @@
+"use strict";
+
+window.alert('start');
+
 var at;
 if (!at) {
     at = {};
@@ -46,3 +50,20 @@ function updateTotal() {
 
     idsum.value = sum;
 }
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.withCredentials=true;
+
+xmlhttp.open("GET","http://localhost:3000/abbrevations.json", true);
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttpd.status == 200) {
+	var array = JSON.parse(xmlhttp.responseText);
+	alert(array);
+    }
+    else {
+	alert(xmlhttp.readyState);
+    }
+};
+
+xmlhttp.send();
