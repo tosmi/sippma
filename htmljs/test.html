@@ -17,11 +17,11 @@
 	  <div class="col-md-6">
 	    <input type="entries[]" name="text" placeholder="Text" class="form-control"/>
 	  </div>
-	  <div class="col-md-1">
-	    <input type="fees[]" name="fee" placeholder="Fee" class="form-control fees" onkeyup="updateTotal()"/>
+	  <div class="col-md-2">
+	    <input type="fees[]" name="fee" placeholder="0.00" class="form-control fees text-right" onkeyup="updateTotal()"/>
 	  </div>
-	  <div class="col-md-1">
-	    <button type="button" class="btn btn-sm btn-success" onClick="addEntry()" >Add Entry</button>
+	  <div class="col-md-2">
+	    <button type="button" id="addentry" class="btn btn-sm btn-success" onClick="addEntry()" >Add Entry</button>
 	  </div>
 	</div>
       </div>
@@ -34,8 +34,8 @@
 	<div class="col-md-6 text-right">
 	  Sum
 	</div>
-	<div class="col-md-1">
-	  <input type="sum" name="sum" placeholder="Sum" class="form-control" id="sum"/>
+	<div class="col-md-2">
+	  <input type="sum" name="sum" placeholder="0.00" class="form-control text-right" id="sum"/>
 	</div>
       </div>
     </div>
