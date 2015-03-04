@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient_id: max
+  diagnosis: MyText
+  totalfee: 1.5
+  receiptnumber: MyString
+  created_at: <%= 10.minutes.ago %>
+
+two:
+  patient_id: max
+  diagnosis: MyText
+  totalfee: 1.5
+  receiptnumber: MyString
+  created_at: <%= 1.year.ago %>
+
+most_recent:
+  patient_id: moritz
+  diagnosis: MyText
+  totalfee: 1.5
+  receiptnumber: MyString
+  created_at: <%= Time.zone.now %>
