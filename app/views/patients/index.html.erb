@@ -32,8 +32,8 @@
 		    <li><%= link_to 'List Consultation', patient_consultations_path(patient) %></li>
 		  <% else %>
 		    <li><a href="#">List Consultations</a></li>
-		    <% end %>
-		  <li><a href="#">New receipt</a></li>
+		  <% end %>
+		  <li><%= link_to 'New Receipt', new_patient_receipt_path(patient)%></li>
 		  <li><a href="#">List receipts</a></li>
 		  <li><%= link_to 'Show details', patient %></li>
 		  <li><%= link_to 'Edit', edit_patient_path(patient) %></li>
