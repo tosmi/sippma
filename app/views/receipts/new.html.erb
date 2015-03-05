@@ -1,0 +1,51 @@
+<div class="container center">
+  <h1>Create a new receipt</h1>
+  <div class="row">
+    <div class="col-md-4 text-left">
+      <%= @patient.firstname %> <%= @patient.lastname %><br/>
+      <%= @patient.insurance %><br/>
+      <%= @patient.street %><br/>
+      <%= @patient.zip %> <%= @patient.city %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 text-right">
+      Grafenwoerth, <%= Date.today %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 text-left">
+      <h3>Wahlarzt-Honorarnote:</h3>
+    </div>
+  </div>
+  <div class="row">
+    <%= form_for(@receipt, url: patient_receipts_path(@patient)) do |f| %>
+      <div class="entry">
+	<div class="row">
+	  <div class="col-md-6">
+	    <input type="entries[]" name="text" placeholder="Text" class="form-control"/>
+	  </div>
+	  <div class="col-md-2">
+	    <input type="fees[]" name="fee" placeholder="0.00" class="form-control fees text-right" onkeyup="updateTotal()"/>
+	  </div>
+	  <div class="col-md-2">
+	    <button type="button" id="addentry" class="btn btn-sm btn-success" onClick="addEntry()" >Add Entry</button>
+	  </div>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-md-8">
+	  <hr/>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-md-6 text-right">
+	  Sum
+	</div>
+	<div class="col-md-2">
+	  <input type="sum" name="sum" placeholder="0.00" class="form-control text-right" id="sum"/>
+	</div>
+      </div>
+    <% end %>
+  </div>
+</div>
