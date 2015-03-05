@@ -7,4 +7,6 @@ class Receipt < ActiveRecord::Base
   VALID_RECEIPT_NUMBER = /\A\d+-\d{1,2}-\d{1,2}-\d{4}\z/
   validates :receiptnumber, presence: true, format: { with: VALID_RECEIPT_NUMBER }
 
+  validates :date, presence: true
+
 end
