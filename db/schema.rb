@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150304200055) do
 
   create_table "consultations", force: :cascade do |t|
     t.text     "content"
-    t.text     "diagnosis",  null: false
+    t.text     "diagnosis"
     t.integer  "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -61,11 +61,13 @@ ActiveRecord::Schema.define(version: 20150304200055) do
     t.integer  "patient_id"
     t.text     "diagnosis"
     t.float    "totalfee"
-    t.string   "receiptnumber"
+    t.string   "receiptnumber", null: false
+    t.date     "date",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
+  add_index "receipts", ["patient_id", "created_at"], name: "index_receipts_on_patient_id_and_created_at"
   add_index "receipts", ["patient_id"], name: "index_receipts_on_patient_id"
 
   create_table "users", force: :cascade do |t|
