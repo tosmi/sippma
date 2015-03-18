@@ -58,6 +58,19 @@ class Abbrevations {
       text: String
 }
 
+class Settings {
+      *id: Integer
+      Firstname: String
+      Lastname: String:
+      street: String
+      zip: String
+      city: String
+      email: String
+      phonenumber1: String
+      phonenumber2: String
+      initial_receiptnumber: Integer
+}
+
 Patients "1" <--> "1" Relationships
 Patients "1" --> "many" Consultations
 Patients "1" --> "many" Receipts
