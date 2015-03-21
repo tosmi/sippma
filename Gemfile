@@ -12,7 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'bootstrap-sass', '3.3.4.1'
+gem 'bootstrap-sass', '~> 3.3.4.1'
 
 gem 'bcrypt', '~> 3.1'
 
@@ -28,7 +28,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'minitest-reporters', '1.0.8'
+  gem 'minitest-reporters', '~> 1.0.8'
   gem 'mini_backtrace', '0.1.3'
   gem 'coveralls', require: false
 
