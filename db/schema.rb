@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304200055) do
+ActiveRecord::Schema.define(version: 20150318095915) do
 
   create_table "abbrevations", force: :cascade do |t|
     t.string   "abbrev"
@@ -69,6 +69,23 @@ ActiveRecord::Schema.define(version: 20150304200055) do
 
   add_index "receipts", ["patient_id", "created_at"], name: "index_receipts_on_patient_id_and_created_at"
   add_index "receipts", ["patient_id"], name: "index_receipts_on_patient_id"
+
+  create_table "settings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "street"
+    t.string   "zip"
+    t.string   "string"
+    t.string   "city"
+    t.string   "email"
+    t.string   "phonenumber1"
+    t.string   "phonenumber2"
+    t.integer  "initial_receiptnumber"
+    t.integer  "current_receiptnumber"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
