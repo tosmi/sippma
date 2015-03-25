@@ -11,4 +11,7 @@ Rails.application.routes.draw do
 
   resources :abbrevations
 
+  # we never create a new setting, or delete the a setting
+  # there is just one
+  resource  :settings, exept: [:new, :delete ]
 end
