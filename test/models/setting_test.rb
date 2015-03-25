@@ -2,22 +2,34 @@ require 'test_helper'
 
 class SettingTest < ActiveSupport::TestCase
   def setup
-    @setting = Setting.new(title: 'Dr.',
-                           firstname: 'Max',
-                           lastname: 'Mustermann',
-                           street: 'Musterstrasse 8',
-                           zip: '1234',
-                           city: 'Musterstadt',
-                           email: 'max.mustermann@arzt.at',
-                           phonenumber1: '01-1234567',
-                           phonenumber2: '0664/1236845',
-                           initial_receiptnumber: '123',
-                           current_receiptnumber: '124',
-                          )
+    @setting = Setting.instance
+    @setting.update(title: 'Dr.',
+                    firstname: 'Max',
+                    lastname: 'Mustermann',
+                    street: 'Musterstrasse 8',
+                    zip: '1234',
+                    city: 'Musterstadt',
+                    email: 'max.mustermann@arzt.at',
+                    phonenumber1: '01-1234567',
+                    phonenumber2: '0664/1236845',
+                    initial_receiptnumber: '123',
+                    current_receiptnumber: '124',
+                   )
   end
+
+  test 'should not support creating a new setting' do
+    assert_raises(NoMethodError) { Setting.new }
+    assert_raises(NoMethodError) { Setting.create }
+  end
+
 
   test 'valid setting' do
     assert @setting.valid?
+  end
+
+  test 'title should not be too long' do
+    @setting.title = 'a' * 21
+    assert_not @setting.valid?
   end
 
   test 'firstname should be valid' do
@@ -45,4 +57,46 @@ class SettingTest < ActiveSupport::TestCase
     @setting.lastname = 'a' * 51
     assert_not @setting.valid?
   end
+
+  test 'city should not be too long' do
+    @setting.city = 'a' * 51
+    assert_not @setting.valid?
+  end
+
+  test 'street should not be too long' do
+    @setting.street = 'a' * 51
+    assert_not @setting.valid?
+  end
+
+  test "phonenumbers should not be too long" do
+    @setting.phonenumber1 = "1"*31
+    assert_not @setting.valid?
+  end
+
+  test "phonenumbers validation should only accept valid phonenumbers" do
+    valid_phonenumbers = ['+43 664 123434',
+                          '0043 664 123345',
+                          '066412334556',
+                          '0664/3234823',
+                          '0664-34234281',
+                          '01 28193 12818 12',]
+
+    valid_phonenumbers.each do |phonenumber|
+      @setting.phonenumber1 = phonenumber
+      assert @setting.valid?, phonenumber
+    end
+  end
+
+  test "phonenumbers validation should not accept invalid phonenumbers" do
+    invalid_phonenumbers = ['+43 a664 123434',
+                          '0043--664123345',
+                          '0664//12334556',
+                          '0664  234823', ]
+
+    invalid_phonenumbers.each do |invalid_phonenumber|
+      @setting.phonenumber1 = invalid_phonenumber
+      assert_not @setting.valid?
+    end
+  end
+
 end
