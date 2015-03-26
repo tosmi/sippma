@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
       flash[:success] = 'Sucessfully saved settings'
       redirect_to root_url
     else
-      render 'edit'
+      render 'show'
     end
   end
 
