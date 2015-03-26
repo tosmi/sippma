@@ -1,0 +1,99 @@
+<div class="container center">
+  <h1>Edit Settings</h1>
+
+  <%= form_for(@setting, url: edit_settings_path) do |f| %>
+    <%= render 'shared/error_messages', object: f.object%>
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Title:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :title, class: 'form_control', placeholder: 'Title' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Firstname:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :firstname, class: 'form_control', placeholder: 'Firstname' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Lastname:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :lastname, class: 'form_control', placeholder: 'Lastname' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Street:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :street, class: 'form_control', placeholder: 'Street' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Street:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :street, class: 'form_control', placeholder: 'Street' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Zip:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :zip, class: 'form_control', placeholder: 'Zip' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>City:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :city, class: 'form_control', placeholder: 'City' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Email:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :email, class: 'form_control', placeholder: 'Email' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Phonenumber:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :phonenumber, class: 'form_control', placeholder: 'Phonenumber' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-1 text-right">
+	<strong>Initial receiptnumber:</strong>
+      </div>
+      <div class="col-md-4">
+	<%= f.text_field :initial_receiptnumber, class: 'form_control', placeholder: 'Initial Receiptnumber' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+	<%= f.submit 'Save changes', class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-2">
+	<%= link_to "Back", patients_path, class: "btn btn-primary btn-block "%>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
