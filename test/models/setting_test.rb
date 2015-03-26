@@ -11,8 +11,6 @@ class SettingTest < ActiveSupport::TestCase
                     city: 'Musterstadt',
                     email: 'max.mustermann@arzt.at',
                     phonenumber: '01-1234567',
-                    initial_receiptnumber: '123',
-                    current_receiptnumber: '124',
                    )
   end
 
@@ -96,6 +94,22 @@ class SettingTest < ActiveSupport::TestCase
       @setting.phonenumber = invalid_phonenumber
       assert_not @setting.valid?
     end
+  end
+
+  test "current_receiptnumber returns 1 if no initial_receiptnumber" do
+    @setting.initial_receiptnumber = nil
+    @setting.save
+
+    assert_equal 1, Setting.next_receiptnumber
+    assert_equal 2, Setting.next_receiptnumber
+  end
+
+  test "current_receiptnumber returns correct receiptnumber if initial_receiptnumber is set" do
+    @setting.initial_receiptnumber = 100
+    @setting.save
+
+    assert_equal 100, Setting.next_receiptnumber
+    assert_equal 101, Setting.next_receiptnumber
   end
 
 end

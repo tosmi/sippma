@@ -21,6 +21,29 @@ class Setting < ActiveRecord::Base
     first || create
   end
 
+  def Setting.next_receiptnumber
+    setting = Setting.instance
+    init_receiptnumber if setting.current_receiptnumber.nil?
+
+    setting.reload
+
+    setting.increment!(:current_receiptnumber)
+    setting.current_receiptnumber
+  end
+
+  class << self
+    private
+
+    def init_receiptnumber
+      setting = Setting.instance
+      if not setting.initial_receiptnumber.nil?
+        setting.current_receiptnumber = setting.initial_receiptnumber - 1
+        setting.save
+      end
+    end
+
+  end
+
   private
 
   def format_email

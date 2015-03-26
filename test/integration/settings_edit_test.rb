@@ -17,6 +17,8 @@ class SettingsEditTest < ActionDispatch::IntegrationTest
     assert_template 'settings/show'
     patch settings_path, setting: {
            firstname: 'Max'
-         }
+          }
+    settings = Setting.instance
+    assert_equal settings.firstname, 'Max'
   end
 end
