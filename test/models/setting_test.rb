@@ -10,8 +10,7 @@ class SettingTest < ActiveSupport::TestCase
                     zip: '1234',
                     city: 'Musterstadt',
                     email: 'max.mustermann@arzt.at',
-                    phonenumber1: '01-1234567',
-                    phonenumber2: '0664/1236845',
+                    phonenumber: '01-1234567',
                     initial_receiptnumber: '123',
                     current_receiptnumber: '124',
                    )
@@ -69,7 +68,7 @@ class SettingTest < ActiveSupport::TestCase
   end
 
   test "phonenumbers should not be too long" do
-    @setting.phonenumber1 = "1"*31
+    @setting.phonenumber = "1"*31
     assert_not @setting.valid?
   end
 
@@ -82,7 +81,7 @@ class SettingTest < ActiveSupport::TestCase
                           '01 28193 12818 12',]
 
     valid_phonenumbers.each do |phonenumber|
-      @setting.phonenumber1 = phonenumber
+      @setting.phonenumber = phonenumber
       assert @setting.valid?, phonenumber
     end
   end
@@ -94,7 +93,7 @@ class SettingTest < ActiveSupport::TestCase
                           '0664  234823', ]
 
     invalid_phonenumbers.each do |invalid_phonenumber|
-      @setting.phonenumber1 = invalid_phonenumber
+      @setting.phonenumber = invalid_phonenumber
       assert_not @setting.valid?
     end
   end
