@@ -76,11 +76,9 @@ ActiveRecord::Schema.define(version: 20150318095915) do
     t.string   "lastname"
     t.string   "street"
     t.string   "zip"
-    t.string   "string"
     t.string   "city"
     t.string   "email"
-    t.string   "phonenumber1"
-    t.string   "phonenumber2"
+    t.string   "phonenumber"
     t.integer  "initial_receiptnumber"
     t.integer  "current_receiptnumber"
     t.datetime "created_at",            null: false

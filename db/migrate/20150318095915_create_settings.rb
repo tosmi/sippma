@@ -6,11 +6,9 @@ class CreateSettings < ActiveRecord::Migration
       t.string :lastname
       t.string :street
       t.string :zip
-      t.string :string
       t.string :city
       t.string :email
-      t.string :phonenumber1
-      t.string :phonenumber2
+      t.string :phonenumber
       t.integer :initial_receiptnumber
       t.integer :current_receiptnumber
 
