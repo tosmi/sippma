@@ -1,35 +1,39 @@
 <!doctype html>
 <html>
   <head>
-
-    <script type="text/javascript" src="script.js"></script>
-
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap-theme.min.css"/>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/script.js"></script>
   </head>
   <body>
+
     <div class="container">
       <h1>Testpage for CSS and JavaScript (including bootstrap)</h1>
-      <div class="entry">
-	<div class="row">
-	  <div class="col-md-6">
-	    <input type="entries[]" name="text" placeholder="Text" class="form-control"/>
-	  </div>
-	  <div class="col-md-2">
-	    <input type="fees[]" name="fee" placeholder="0.00" class="form-control fees text-right" onkeyup="updateTotal()"/>
-	  </div>
-	  <div class="col-md-2">
-	    <button type="button" id="addentry" class="btn btn-sm btn-success" onClick="addEntry()" >Add Entry</button>
+      <div id="entries">
+
+	<div class="entry">
+	  <div class="row">
+	    <div class="col-md-6">
+	      <input type="entries[]" name="text" placeholder="Text" class="form-control" id="text"/>
+	    </div>
+	    <div class="col-md-2">
+	      <input type="fees[]" name="fee" placeholder="0.00" class="form-control fees text-right" id="fee"/>
+	    </div>
+	    <div class="col-md-2">
+	      <button type="button" id="addentry" class="btn btn-sm btn-success">Add Entry</button>
+	    </div>
 	  </div>
 	</div>
       </div>
+
       <div class="row">
 	<div class="col-md-8">
 	  <hr/>
 	</div>
       </div>
+
       <div class="row">
 	<div class="col-md-6 text-right">
 	  Sum
@@ -38,5 +42,6 @@
 	  <input type="sum" name="sum" placeholder="0.00" class="form-control text-right" id="sum"/>
 	</div>
       </div>
+
     </div>
   </body></html>
