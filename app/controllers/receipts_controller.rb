@@ -3,6 +3,7 @@ class ReceiptsController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     @receipt = @patient.receipts.build
     @settings = Setting.instance
-    @receiptnumber = "#{@settings.current_receiptnumber+1}-#{Date.today.strftime('%Y-%m-%d')}"
+    @receiptnumber = "#{@settings.current_receiptnumber+1}-#{Date.today.strftime('%d-%m-%y')}"
+    @consultation = @patient.consultations.first
   end
 end
