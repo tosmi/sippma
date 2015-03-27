@@ -1,25 +1,46 @@
 <div class="container center">
   <h1>Create a new receipt</h1>
   <div class="row">
-    <div class="col-md-4 text-left">
+    <div class="col-md-4">
+      <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
+    </div>
+    <div class="col-md-4 col-md-offset-4 text-left">
+      <%= @settings.title%> <%= @settings.firstname %> <%= @settings.lastname %><br/>
+      <%= @settings.street %><br/>
+      <%= @settings.zip %> <%= @settings.city %>
+      <%= @settings.phonenumber %><br/>
+      <%= @settings.email %><br/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 text-left" id="receipt_recipient">
       <%= @patient.firstname %> <%= @patient.lastname %><br/>
       <%= @patient.insurance %><br/>
       <%= @patient.street %><br/>
       <%= @patient.zip %> <%= @patient.city %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 text-right">
+  <div class="row" id="receiptnumber">
+    <div class="col-md-5 text-left">
+      <strong>Wahlarzt-Honorarnote: <%= @receiptnumber %></strong>
+    </div>
+    <div class="col-md-3 col-md-offset-2 text-right">
       Grafenwoerth, <%= Date.today %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 text-left">
-      <h3>Wahlarzt-Honorarnote:</h3>
+  <hr/>
+  <%= form_for(@receipt, url: patient_receipts_path(@patient)) do |f| %>
+    <div class="row">
+      <div class="col-md-1 text-left">
+	<strong>Diagnose:</strong>
+      </div>
+      <div class="col-md-8">
+	<input type="diagnosis" name="text" placeholder="Text" class="form-control"/>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <%= form_for(@receipt, url: patient_receipts_path(@patient)) do |f| %>
+    <hr/>
+    <div class="row">
+      <%= hidden_field_tag 'receiptnumber', @receiptnumber %>
       <div class="entry">
 	<div class="row">
 	  <div class="col-md-6">
@@ -46,6 +67,17 @@
 	  <input type="sum" name="sum" placeholder="0.00" class="form-control text-right" id="sum"/>
 	</div>
       </div>
-    <% end %>
-  </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-2">
+	<%= f.submit "Save", class: "btn btn-primary btn-block "%>
+      </div>
+      <div class="col-md-2">
+	<%= f.submit "Save and Print", class: "btn btn-primary btn-block "%>
+      </div>
+      <div class="col-md-2">
+	<%= f.submit "Cancel", class: "btn btn-primary btn-block "%>
+      </div>
+    </div>
+  <% end %>
 </div>
