@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReceiptNewTestTest < ActionDispatch::IntegrationTest
+class InvoiceNewTestTest < ActionDispatch::IntegrationTest
   fixtures :users, :patients
 
   def setup
@@ -8,27 +8,27 @@ class ReceiptNewTestTest < ActionDispatch::IntegrationTest
     @max   = patients(:max)
   end
 
-  test "create a new receipt" do
+  test "create a new invoice" do
     get patients_url
     assert_redirected_to login_url
     log_in_as(@admin)
     assert_redirected_to patients_url
     follow_redirect!
-    assert_select 'a[href=?]', new_patient_receipt_path(@max)
-    get new_patient_receipt_url(@max)
-    assert_template 'receipts/new'
+    assert_select 'a[href=?]', new_patient_invoice_path(@max)
+    get new_patient_invoice_url(@max)
+    assert_template 'invoices/new'
   end
 
-  test "receiptnumber only changes on save"  do
+  test "invoicenumber only changes on save"  do
     get patients_url
     assert_redirected_to login_url
     log_in_as(@admin)
     assert_redirected_to patients_url
     follow_redirect!
-    get new_patient_receipt_url(@max)
-    rno1 = assigns(:receiptnumber)
-    get new_patient_receipt_url(@max)
-    rno2 = assigns(:receiptnumber)
+    get new_patient_invoice_url(@max)
+    rno1 = assigns(:invoicenumber)
+    get new_patient_invoice_url(@max)
+    rno2 = assigns(:invoicenumber)
     assert_equal rno1,rno2
   end
 

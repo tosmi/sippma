@@ -4,7 +4,7 @@ one:
   patient_id: max
   diagnosis: MyText
   totalfee: 1.5
-  receiptnumber: MyString
+  invoicenumber: MyString
   date: <%= 10.minutes.ago %>
   created_at: <%= 10.minutes.ago %>
 
@@ -12,7 +12,7 @@ two:
   patient_id: max
   diagnosis: MyText
   totalfee: 1.5
-  receiptnumber: MyString
+  invoicenumber: MyString
   date: <%= 1.year.ago %>
   created_at: <%= 1.year.ago %>
 
@@ -20,6 +20,6 @@ most_recent:
   patient_id: moritz
   diagnosis: MyText
   totalfee: 1.5
-  receiptnumber: MyString
+  invoicenumber: MyString
   date: <%= Time.zone.now %>
   created_at: <%= Time.zone.now %>
