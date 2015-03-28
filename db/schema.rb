@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 20150318095915) do
   add_index "consultations", ["patient_id"], name: "index_consultations_on_patient_id"
 
   create_table "entry_lines", force: :cascade do |t|
-    t.integer  "receipt_id"
+    t.integer  "invoice_id"
     t.text     "text"
     t.float    "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "entry_lines", ["receipt_id"], name: "index_entry_lines_on_receipt_id"
+  add_index "entry_lines", ["invoice_id"], name: "index_entry_lines_on_invoice_id"
 
   create_table "patients", force: :cascade do |t|
     t.string   "firstname",    null: false
@@ -57,18 +57,18 @@ ActiveRecord::Schema.define(version: 20150318095915) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "receipts", force: :cascade do |t|
+  create_table "invoices", force: :cascade do |t|
     t.integer  "patient_id"
     t.text     "diagnosis"
     t.float    "totalfee"
-    t.string   "receiptnumber", null: false
+    t.string   "invoicenumber", null: false
     t.date     "date",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "receipts", ["patient_id", "created_at"], name: "index_receipts_on_patient_id_and_created_at"
-  add_index "receipts", ["patient_id"], name: "index_receipts_on_patient_id"
+  add_index "invoices", ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
+  add_index "invoices", ["patient_id"], name: "index_invoices_on_patient_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "title"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150318095915) do
     t.string   "city"
     t.string   "email"
     t.string   "phonenumber"
-    t.integer  "initial_receiptnumber"
-    t.integer  "current_receiptnumber"
+    t.integer  "initial_invoicenumber"
+    t.integer  "current_invoicenumber"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end

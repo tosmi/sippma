@@ -96,20 +96,30 @@ class SettingTest < ActiveSupport::TestCase
     end
   end
 
-  test "current_receiptnumber returns 1 if no initial_receiptnumber" do
-    @setting.initial_receiptnumber = nil
+  test "create_invoicenumber returns 1 if no initial_invoicenumber" do
+    @setting.initial_invoicenumber = nil
     @setting.save
 
-    assert_equal 1, Setting.next_receiptnumber
-    assert_equal 2, Setting.next_receiptnumber
+    assert_equal 1, Setting.create_invoicenumber
+    assert_equal 2, Setting.create_invoicenumber
   end
 
-  test "current_receiptnumber returns correct receiptnumber if initial_receiptnumber is set" do
-    @setting.initial_receiptnumber = 100
+  test "create_invoicenumber works if initial_invoicenumber is set" do
+    @setting.initial_invoicenumber = 100
     @setting.save
 
-    assert_equal 100, Setting.next_receiptnumber
-    assert_equal 101, Setting.next_receiptnumber
+    assert_equal 100, Setting.create_invoicenumber
+    assert_equal 101, Setting.create_invoicenumber
+  end
+
+  test "new_invoicenumber returns a valid invoicenumber" do
+    assert_equal 1, Setting.new_invoicenumber
+
+    @setting.initial_invoicenumber = 100
+    @setting.save
+
+    assert_equal 100, Setting.create_invoicenumber
+    assert_equal 101, Setting.new_invoicenumber
   end
 
 end

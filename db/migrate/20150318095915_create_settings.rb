@@ -9,8 +9,8 @@ class CreateSettings < ActiveRecord::Migration
       t.string :city
       t.string :email
       t.string :phonenumber
-      t.integer :initial_receiptnumber
-      t.integer :current_receiptnumber
+      t.integer :initial_invoicenumber
+      t.integer :current_invoicenumber
 
       t.timestamps null: false
     end

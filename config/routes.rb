@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :patients, shallow: true do
     resources :consultations
-    resources :receipts
+    resources :invoices
   end
 
   resources :abbrevations

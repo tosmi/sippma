@@ -21,23 +21,29 @@ class Setting < ActiveRecord::Base
     first || create
   end
 
-  def Setting.next_receiptnumber
+  def Setting.create_invoicenumber
     setting = Setting.instance
-    init_receiptnumber if setting.current_receiptnumber.nil?
+    init_invoicenumber if setting.current_invoicenumber.nil?
 
     setting.reload
 
-    setting.increment!(:current_receiptnumber)
-    setting.current_receiptnumber
+    setting.increment!(:current_invoicenumber)
+    setting.current_invoicenumber
+  end
+
+  def Setting.new_invoicenumber
+    setting = Setting.instance
+
+    setting.current_invoicenumber ? setting.current_invoicenumber + 1 : 1
   end
 
   class << self
     private
 
-    def init_receiptnumber
+    def init_invoicenumber
       setting = Setting.instance
-      if not setting.initial_receiptnumber.nil?
-        setting.current_receiptnumber = setting.initial_receiptnumber - 1
+      if not setting.initial_invoicenumber.nil?
+        setting.current_invoicenumber = setting.initial_invoicenumber - 1
         setting.save
       end
     end

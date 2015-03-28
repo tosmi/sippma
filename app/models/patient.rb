@@ -1,6 +1,6 @@
 class Patient < ActiveRecord::Base
   has_many :consultations
-  has_many :receipts
+  has_many :invoices
 
   include SippmaRegex
   default_scope { order('lastname DESC') }
