@@ -18,34 +18,43 @@ class Setting < ActiveRecord::Base
   private_class_method :new, :create, :create!
 
   def Setting.instance
-    first || create
+    setting = first || create
+
+    init_invoicenumber(setting) if invoicenumber_needs_initialization? setting
+
+    setting
   end
 
   def Setting.create_invoicenumber
     setting = Setting.instance
-    init_invoicenumber if setting.current_invoicenumber.nil?
-
-    setting.reload
-
     setting.increment!(:current_invoicenumber)
     setting.current_invoicenumber
   end
 
   def Setting.new_invoicenumber
-    setting = Setting.instance
-
-    setting.current_invoicenumber ? setting.current_invoicenumber + 1 : 1
+    Setting.instance.current_invoicenumber + 1
   end
 
   class << self
     private
 
-    def init_invoicenumber
-      setting = Setting.instance
+    def invoicenumber_needs_initialization?(setting)
+      return true if setting.current_invoicenumber.nil?
+
       if not setting.initial_invoicenumber.nil?
-        setting.current_invoicenumber = setting.initial_invoicenumber - 1
-        setting.save
+        return true if (setting.current_invoicenumber < setting.initial_invoicenumber)
       end
+    end
+
+    def init_invoicenumber(setting)
+      setting.current_invoicenumber =
+        if not setting.initial_invoicenumber.nil?
+          setting.initial_invoicenumber - 1
+        else
+          0
+        end
+
+      setting.save
     end
 
   end
