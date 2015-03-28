@@ -27,7 +27,7 @@ class SettingsController < ApplicationController
                                     :street,
                                     :phonenumber,
                                     :email,
-                                    :initial_receiptnumber)
+                                    :initial_invoicenumber)
   end
 
 
