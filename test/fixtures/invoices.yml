@@ -17,7 +17,7 @@ two:
   created_at: <%= 1.year.ago %>
 
 most_recent:
-  patient_id: moritz
+  patient_id: max
   diagnosis: MyText
   totalfee: 1.5
   invoicenumber: MyString
