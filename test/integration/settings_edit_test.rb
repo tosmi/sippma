@@ -16,9 +16,11 @@ class SettingsEditTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', settings_path
     assert_template 'settings/show'
     patch settings_path, setting: {
-           firstname: 'Max'
+            firstname: 'Max',
+            initial_invoicenumber: 99
           }
     settings = Setting.instance
-    assert_equal settings.firstname, 'Max'
+    assert_equal 'Max', settings.firstname
+    assert_equal 99, settings.initial_invoicenumber
   end
 end
