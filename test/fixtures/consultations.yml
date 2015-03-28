@@ -3,3 +3,8 @@ first:
   diagnosis: the diagnosis 1
   content: the content 1
   patient: max
+
+second:
+  diagnosis: the diagnosis 1
+  content: the content 1
+  patient: max
