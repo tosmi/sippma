@@ -39,7 +39,11 @@
 	<strong>Diagnose:</strong>
       </div>
       <div class="col-md-8">
-	<input type="diagnosis" name="text" class="form-control" value="<%= @consultation.diagnosis %>"/>
+	<% if @consultation %>
+	  <input type="diagnosis" name="text" class="form-control" value="<%= @consultation.diagnosis %>"/>
+	<% else %>
+	  <input type="diagnosis" name="text" class="form-control"/>
+	<% end %>
       </div>
     </div>
 
@@ -51,10 +55,10 @@
 	<div class="entry">
 	  <div class="row">
 	    <div class="col-md-6">
-	      <input type="entries[]" name="text" placeholder="Text" class="form-control" id="text"/>
+	      <input type="text" name="entries[]" placeholder="Text" class="form-control" id="text"/>
 	    </div>
 	    <div class="col-md-2">
-	      <input type="fees[]" name="fee" placeholder="0.00" class="form-control fees text-right" id="fee"/>
+	      <input type="text" name="fees[]" placeholder="0.00" class="form-control fees text-right" id="fee"/>
 	    </div>
 	    <div class="col-md-2">
 	      <button type="button" class="btn btn-sm btn-success" id="addentry">Add Entry</button>
