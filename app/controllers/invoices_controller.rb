@@ -10,5 +10,19 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    p params
+    redirect_to patients_url
+  end
+
+  private
+
+  def invoice_params
+    params.require(:invoice).permit(:diagnosis,
+                                    :entries,
+                                    :fees,
+                                    :sum,
+                                    :patient_id,
+                                    :commit,
+                                    :invoicenumber)
   end
 end
