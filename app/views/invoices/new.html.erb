@@ -40,9 +40,9 @@
       </div>
       <div class="col-md-8">
 	<% if @consultation %>
-	  <input type="diagnosis" name="text" class="form-control" value="<%= @consultation.diagnosis %>"/>
+	  <input type="text" name="diagnosis" class="form-control" value="<%= @consultation.diagnosis %>"/>
 	<% else %>
-	  <input type="diagnosis" name="text" class="form-control"/>
+	  <input type="text" name="diagnosis" class="form-control"/>
 	<% end %>
       </div>
     </div>
