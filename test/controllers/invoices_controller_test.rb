@@ -46,4 +46,17 @@ class InvoicesControllerTest < ActionController::TestCase
     get :new, patient_id: @max
     assert_match(/99/, assigns(:invoicenumber))
   end
+
+  test 'saving an invoice' do
+    log_in_as(@admin)
+    post :create, patient_id: @max
+
+ #     "text"=>"",
+ # "invoicenumber"=>"99-28-03-15",
+ # "entries"=>["a",
+ # "b"],
+ # "fees"=>["1",
+ # "2"],
+ #"sum"=>"3",
+  end
 end
