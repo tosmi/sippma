@@ -3,15 +3,28 @@ class InvoicesController < ApplicationController
 
   def new
     @patient = Patient.find(params[:patient_id])
-    @invoice = @patient.invoices.build
-    @settings = Setting.instance
-    @invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
     @consultation = @patient.consultations.first
+    @settings = Setting.instance
+
+    @invoice = @patient.invoices.build
+    @invoice.diagnosis ||= @consultation.diagnosis if @consultation
+
+    @invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
   end
 
   def create
     p params
-    redirect_to patients_url
+    @patient = Patient.find(params[:patient_id])
+    @invoice = @patient.invoices.build(invoice_params)
+
+    if @invoice.save
+      flash[:success] = 'Invoice successfully saved'
+      redirect_to patients_url
+    else
+      p 'here'
+      @settings = Setting.instance
+      render 'new'
+    end
   end
 
   private

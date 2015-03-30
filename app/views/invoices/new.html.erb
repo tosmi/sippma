@@ -32,18 +32,15 @@
       Grafenwoerth, <%= Date.today %>
     </div>
   </div>
+
   <%= form_for(@invoice, url: patient_invoices_path(@patient)) do |f| %>
 
     <div class="row" id="diagnosis">
       <div class="col-md-1 text-left">
-	<strong>Diagnose:</strong>
+	<strong><%= f.label 'Diagnosis' %></strong>
       </div>
       <div class="col-md-8">
-	<% if @consultation %>
-	  <input type="text" name="diagnosis" class="form-control" value="<%= @consultation.diagnosis %>"/>
-	<% else %>
-	  <input type="text" name="diagnosis" class="form-control"/>
-	<% end %>
+	<%= f.text_field :diagnosis, class: 'form-control'%>
       </div>
     </div>
 
