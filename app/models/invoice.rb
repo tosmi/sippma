@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+  has_many :entry_lines
   belongs_to :patient
 
   default_scope -> { order('created_at DESC') }

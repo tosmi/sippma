@@ -1,3 +1,3 @@
 class EntryLine < ActiveRecord::Base
-  belongs_to :receipt
+  belongs_to :invoice
 end
