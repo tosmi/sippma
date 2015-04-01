@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  receipt_id: 
+  invoice_id:
   text: MyText
   fee: 1.5
 
 two:
-  receipt_id: 
+  invoice_id:
   text: MyText
   fee: 1.5
