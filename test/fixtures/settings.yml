@@ -11,8 +11,8 @@ one:
   email: MyString
   phonenumber1: MyString
   phonenumber2: MyString
-  initial_receiptnumber: 1
-  current_receiptnumber: 1
+  initial_invoicenumber: 1
+  current_invoicenumber: 1
 
 two:
   title: MyString
@@ -25,5 +25,5 @@ two:
   email: MyString
   phonenumber1: MyString
   phonenumber2: MyString
-  initial_receiptnumber: 1
-  current_receiptnumber: 1
+  initial_invoicenumber: 1
+  current_invoicenumber: 1
