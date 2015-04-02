@@ -34,4 +34,19 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_not @invoice.valid?
   end
 
+  test "building an invoice with entry lines works" do
+    assert_difference 'EntryLine.count', 2 do
+      @invoice = @patient.invoices.create!(diagnosis: 'very bad',
+                                         totalfee: '200',
+                                         invoicenumber: '2-1-1-1970',
+                                         date: '1-1-1970',
+                                         patient_id: @patient.id,
+                                         entry_lines_attributes: [
+                                           { text: 'first', fee: '100'},
+                                           { text: 'first', fee: '200'},
+                                         ])
+    end
+  end
+
+
 end
