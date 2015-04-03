@@ -8,6 +8,7 @@ class InvoicesController < ApplicationController
 
     @invoice = @patient.invoices.build
     @invoice.diagnosis ||= @consultation.diagnosis if @consultation
+    @invoice.entry_lines.build
 
     @invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
   end
