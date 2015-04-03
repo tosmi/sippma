@@ -14,7 +14,6 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    p params
     @patient = Patient.find(params[:patient_id])
     @invoice = @patient.invoices.build(invoice_params)
 
@@ -32,11 +31,13 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:diagnosis,
-                                    :entries,
-                                    :fees,
                                     :sum,
-                                    :patient_id,
-                                    :commit,
-                                    :invoicenumber)
+                                    :date,
+                                    :invoicenumber,
+                                    entry_lines_attributes: [
+                                      :id,
+                                      :text,
+                                      :fee,
+                                    ])
   end
 end
