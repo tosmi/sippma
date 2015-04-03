@@ -1,13 +1,19 @@
 $( document ).ready(function() {
   function addEntry() {
-    var entry = $($('.entry').last());
-    var newentry = entry.clone(true, true);
+    var lastentry = $('.entries').last();
+    var newentry = $(lastentry).clone(true, true);
+    var formsonpage = $('.entries').length;
 
-    entry.find('#addentry').hide();
-    newentry.find('#fee').val('');
-    newentry.find('#text').val('');
+    $(newentry).find('input').each(function(input) {
+      oldid = $(this).attr('id');
+      oldname = $(this).attr('name');
+    });
 
-    newentry.appendTo('#entries');
+    // entry.find('#addentry').hide();
+    // newentry.find('#fee').val('');
+    // newentry.find('#text').val('');
+
+    // newentry.appendTo('#entries');
   }
 
   function updateTotal() {
@@ -25,6 +31,6 @@ $( document ).ready(function() {
     idsum.value = sum;
   }
 
-  $('#addentry').click(addEntry);
+  $('.addentry').click(addEntry);
   $('#fee').keyup(updateTotal);
 });
