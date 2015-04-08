@@ -21,7 +21,7 @@ class InvoicesController < ApplicationController
       flash[:success] = 'Invoice successfully saved'
       redirect_to patients_url
     else
-      p 'here'
+      @invoicenumber = params[:invoice][:invoicenumber]
       @settings = Setting.instance
       render 'new'
     end
