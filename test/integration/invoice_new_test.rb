@@ -7,6 +7,12 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
     @max   = patients(:max)
     @moritz  = patients(:moritz)
+    @new_invoice_data = { invoice: {
+                            diagnosis: 'a test',
+                            invoicenumber: '66-30-01-14',
+                            date: '30-01-14,'
+                          }
+                        }
   end
 
   test "patient has link to new invoice" do
@@ -24,8 +30,14 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     assert_redirected_to new_patient_invoice_url(@max)
     follow_redirect!
-    get new_patient_invoice_url(@max)
     assert_template 'invoices/new'
+    assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_text/
+    assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
+    assert_difference 'Invoice.count', 1 do
+      post patient_invoices_path(@max), @new_invoice_data
+      p response.body
+    end
+
   end
 
   test "create a new invoice for patient without consultation" do
