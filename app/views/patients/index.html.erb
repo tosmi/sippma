@@ -34,7 +34,7 @@
 		    <li><a href="#">List Consultations</a></li>
 		  <% end %>
 		  <li><%= link_to 'New Invoice', new_patient_invoice_path(patient)%></li>
-		  <li><a href="#">List invoices</a></li>
+		  <li><%= link_to 'List Invoices', patient_invoices_path(patient) %>
 		  <li><%= link_to 'Show details', patient %></li>
 		  <li><%= link_to 'Edit', edit_patient_path(patient) %></li>
 		  <li><%= link_to 'Delete', patient, method: :delete, data: { confirm: "Are you sure?"} %></li>
