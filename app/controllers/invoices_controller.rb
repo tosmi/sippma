@@ -16,13 +16,13 @@ class InvoicesController < ApplicationController
   def create
     @patient = Patient.find(params[:patient_id])
     @invoice = @patient.invoices.build(invoice_params)
-
     if @invoice.save
       flash[:success] = 'Invoice successfully saved'
       redirect_to patients_url
     else
       @invoicenumber = params[:invoice][:invoicenumber]
       @settings = Setting.instance
+      @invoice.entry_lines.build if not params[:invoice].has_key? :entry_lines_attributes
       render 'new'
     end
   end
