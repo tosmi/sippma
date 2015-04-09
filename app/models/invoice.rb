@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  has_many :entry_lines
+  has_many :entry_lines, inverse_of: :invoice
   belongs_to :patient
 
   accepts_nested_attributes_for :entry_lines, allow_destroy: true, reject_if: :all_blank
