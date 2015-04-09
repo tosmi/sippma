@@ -5,7 +5,7 @@ class InvoiceTest < ActiveSupport::TestCase
 
   def setup
     @patient = patients(:max)
-    @invoice = @patient.invoices.build(diagnosis: 'bad', totalfee: 100, invoicenumber: '1-1-1-1970', date: '1-1-1970', patient_id: @patient.id )
+    @invoice = @patient.invoices.build(diagnosis: 'bad', totalfee: 100, invoicenumber: '01-01-01-70', date: '1-1-1970', patient_id: @patient.id )
   end
 
   test "invoice should be valid" do
@@ -38,14 +38,14 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_difference 'EntryLine.count', 2 do
       @invoice = @patient.invoices.create!(diagnosis: 'very bad',
                                          totalfee: '200',
-                                         invoicenumber: '2-1-1-1970',
+                                         invoicenumber: '02-01-01-70',
                                          date: '1-1-1970',
-                                         patient_id: @patient.id,
                                          entry_lines_attributes: [
                                            { text: 'first', fee: '100'},
                                            { text: 'first', fee: '200'},
                                          ])
     end
+
   end
 
 
