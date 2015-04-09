@@ -27,6 +27,9 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def index
+  end
+
   private
 
   def entry_lines?
