@@ -1,19 +1,28 @@
 $( document ).ready(function() {
   function addEntry() {
-    var lastentry = $('.entries').last();
+    var lastentry = $('.entry').last();
     var newentry = $(lastentry).clone(true, true);
-    var formsonpage = $('.entries').length;
+    var formsonpage = $('.entry').length;
 
     $(newentry).find('input').each(function(input) {
-      oldid = $(this).attr('id');
-      oldname = $(this).attr('name');
+      var oldid = $(this).attr('id');
+      var oldname = $(this).attr('name');
+
+      var id = '_' + formsonpage + '_';
+      var newid = oldid.replace(new RegExp(/_\d+_/), id);
+
+      var name = '[' + formsonpage + ']';
+      var newname = oldname.replace(new RegExp(/\[\d+\]/), name);
+
+      $(this).attr('id', newid);
+      $(this).attr('name', newname);
+      $(this).val('');
     });
 
-    // entry.find('#addentry').hide();
-    // newentry.find('#fee').val('');
-    // newentry.find('#text').val('');
+    //entry.find('#addentry').hide();
+    $(lastentry).find('a').text('Remove entry');
 
-    // newentry.appendTo('#entries');
+    $(newentry).insertAfter(lastentry);
   }
 
   function updateTotal() {
