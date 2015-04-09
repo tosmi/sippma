@@ -58,4 +58,10 @@ class InvoicesControllerTest < ActionController::TestCase
     end
     assert_redirected_to patients_url
   end
+
+  test 'listing invoices' do
+    log_in_as(@admin)
+    get :index, patient_id: @max
+    assert_response :success
+  end
 end
