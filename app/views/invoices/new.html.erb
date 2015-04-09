@@ -34,10 +34,10 @@
   </div>
 
   <%= form_for(@invoice, url: patient_invoices_path(@patient)) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <%= hidden_field_tag 'invoice[invoicenumber]', @invoicenumber %>
     <%= hidden_field_tag 'invoice[date]', Date.today %>
 
-    <%= render 'shared/error_messages', object: f.object %>
     <div class="row" id="diagnosis">
       <div class="col-md-1 text-left">
 	<strong><%= f.label 'Diagnosis' %></strong>
