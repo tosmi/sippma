@@ -21,6 +21,8 @@ class PatientIndexTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', patient_consultations_path(@max)
     assert_select 'a[href=?]', patient_path(@max)
     assert_select 'a[href=?]', edit_patient_path(@max)
+    assert_select 'a[href=?]', patient_invoices_path(@max)
+    assert_select 'a[href=?]', new_patient_invoice_path(@max)
     assert_select 'a[href=?][data-method=delete]', patient_path(@max)
   end
 
