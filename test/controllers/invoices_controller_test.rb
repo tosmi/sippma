@@ -52,11 +52,10 @@ class InvoicesControllerTest < ActionController::TestCase
     assert_difference'Invoice.count', 1 do
       post :create, patient_id: @max, invoice: {
              diagnosis: 'test',
-             invoicenumber: '1-1-1-1970',
+             invoicenumber: '01-01-01-70',
              date: '1-1-1970',
            }
     end
-
     assert_redirected_to patients_url
   end
 end
