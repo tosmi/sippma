@@ -5,7 +5,11 @@ class EntryLineTest < ActiveSupport::TestCase
 
   def setup
     @patient = patients(:max)
-    @invoice = @patient.invoices.build
+    @invoice = @patient.invoices.create(diagnosis: 'test',
+                                       totalfee: 100,
+                                       invoicenumber: '01-01-01-70',
+                                       date: '01-01-1970',
+                                       patient_id: @patient.id)
     @line    = @invoice.entry_lines.build(text: 'the first line',
                                           fee: 10.25)
   end
