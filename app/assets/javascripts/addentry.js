@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+var ready = function() {
   function addEntry() {
     var lastentry = $('.entry').last();
     var newentry = $(lastentry).clone(true, true);
@@ -21,8 +21,16 @@ $( document ).ready(function() {
 
     //entry.find('#addentry').hide();
     $(lastentry).find('a').text('Remove entry');
+    $(lastentry).find('a').removeClass('addentry')
+      .addClass('removeentry')
+      .off('click')
+      .click(removeEntry);
 
     $(newentry).insertAfter(lastentry);
+  }
+
+  function removeEntry() {
+    $(this).closest('.entry').slideUp().remove();
   }
 
   function updateTotal() {
@@ -42,4 +50,7 @@ $( document ).ready(function() {
 
   $('.addentry').click(addEntry);
   $('#fee').keyup(updateTotal);
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
