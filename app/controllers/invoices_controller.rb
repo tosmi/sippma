@@ -22,12 +22,20 @@ class InvoicesController < ApplicationController
     else
       @invoicenumber = params[:invoice][:invoicenumber]
       @settings = Setting.instance
-      @invoice.entry_lines.build if not params[:invoice].has_key? :entry_lines_attributes
+      @invoice.entry_lines.build if not entry_lines?
       render 'new'
     end
   end
 
   private
+
+  def entry_lines?
+    if (not params[:invoice].has_key? :entry_lines_attributes) or params[:invoice][:entry_lines_attributes]['0'][:text].empty?
+      return false
+    end
+
+    return true
+  end
 
   def invoice_params
     params.require(:invoice).permit(:diagnosis,
