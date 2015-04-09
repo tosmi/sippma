@@ -50,7 +50,7 @@
     <hr/>
     <div class="row col-md-offset-1">
       <%= f.fields_for :entry_lines do |entryline| %>
-	<div class="entries">
+	<div class="entry">
 	  <div class="row">
 	    <div class="col-md-6">
 	      <%= entryline.text_field :text, class: 'form-control' %>
@@ -59,8 +59,7 @@
 	      <%= entryline.text_field :fee, class: 'form-control' %>
 	    </div>
 	    <div class="col-md-2">
-	      <%= link_to 'Add entry', '', class: 'btn btn-sm btn-success addentry'%>
-	      <!-- <button type="button" class="btn btn-sm btn-success" id="addentry">Add Entry</button> -->
+	      <%= link_to 'Add entry', '#', class: 'btn btn-sm btn-success addentry'%>
 	    </div>
 	  </div>
 	</div>
