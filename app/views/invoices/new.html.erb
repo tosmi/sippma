@@ -9,19 +9,19 @@
       <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
     </div>
     <div class="col-md-4 col-md-offset-4 text-left">
-      <%= @settings.title%> <%= @settings.firstname %> <%= @settings.lastname %><br/>
-      <%= @settings.street %><br/>
-      <%= @settings.zip %> <%= @settings.city %>
-      <%= @settings.phonenumber %><br/>
-      <%= @settings.email %><br/>
+      <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
+      <%= settings.street %><br/>
+      <%= settings.zip %> <%= settings.city %>
+      <%= settings.phonenumber %><br/>
+      <%= settings.email %><br/>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4 text-left" id="invoice_recipient">
-      <%= @patient.firstname %> <%= @patient.lastname %><br/>
-      <%= @patient.insurance %><br/>
-      <%= @patient.street %><br/>
-      <%= @patient.zip %> <%= @patient.city %>
+      <%= patient.firstname %> <%= patient.lastname %><br/>
+      <%= patient.insurance %><br/>
+      <%= patient.street %><br/>
+      <%= patient.zip %> <%= patient.city %>
     </div>
   </div>
   <div class="row" id="invoicenumber">
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <%= form_for(@invoice, url: patient_invoices_path(@patient)) do |f| %>
+  <%= form_for(invoice, url: patient_invoices_path(patient)) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <%= hidden_field_tag 'invoice[invoicenumber]', @invoicenumber %>
     <%= hidden_field_tag 'invoice[date]', Date.today %>
