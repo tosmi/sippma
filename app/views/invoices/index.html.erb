@@ -1,1 +1,25 @@
-Hello World!
+<div class="container">
+  <div class="row">
+    <%= render 'shared/the_flash' %>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Date</th>
+	<th>Invoicenumber</th>
+	<th>Diagnosis</th>
+	<th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for invoice in @invoices %>
+	<tr>
+	  <td><%= invoice.date %></td>
+	  <td><%= invoice.invoicenumber %></td>
+	  <td><%= invoice.diagnosis %></td>
+	  <td><%= invoice.totalfee %></td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
