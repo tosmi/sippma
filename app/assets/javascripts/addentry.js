@@ -17,6 +17,10 @@ var ready = function() {
       $(this).attr('id', newid);
       $(this).attr('name', newname);
       $(this).val('');
+
+      if( $(this).hasClass('fee') ) {
+	$(this).keyup(updateTotal);
+      }
     });
 
     //entry.find('#addentry').hide();
@@ -31,25 +35,23 @@ var ready = function() {
 
   function removeEntry() {
     $(this).closest('.entry').slideUp().remove();
+    updateTotal();
   }
 
   function updateTotal() {
-    var idsum = document.getElementById("sum");
-    var fees = document.getElementsByClassName("fees");
-
     var sum = 0;
-    for (var i=0; i < fees.length; i++) {
-        var fee = parseFloat(fees[i].value);
-        if(isNaN(fee)){
-            continue;
-        }
-        sum += fee;
-    }
-    idsum.value = sum;
+    $('.fee').each(function() {
+      var fee = parseFloat($(this).val());
+      if(isNaN(fee)) {
+    	return;
+      }
+      sum += fee;
+    });
+    $('#invoice_totalfee').val(sum);
   }
 
   $('.addentry').click(addEntry);
-  $('#fee').keyup(updateTotal);
+  $('.fee').keyup(updateTotal);
 };
 
 $(document).ready(ready);

@@ -56,7 +56,7 @@
 	      <%= entryline.text_field :text, class: 'form-control' %>
 	    </div>
 	    <div class="col-md-2">
-	      <%= entryline.text_field :fee, class: 'form-control' %>
+	      <%= entryline.text_field :fee, class: 'form-control fee' %>
 	    </div>
 	    <div class="col-md-2">
 	      <%= link_to 'Add entry', '#', class: 'btn btn-sm btn-success addentry'%>
@@ -75,7 +75,8 @@
 	  Sum
 	</div>
 	<div class="col-md-2">
-	  <input type="sum" name="sum" placeholder="0.00" class="form-control text-right" id="sum"/>
+	  <%= f.text_field :totalfee, class: 'form-control', placeholder: '0.0' %>
+
 	</div>
       </div>
     </div>
