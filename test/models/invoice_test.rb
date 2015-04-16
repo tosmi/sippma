@@ -17,6 +17,26 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_not @invoice.valid?
   end
 
+  test "totalfee should be present" do
+    @invoice.totalfee = nil
+    assert_not @invoice.valid?
+  end
+
+  test "date should be present" do
+    @invoice.date = nil
+    assert_not @invoice.valid?
+  end
+
+  test "invoicenumber should be present" do
+    @invoice.invoicenumber = nil
+    assert_not @invoice.valid?
+  end
+
+  test "diagnosis should be present" do
+    @invoice.diagnosis = nil
+    assert_not @invoice.valid?
+  end
+
   test "order should be most recent first" do
     assert_equal Invoice.first, invoices(:most_recent)
   end
@@ -29,10 +49,6 @@ class InvoiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "must have a date" do
-    @invoice.date = nil
-    assert_not @invoice.valid?
-  end
 
   test "building an invoice with entry lines works" do
     assert_difference 'EntryLine.count', 2 do
