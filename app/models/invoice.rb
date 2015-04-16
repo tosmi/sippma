@@ -14,4 +14,6 @@ class Invoice < ActiveRecord::Base
 
   validates :date, presence: true
 
+  validates :totalfee, presence: true
+
 end
