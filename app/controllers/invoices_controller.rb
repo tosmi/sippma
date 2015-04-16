@@ -44,7 +44,8 @@ class InvoicesController < ApplicationController
   private
 
   def entry_lines?
-    if (not params[:invoice].has_key? :entry_lines_attributes) or params[:invoice][:entry_lines_attributes]['0'][:text].empty?
+    p params
+    if (not params[:invoice].has_key? :entry_lines_attributes) or params[:invoice][:entry_lines_attributes][0][:text].empty?
       return false
     end
 

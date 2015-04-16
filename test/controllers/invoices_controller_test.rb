@@ -54,6 +54,7 @@ class InvoicesControllerTest < ActionController::TestCase
              diagnosis: 'test',
              invoicenumber: '01-01-01-70',
              date: '1-1-1970',
+             totalfee: 100,
            }
     end
     assert_redirected_to patients_url
