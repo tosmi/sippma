@@ -26,6 +26,9 @@ class InvoicesController < ApplicationController
     @invoices = patient.invoices.all
   end
 
+  def edit
+  end
+
   protected
 
   def patient
