@@ -2,21 +2,22 @@ class InvoicesController < ApplicationController
   before_action :logged_in_user
 
   def new
-    @consultation = patient.consultations.first
-
-    invoice.diagnosis ||= @consultation.diagnosis if @consultation
     invoice.entry_lines.build
+    if not patient.consultations.empty?
+      invoice.diagnosis = patient.consultations.first.diagnosis
+    end
 
     @invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
   end
 
   def create
     if invoice.save
+      Setting.create_invoicenumber
       flash[:success] = 'Invoice successfully saved'
       redirect_to patients_url
     else
       @invoicenumber = params[:invoice][:invoicenumber]
-      invoice.entry_lines.build if not entry_lines?
+      invoice.entry_lines.build if invoice.entry_lines.empty?
       render 'new'
     end
   end
@@ -43,21 +44,13 @@ class InvoicesController < ApplicationController
 
   private
 
-  def entry_lines?
-    p params
-    if (not params[:invoice].has_key? :entry_lines_attributes) or params[:invoice][:entry_lines_attributes][0][:text].empty?
-      return false
-    end
-
-    return true
-  end
-
   def invoice_params
     if params.has_key?(:invoice)
       params.require(:invoice).permit(:diagnosis,
                                       :sum,
                                       :date,
                                       :invoicenumber,
+                                      :totalfee,
                                       entry_lines_attributes: [
                                         :id,
                                         :text,
