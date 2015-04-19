@@ -1,25 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  patient_id: max
-  diagnosis: MyText
+  patient: max
+  diagnosis: The First
   totalfee: 1.5
-  invoicenumber: MyString
+  invoicenumber: 01-01-01-80
   date: <%= 10.minutes.ago %>
   created_at: <%= 10.minutes.ago %>
 
 two:
-  patient_id: max
-  diagnosis: MyText
+  patient: max
+  diagnosis: The Second
   totalfee: 1.5
-  invoicenumber: MyString
+  invoicenumber: 02-01-01-80
   date: <%= 1.year.ago %>
   created_at: <%= 1.year.ago %>
 
 most_recent:
-  patient_id: max
-  diagnosis: MyText
+  patient: max
+  diagnosis: The Third
   totalfee: 1.5
-  invoicenumber: MyString
+  invoicenumber: 03-01-01-80
   date: <%= Time.zone.now %>
   created_at: <%= Time.zone.now %>
