@@ -41,9 +41,17 @@ class InvoiceTest < ActiveSupport::TestCase
     assert_equal Invoice.first, invoices(:most_recent)
   end
 
+  test "accepts valid invoice numbers" do
+    valid_invoicenumbers = %w(1-01-01-70 10-02-02-80 100-03-03-99 1000-04-04-40)
+    valid_invoicenumbers.each do |invoicenumber|
+      @invoice.invoicenumber = invoicenumber
+      assert @invoice.valid?, "Invoicenumber #{invoicenumber} should be valid"
+    end
+  end
+
   test "reject invalid invoice numbers" do
-    invalid_invoicenumber = %w(a-1-1-1970 11-111-1-1970 11-11-111-1970 11-11-11-19701)
-    invalid_invoicenumber.each do |invalidnumber|
+    invalid_invoicenumbers = %w(a-1-1-1970 11-111-1-1970 11-11-111-1970 11-11-11-19701)
+    invalid_invoicenumbers.each do |invalidnumber|
       @invoice.invoicenumber = invalidnumber
       assert_not @invoice.valid?
     end
