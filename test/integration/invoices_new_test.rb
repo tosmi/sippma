@@ -11,6 +11,7 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
                             diagnosis: 'a test',
                             invoicenumber: '66-30-01-14',
                             date: '30-01-14,',
+                            totalfee: 300,
                             entry_lines_attributes: [
                               {
                                 text: 'first',
