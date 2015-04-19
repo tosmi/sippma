@@ -49,13 +49,17 @@ class InvoicesControllerTest < ActionController::TestCase
 
   test 'saving an invoice' do
     log_in_as(@admin)
-    assert_difference'Invoice.count', 1 do
-      post :create, patient_id: @max, invoice: {
-             diagnosis: 'test',
-             invoicenumber: '01-01-01-70',
-             date: '1-1-1970',
-             totalfee: 100,
-           }
+    setting = Setting.instance
+    assert_difference 'setting.current_invoicenumber', 1 do
+      assert_difference'Invoice.count', 1 do
+        post :create, patient_id: @max, invoice: {
+               diagnosis: 'test',
+               invoicenumber: '01-01-01-70',
+               date: '1-1-1970',
+               totalfee: 100,
+             }
+      end
+      setting.reload
     end
     assert_redirected_to patients_url
   end
