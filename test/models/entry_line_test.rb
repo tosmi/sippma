@@ -23,6 +23,11 @@ class EntryLineTest < ActiveSupport::TestCase
     assert_not @line.valid?
   end
 
+  test 'allow empty fee' do
+    @line.fee = ''
+    assert @line.valid?
+  end
+
   test "does not save an entry line if no corresponding invoice" do
     assert_raises ActiveRecord::RecordInvalid do
       EntryLine.create!(text: 'test',
