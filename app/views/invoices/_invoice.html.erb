@@ -1,10 +1,10 @@
 <tr>
-  <td><%= invoice.date %></td>
   <td><%= invoice.invoicenumber %></td>
   <td><%= invoice.diagnosis %></td>
   <td><%= invoice.totalfee %></td>
   <td>
+    <%= link_to 'Show', invoice_path(invoice), class: 'btn btn-default btn-sm' %>
     <%= link_to 'Edit', edit_invoice_path(invoice), class: 'btn btn-default btn-sm' %>
-    <%= link_to 'Delete', invoice_path(invoice), class: 'btn btn-default btn-sm' %>
+    <%= link_to 'Delete', invoice_path(invoice), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-sm' %>
   </td>
 </tr>

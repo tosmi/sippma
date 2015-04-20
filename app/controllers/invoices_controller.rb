@@ -26,7 +26,26 @@ class InvoicesController < ApplicationController
     @invoices = patient.invoices.all
   end
 
+  def show
+    @invoice = Invoice.find(params[:id])
+    @patient = Patient.find(@invoice.patient_id)
+    @invoicenumber = @invoice.invoicenumber
+  end
+
   def edit
+    @invoice = Invoice.find(params[:id])
+    @patient = Patient.find(@invoice.patient_id)
+    @invoicenumber = @invoice.invoicenumber
+  end
+
+  def update
+    @invoice = Invoice.find(params[:id])
+    if @invoice.update_attributes(invoice_params)
+      flash[:success] = 'Invoice updated'
+      redirect_to patient_invoices_path(@invoice.patient_id)
+    else
+      render 'edit'
+    end
   end
 
   protected
