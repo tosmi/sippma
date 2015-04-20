@@ -21,7 +21,11 @@ class InvoicesListTest < ActionDispatch::IntegrationTest
     assert_select 'td', 'The Second'
     assert_select 'td', 'The Third'
     assert_select 'a[href=?]', edit_invoice_path(@first)
-    assert_select 'a[href=?]', invoice_path(@first)
+    assert_select 'a[href=?]', invoice_path(@first), 2
+    # the header includes one delete link (session)
+    assert_select 'a[data-method=delete]', 4
   end
+
+
 
 end
