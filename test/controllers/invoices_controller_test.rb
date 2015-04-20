@@ -1,12 +1,13 @@
 require 'test_helper'
 
 class InvoicesControllerTest < ActionController::TestCase
-  fixtures :users, :patients
+  fixtures :users, :patients, :invoices
 
   def setup
     @admin  = users(:admin)
     @max    = patients(:max)
     @moritz = patients(:moritz)
+    @one    = invoices(:one)
   end
 
   test 'should redirect create when not logged in' do
@@ -62,6 +63,21 @@ class InvoicesControllerTest < ActionController::TestCase
       setting.reload
     end
     assert_redirected_to patients_url
+  end
+
+  test 'displaying an invoice' do
+    log_in_as(@admin)
+    get :show, id: @one
+    assert_response :success
+  end
+
+  test 'editing an invoice' do
+    log_in_as(@admin)
+    get :edit, id: @one
+    assert_response :success
+    post :update, id: @one, invoice: {
+           diagnosis: 'sick'
+         }
   end
 
   test 'listing invoices' do
