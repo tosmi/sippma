@@ -12,14 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <% for invoice in @invoices %>
-	<tr>
-	  <td><%= invoice.date %></td>
-	  <td><%= invoice.invoicenumber %></td>
-	  <td><%= invoice.diagnosis %></td>
-	  <td><%= invoice.totalfee %></td>
-	</tr>
-      <% end %>
+      <%= render @invoices %>
     </tbody>
   </table>
 </div>
