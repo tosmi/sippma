@@ -1,0 +1,60 @@
+<%= form_for(invoice, url: patient_invoices_path(patient)) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= hidden_field_tag 'invoice[invoicenumber]', @invoicenumber %>
+  <%= hidden_field_tag 'invoice[date]', Date.today %>
+
+  <div class="row" id="diagnosis">
+    <div class="col-md-1 text-left">
+      <strong><%= f.label 'Diagnosis' %></strong>
+    </div>
+    <div class="col-md-8">
+      <%= f.text_field :diagnosis, class: 'form-control'%>
+    </div>
+  </div>
+
+  <hr/>
+  <div class="row col-md-offset-1">
+    <%= f.fields_for :entry_lines do |entryline| %>
+      <div class="entry">
+	<div class="row">
+	  <div class="col-md-6">
+	    <%= entryline.text_field :text, class: 'form-control' %>
+	  </div>
+	  <div class="col-md-2">
+	    <%= entryline.text_field :fee, class: 'form-control fee' %>
+	  </div>
+	  <div class="col-md-2">
+	    <%= link_to 'Add entry', '#', class: 'btn btn-sm btn-success addentry'%>
+	  </div>
+	</div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-8">
+	<hr/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-right">
+	Sum
+      </div>
+      <div class="col-md-2">
+	<%= f.text_field :totalfee, class: 'form-control', placeholder: '0.0' %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 col-md-offset-2">
+      <%= f.submit "Save", class: "btn btn-primary btn-block "%>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Save and Print", class: "btn btn-primary btn-block "%>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Cancel", patients_url, class: "btn btn-primary btn-block "%>
+    </div>
+  </div>
+<% end %>
