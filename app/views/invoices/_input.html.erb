@@ -1,6 +1,6 @@
-<%= form_for(invoice, url: patient_invoices_path(patient)) do |f| %>
+<%= form_for([@patient, invoice]) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <%= hidden_field_tag 'invoice[invoicenumber]', @invoicenumber %>
+  <%= hidden_field_tag 'invoice[invoicenumber]', invoice.invoicenumber %>
   <%= hidden_field_tag 'invoice[date]', Date.today %>
 
   <div class="row" id="diagnosis">

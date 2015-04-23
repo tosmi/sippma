@@ -7,7 +7,7 @@ class InvoicesController < ApplicationController
       invoice.diagnosis = patient.consultations.first.diagnosis
     end
 
-    @invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
+    invoice.invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
   end
 
   def create
@@ -16,7 +16,6 @@ class InvoicesController < ApplicationController
       flash[:success] = 'Invoice successfully saved'
       redirect_to patients_url
     else
-      @invoicenumber = params[:invoice][:invoicenumber]
       invoice.entry_lines.build if invoice.entry_lines.empty?
       render 'new'
     end
@@ -27,35 +26,43 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.find(params[:id])
-    @patient = Patient.find(@invoice.patient_id)
-    @invoicenumber = @invoice.invoicenumber
+    @patient = Patient.find(invoice.patient_id)
   end
 
   def edit
-    @invoice = Invoice.find(params[:id])
-    @patient = Patient.find(@invoice.patient_id)
-    @invoicenumber = @invoice.invoicenumber
+    invoice
   end
 
   def update
-    @invoice = Invoice.find(params[:id])
-    if @invoice.update_attributes(invoice_params)
+    if invoice.update_attributes(invoice_params)
       flash[:success] = 'Invoice updated'
-      redirect_to patient_invoices_path(@invoice.patient_id)
+      redirect_to patient_invoices_path(invoice.patient_id)
     else
       render 'edit'
     end
   end
 
+  def destroy
+    invoice.destroy
+    flash[:success] = "Invoice deleted"
+    redirect_to patient_invoices_path(invoice.patient_id)
+  end
+
   protected
 
   def patient
-    @patient ||= Patient.find(params[:patient_id])
+    if params.has_key? :patient_id
+      @patient ||= Patient.find(params[:patient_id])
+    elsif not @invoice.nil?
+      @patient ||= Patient.find(@invoice.patient_id)
+    end
   end
 
   def invoice
-    @invoice ||= patient.invoices.build(invoice_params)
+    @invoice ||= Invoice.find(params[:id])
+
+    rescue
+      @invoice ||= patient.invoices.build(invoice_params)
   end
 
   def settings

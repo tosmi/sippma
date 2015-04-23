@@ -35,7 +35,6 @@ class InvoicesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:patient)
     assert_not_nil assigns(:invoice)
     assert_not_nil assigns(:settings)
-    assert_not_nil assigns(:invoicenumber)
   end
 
   test 'invoicenumber is correct' do
@@ -45,7 +44,7 @@ class InvoicesControllerTest < ActionController::TestCase
 
     log_in_as(@admin)
     get :new, patient_id: @max
-    assert_match(/99/, assigns(:invoicenumber))
+    assert_match(/99/, assigns(:invoice).invoicenumber)
   end
 
   test 'saving an invoice' do
