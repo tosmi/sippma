@@ -2,6 +2,18 @@
   <div class="row">
     <%= render 'shared/the_flash' %>
   </div>
+  <div class="row">
+    <%= form_tag patients_path, :method => 'get', :id => 'patients_search' do %>
+      <div class="form-group">
+	<div class="col-md-8">
+	  <%= text_field_tag :search, params[:search], class: 'form-control' %>
+	</div>
+	<div class="col-md-1">
+	  <%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+	</div>
+      </div>
+    <% end %>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
