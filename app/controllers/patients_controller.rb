@@ -4,8 +4,9 @@ class PatientsController < ApplicationController
   def index
     if not Patient.any?
       render 'welcome'
+    else
+      @patients = Patient.search(params[:search])
     end
-    @patients = Patient.all
   end
 
   def show
