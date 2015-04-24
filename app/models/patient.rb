@@ -27,4 +27,12 @@ class Patient < ActiveRecord::Base
 
   validates :birthdate, presence: true
 
+  def self.search(search)
+    if search and not search.empty?
+      where("lastname like ?", "#{search}")
+    else
+      all
+    end
+  end
+
 end
