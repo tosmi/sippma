@@ -47,6 +47,13 @@ class PatientsController < ApplicationController
     redirect_to patients_url
   end
 
+  def add_parent
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   private
 
   def patient_params

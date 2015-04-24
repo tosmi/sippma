@@ -9,9 +9,11 @@ Rails.application.routes.draw do
     resources :invoices
   end
 
+  get 'add_parent' => 'patients#add_parent'
+
   resources :abbrevations
 
-  # we never create a new setting, or delete the a setting
+  # we never create or delete a  setting.
   # there is just one
   resource  :settings, exept: [:new, :delete ]
 end
