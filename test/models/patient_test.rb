@@ -3,9 +3,9 @@ require 'test_helper'
 class PatientTest < ActiveSupport::TestCase
 
   def setup
-    @patient = Patient.create!(firstname: 'Max',
-                           lastname: 'Mustermann',
-                           email: 'max@mustermann.at',
+    @patient = Patient.create!(firstname: 'Peter',
+                           lastname: 'Strubel',
+                           email: 'peter@strubel.at',
                            birthdate: Date.today,
                            zip: '1234',
                            city: 'Gotham',
@@ -162,6 +162,21 @@ class PatientTest < ActiveSupport::TestCase
   test "birthdate should be present" do
     @patient.birthdate = nil
     assert_not @patient.valid?
+  end
+
+  test "searching for patients" do
+    @patients = Patient.search('Strubel')
+    assert_equal 1, @patients.count
+  end
+
+  test "searching for a nonexisting patient" do
+    @patients =  Patient.search('doesnotexist')
+    assert @patients.empty?
+  end
+
+  test "empty search selects all patients" do
+    @patients = Patient.search('')
+    assert_equal 3, @patients.count
   end
 
 end
