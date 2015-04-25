@@ -48,6 +48,7 @@ class PatientsController < ApplicationController
   end
 
   def add_parent
+    @patients = Patient.search(params[:search])
     respond_to do |format|
       format.html
       format.js
