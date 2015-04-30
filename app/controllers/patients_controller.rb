@@ -47,7 +47,8 @@ class PatientsController < ApplicationController
     redirect_to patients_url
   end
 
-  def add_parent
+  def parent_search
+    p 'searching'
     @patients = Patient.search(params[:search])
     respond_to do |format|
       format.html

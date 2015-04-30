@@ -7,7 +7,7 @@
     <div class="modal-body">
       <div class="container-fluid">
 	<div class="row">
-	  <%= form_tag patients_path, :method => 'get', :id => 'patients_search' do %>
+	  <%= form_tag parent_search_path, :remote => true, :method => 'get', :id => 'parent_search' do %>
 	    <div class="form-group">
 	      <div class="col-md-6 col-md-offset-1">
 		<%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Lastname' %>
@@ -29,14 +29,14 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <%= render @patients %>
+	      <%= render partial: 'select_parent', collection: @patients, as: :parent %>
 	    </tbody>
 	  </table>
 	</div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
       <button class="btn btn-primary">Add</button>
     </div>
   </div>
