@@ -18,6 +18,7 @@ class PatientEditTest < ActionDispatch::IntegrationTest
     @max.lastname = ''
     patch patient_path(@max), patient: { street: '' }
     assert_template 'patients/edit'
+    assert_template 'patients/_parent_search_modal'
     assert_not flash.empty?
     assert_select 'div#error_explanation'
     assert_select 'div.alert'
