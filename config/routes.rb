@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :invoices
   end
 
-  get 'add_parent' => 'patients#add_parent'
+  get 'parent/search' => 'patients#parent_search'
 
   resources :abbrevations
 
