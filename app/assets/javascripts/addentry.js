@@ -23,7 +23,6 @@ var ready = function() {
       }
     });
 
-    //entry.find('#addentry').hide();
     $(lastentry).find('a').text('Remove entry');
     $(lastentry).find('a').removeClass('addentry')
       .addClass('removeentry')
