@@ -48,7 +48,6 @@ class PatientsController < ApplicationController
   end
 
   def parent_search
-    p 'searching'
     @patients = Patient.search(params[:search])
     respond_to do |format|
       format.html

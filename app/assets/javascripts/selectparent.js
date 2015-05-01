@@ -5,11 +5,15 @@ var makeTRLinks = function(e) {
 };
 
 var addEvent = function() {
+  alert('addEvent');
   $('#parent-modal').on('shown.bs.modal', makeTRLinks);
 };
 
 $(document).ready(function() {
+  alert('doc ready');
   $('#parent-modal').on('shown.bs.modal', function() {
     alert('here');
   });
 });
+
+$(document).on('page:load', addEvent);

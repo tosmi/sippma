@@ -1,6 +1,8 @@
 <tr data-link="<%= parent_search_path(parent) %>">
+  <td><%= button_tag 'Select', class: 'btn', id: 'select_parent' %></td>
   <td><%= parent.firstname %></td>
   <td><%= parent.lastname %></td>
   <td><%= parent.zip %> <%= parent.city %>, <%= parent.street %></td>
   <td><%= parent.ssn %> <%= parent.birthdate %></td>
+  <td class="parent_id" style="display:none;"><%= parent.id %></td>
 </tr>
