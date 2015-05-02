@@ -29,6 +29,7 @@ class PatientsController < ApplicationController
 
   def edit
     @patient = Patient.find(params[:id])
+    @parents = Patient.all
   end
 
   def update

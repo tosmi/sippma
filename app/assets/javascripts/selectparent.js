@@ -12,7 +12,12 @@ var addEvent = function() {
 $(document).ready(function() {
   alert('doc ready');
   $('#parent-modal').on('shown.bs.modal', function() {
-    alert('here');
+    makeTRLinks();
+  });
+
+  $('#add-parent').click(function() {
+    $('#parent-modal').modal('show');
+    return false;
   });
 });
 
