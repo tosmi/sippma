@@ -1,7 +1,19 @@
+var checkParent = function(parentId) {
+  var currentParentIds = $('#parent-data-input').val();
+  if (currentParentIds === undefined) {
+    return true;
+  }
+  if (currentParentIds.split(',').indexOf(parentId) >= 0) {
+    return false;
+  }
+  return true;
+};
+
 var renderParent = function() {
   var html = '<div id="parent-info"><hr/>';
 
   var renderer = function(data) {
+    checkParent(data[data.length - 1]);
     html += 'Parent: ';
     for(i = 0; i < data.length - 1; i++) {
       html += data[i] + ' ';
@@ -12,7 +24,20 @@ var renderParent = function() {
 
   return renderer;
 };
+
+var renderParentData = function() {
+  var html = '<div id="parent-data"><input id="parent-data-input" type="hidden" name="patient[parent_ids]" value="';
+
+  var renderer = function(data) {
+    html += data[data.length - 1] + ',';
+    return html + '"></div>';
+  };
+
+  return renderer;
+};
+
 var parentHtml = renderParent();
+var parentData = renderParentData();
 
 var selectedParent = function (e) {
   var tableData = $(this).children('td').map(function() {
@@ -21,6 +46,7 @@ var selectedParent = function (e) {
 
   $('#parent-modal').modal('hide');
   $('#parent-info').replaceWith(parentHtml(tableData));
+  $('#parent-data').replaceWith(parentData(tableData));
 };
 
 var addEvents = function() {
