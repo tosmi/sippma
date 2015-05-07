@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parent: silke
+  child: max
+  primary_contact: true
+
+two:
+  parent: herbert
+  child: max
+  primary_contact: false

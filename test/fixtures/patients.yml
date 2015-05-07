@@ -12,6 +12,33 @@ max:
   email: max@mustermann.at
   birthdate: <%= 5.years.ago %>
 
+silke:
+  firstname: Silke
+  lastname: Mustermann
+  zip: 1234
+  street: Mustergasse 8
+  city: Wien
+  ssn: 3213
+  insurance: WGKK
+  phonenumber1: 01 12345
+  phonenumber2: 01 12346
+  email: silke@mustermann.at
+  birthdate: <%= 25.years.ago %>
+
+herbert:
+  firstname: Herbert
+  lastname: Mustermann
+  zip: 1234
+  street: Mustergasse 8
+  city: Wien
+  ssn: 3829
+  insurance: WGKK
+  phonenumber1: 01 12345
+  phonenumber2: 01 12346
+  email: herbert@mustermann.at
+  birthdate: <%= 24.years.ago %>
+
+
 moritz:
   firstname: Moritz
   lastname: Mustermann
