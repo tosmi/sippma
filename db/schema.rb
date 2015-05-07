@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318095915) do
+ActiveRecord::Schema.define(version: 20150507174528) do
 
   create_table "abbrevations", force: :cascade do |t|
     t.string   "abbrev"
@@ -41,6 +41,19 @@ ActiveRecord::Schema.define(version: 20150318095915) do
 
   add_index "entry_lines", ["invoice_id"], name: "index_entry_lines_on_invoice_id"
 
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "patient_id"
+    t.text     "diagnosis"
+    t.float    "totalfee"
+    t.string   "invoicenumber", null: false
+    t.date     "date",          null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "invoices", ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
+  add_index "invoices", ["patient_id"], name: "index_invoices_on_patient_id"
+
   create_table "patients", force: :cascade do |t|
     t.string   "firstname",    null: false
     t.string   "lastname",     null: false
@@ -57,18 +70,17 @@ ActiveRecord::Schema.define(version: 20150318095915) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "invoices", force: :cascade do |t|
-    t.integer  "patient_id"
-    t.text     "diagnosis"
-    t.float    "totalfee"
-    t.string   "invoicenumber", null: false
-    t.date     "date",          null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "parent_id",                       null: false
+    t.integer  "child_id",                        null: false
+    t.boolean  "primary_contact", default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
-  add_index "invoices", ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
-  add_index "invoices", ["patient_id"], name: "index_invoices_on_patient_id"
+  add_index "relationships", ["child_id"], name: "index_relationships_on_child_id"
+  add_index "relationships", ["parent_id", "child_id"], name: "index_relationships_on_parent_id_and_child_id", unique: true
+  add_index "relationships", ["parent_id"], name: "index_relationships_on_parent_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "title"
