@@ -1,24 +1,24 @@
-var checkParent = function(parentId) {
+var parentAlreadyAssigned = function(parentId) {
   var currentParentIds = $('#parent-data-input').val();
   if (currentParentIds === undefined) {
-    return true;
-  }
-  if (currentParentIds.split(',').indexOf(parentId) >= 0) {
     return false;
   }
-  return true;
+  if (currentParentIds.split(',').indexOf(parentId) >= 0) {
+    return true;
+  }
+  return false;
 };
 
 var renderParent = function() {
-  var html = '<div id="parent-info"><hr/>';
+  var html = '<div id="parent-info">';
 
   var renderer = function(data) {
-    checkParent(data[data.length - 1]);
-    html += 'Parent: ';
+    html += '';
     for(i = 0; i < data.length - 1; i++) {
       html += data[i] + ' ';
     }
-    html += '<br/>';
+    html += '<button name="button" class="btn btn-sm btn-block" id="remove-parent">Remove</button>';
+    html += '<hr/>';
     return html + '</div>';
   };
 
@@ -45,6 +45,10 @@ var selectedParent = function (e) {
   }).get();
 
   $('#parent-modal').modal('hide');
+
+  if (parentAlreadyAssigned(tableData[tableData.length - 1])) {
+      return;
+  }
   $('#parent-info').replaceWith(parentHtml(tableData));
   $('#parent-data').replaceWith(parentData(tableData));
 };
