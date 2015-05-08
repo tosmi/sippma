@@ -1,15 +1,15 @@
 <%= form_for(@patient) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4">
       <%= f.text_field :firstname, class: 'form-control', placeholder: 'Firstname' %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <%= f.text_field :lastname, class: 'form-control', placeholder: 'Lastname' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-1 col-md-offset-2">
+    <div class="col-md-2">
       <%= f.text_field :zip, class: 'form-control', placeholder: 'Zip code' %>
     </div>
     <div class="col-md-3">
@@ -20,10 +20,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-3">
       <%= date_field "patient", "birthdate", placeholder: 'DD/MM/YYYY', class: 'form-control' %>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <%= f.text_field :ssn, class: 'form-control', placeholder: 'SSN' %>
     </div>
     <div class="col-md-3">
@@ -31,20 +31,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-4">
       <%= f.text_field :phonenumber1, class: 'form-control', placeholder: 'Phonenumber 1' %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <%= f.text_field :phonenumber2, class: 'form-control', placeholder: 'Phonenumber 2' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4">
       <%= f.text_field :email, class: 'form-control', placeholder: 'Email address' %>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2 col-md-offset-3">
+    <div class="col-md-2 col-md-offset-2">
       <%= button_tag 'Add parent', class: "btn btn-primary btn-block", id: "add-parent" %>
     </div>
     <% if @patient.new_record? %>
@@ -64,6 +64,3 @@
   <div id="parent-data">
   </div>
 <% end %>
-
-<div id="parent-info">
-</div>

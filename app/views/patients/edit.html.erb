@@ -5,6 +5,15 @@
 <%= render 'parent_search_modal' %>
 
 <div class="container center">
-  <h1>Edit Patient</h1>
-  <%= render 'patient_input' %>
+  <aside class="col-md-2">
+    <section class="parents_list">
+      <h4>Parents</h4>
+      <div id="parent-info">
+      </div>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h1>Edit Patient</h1>
+    <%= render 'patient_input' %>
+  </div>
 </div>
