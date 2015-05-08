@@ -72,14 +72,14 @@ ActiveRecord::Schema.define(version: 20150507174528) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "parent_id",                       null: false
-    t.integer  "child_id",                        null: false
+    t.integer  "patient_id",                        null: false
     t.boolean  "primary_contact", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "relationships", ["child_id"], name: "index_relationships_on_child_id"
-  add_index "relationships", ["parent_id", "child_id"], name: "index_relationships_on_parent_id_and_child_id", unique: true
+  add_index "relationships", ["patient_id"], name: "index_relationships_on_patient_id"
+  add_index "relationships", ["parent_id", "patient_id"], name: "index_relationships_on_parent_id_and_patient_id", unique: true
   add_index "relationships", ["parent_id"], name: "index_relationships_on_parent_id"
 
   create_table "settings", force: :cascade do |t|

@@ -2,6 +2,12 @@ class Patient < ActiveRecord::Base
   has_many :consultations
   has_many :invoices
 
+  has_many :relationships
+  has_many :parents, through: :relationships
+
+  has_many :child_relationships, class_name: 'Relationship', foreign_key: 'parent_id'
+  has_many :children, through: :child_relationships, source: :patient
+
   include SippmaRegex
   default_scope { order('lastname DESC') }
 
@@ -26,6 +32,22 @@ class Patient < ActiveRecord::Base
   validates :email, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, :allow_blank => true
 
   validates :birthdate, presence: true
+
+  def parent(parent)
+    relationships.create!(parent_id: parent.id)
+  end
+
+  def child(child)
+    child_relationships.create!(patient_id: child.id)
+  end
+
+  def parent_of?(child)
+    children.include?(child)
+  end
+
+  def child_of?(parent)
+    parents.include?(parent)
+  end
 
   def self.search(search)
     if search and not search.empty?

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PatientTest < ActiveSupport::TestCase
+  fixtures :patients
 
   def setup
     @patient = Patient.create!(firstname: 'Peter',
@@ -176,7 +177,27 @@ class PatientTest < ActiveSupport::TestCase
 
   test "empty search selects all patients" do
     @patients = Patient.search('')
-    assert_equal 3, @patients.count
+    assert_equal 5, @patients.count
+  end
+
+  test "adding a parent" do
+    @max = patients(:max)
+    @silke = patients(:silke)
+    @max.parent(@silke)
+    assert @max.child_of?(@silke)
+    assert @silke.parent_of?(@max)
+    assert_not @silke.child_of?(@max)
+    assert_not @max.parent_of?(@silke)
+  end
+
+  test "adding a child" do
+    @max = patients(:max)
+    @silke = patients(:silke)
+    @silke.child(@max)
+    assert @max.child_of?(@silke)
+    assert @silke.parent_of?(@max)
+    assert_not @silke.child_of?(@max)
+    assert_not @max.parent_of?(@silke)
   end
 
 end
