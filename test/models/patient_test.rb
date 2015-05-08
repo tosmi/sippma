@@ -182,10 +182,19 @@ class PatientTest < ActiveSupport::TestCase
 
   test "adding a parent" do
     @max = patients(:max)
+    @moritz = patients(:moritz)
     @silke = patients(:silke)
+    @herbert = patients(:herbert)
+
     @max.parent(@silke)
+    @max.parent(@herbert)
+
     assert @max.child_of?(@silke)
+    assert @max.child_of?(@herbert)
+
     assert @silke.parent_of?(@max)
+    assert @herbert.parent_of?(@max)
+
     assert_not @silke.child_of?(@max)
     assert_not @max.parent_of?(@silke)
   end

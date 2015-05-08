@@ -38,7 +38,6 @@ herbert:
   email: herbert@mustermann.at
   birthdate: <%= 24.years.ago %>
 
-
 moritz:
   firstname: Moritz
   lastname: Mustermann
