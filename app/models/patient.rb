@@ -34,11 +34,11 @@ class Patient < ActiveRecord::Base
   validates :birthdate, presence: true
 
   def parent(parent)
-    relationships.create!(parent_id: parent.id)
+    relationships.create(parent_id: parent.id)
   end
 
   def child(child)
-    child_relationships.create!(patient_id: child.id)
+    child_relationships.create(patient_id: child.id)
   end
 
   def parent_of?(child)
