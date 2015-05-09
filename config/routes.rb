@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :patients, shallow: true do
     resources :consultations
     resources :invoices
+    resources :relationships, only: [:create, :destroy]
   end
 
   get 'parent/search' => 'patients#parent_search'
