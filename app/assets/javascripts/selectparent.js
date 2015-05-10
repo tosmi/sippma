@@ -50,9 +50,20 @@ var selectedParent = function (e) {
   var formURI	= $("form[class='edit_patient']").attr('action');
   var patientID = formURI.split('/')[2];
   var postURI	= formURI + '/relationships';
-  var postData	= 'patient_id: ' + patientID + ', { relationship: { parent_id:' + parentID + ' }';
 
-  $.post(postURI, postData);
+  var postData = {
+    patient_id: patientID,
+    relationship: {
+      parent_id: parentID
+    }
+  };
+
+  $.ajax({
+    type: "POST",
+    url: postURI,
+    data: postData,
+    dataType: 'application/json'
+  });
 
   // if (parentAlreadyAssigned(tableData[tableData.length - 1])) {
   //     return;
