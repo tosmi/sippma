@@ -1,0 +1,10 @@
+<section class="parents_list">
+  <h4>Parents</h4>
+  <div id="parent-info">
+    <% if @patient.relationships.empty? %>
+      There are currently no parents assigned
+    <% end %>
+  </div>
+  <hr/>
+  <%= button_tag 'Add parent', class: "btn btn-sm", id: "add-parent" %>
+</section>
