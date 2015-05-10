@@ -5,15 +5,16 @@ class RelationshipsController < ApplicationController
     @relationship = @patient.relationships.build(relationship_params)
     if @relationship.save
       flash[:success] = "Parent added"
+      redirect_to 'patients/edit'
     else
       flash[:notice]  = "Unable to add parent"
+      render 'patient/edit'
     end
-    redirect_to 'patients/edit'
   end
 
   def destroy
     @patient = Patient.find(params[:patient_id])
-    @relationship = @patient.relationships.find(params[:parent_id]).destroy
+    @patient.relationships.find(params[:parent_id]).destroy
     flash[:success] = "Parent removed"
     render 'patients/edit'
   end
