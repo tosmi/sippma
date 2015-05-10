@@ -181,32 +181,31 @@ class PatientTest < ActiveSupport::TestCase
   end
 
   test "adding a parent" do
-    @max = patients(:max)
     @moritz = patients(:moritz)
     @silke = patients(:silke)
     @herbert = patients(:herbert)
 
-    @max.parent(@silke)
-    @max.parent(@herbert)
+    @moritz.parent(@silke)
+    @moritz.parent(@herbert)
 
-    assert @max.child_of?(@silke)
-    assert @max.child_of?(@herbert)
+    assert @moritz.child_of?(@silke)
+    assert @moritz.child_of?(@herbert)
 
-    assert @silke.parent_of?(@max)
-    assert @herbert.parent_of?(@max)
+    assert @silke.parent_of?(@moritz)
+    assert @herbert.parent_of?(@moritz)
 
-    assert_not @silke.child_of?(@max)
-    assert_not @max.parent_of?(@silke)
+    assert_not @silke.child_of?(@moritz)
+    assert_not @moritz.parent_of?(@silke)
   end
 
   test "adding a child" do
-    @max = patients(:max)
+    @moritz = patients(:moritz)
     @silke = patients(:silke)
-    @silke.child(@max)
-    assert @max.child_of?(@silke)
-    assert @silke.parent_of?(@max)
-    assert_not @silke.child_of?(@max)
-    assert_not @max.parent_of?(@silke)
+    @silke.child(@moritz)
+    assert @moritz.child_of?(@silke)
+    assert @silke.parent_of?(@moritz)
+    assert_not @silke.child_of?(@moritz)
+    assert_not @moritz.parent_of?(@silke)
   end
 
 end
