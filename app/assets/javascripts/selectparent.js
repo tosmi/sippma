@@ -46,11 +46,19 @@ var selectedParent = function (e) {
 
   $('#parent-modal').modal('hide');
 
-  if (parentAlreadyAssigned(tableData[tableData.length - 1])) {
-      return;
-  }
-  $('#parent-info').replaceWith(parentHtml(tableData));
-  $('#parent-data').replaceWith(parentData(tableData));
+  var parentID	= tableData[tableData.length - 1];
+  var formURI	= $("form[class='edit_patient']").attr('action');
+  var patientID = formURI.split('/')[2];
+  var postURI	= formURI + '/relationships';
+  var postData	= 'patient_id: ' + patientID + ', { relationship: { parent_id:' + parentID + ' }';
+
+  $.post(postURI, postData);
+
+  // if (parentAlreadyAssigned(tableData[tableData.length - 1])) {
+  //     return;
+  // }
+  // $('#parent-info').replaceWith(parentHtml(tableData));
+  // $('#parent-data').replaceWith(parentData(tableData));
 };
 
 var addEvents = function() {
