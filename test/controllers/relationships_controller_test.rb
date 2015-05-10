@@ -5,18 +5,18 @@ class RelationshipsControllerTest < ActionController::TestCase
 
   def setup
     @admin = users(:admin)
-    @max   = patients(:max)
+    @moritz   = patients(:moritz)
     @silke = patients(:silke)
   end
 
   test "adding a relationship" do
     assert_difference 'Relationship.count', 1 do
-      post :create, patient_id: @max, relationship: {
+      post :create, patient_id: @moritz, relationship: {
              parent_id: @silke
            }
     end
-    assert @max.child_of?(@silke)
-    assert @silke.parent_of?(@max)
+    assert @moritz.child_of?(@silke)
+    assert @silke.parent_of?(@moritz)
   end
 
 end
