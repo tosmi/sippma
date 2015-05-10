@@ -4,9 +4,9 @@ class RelationshipTest < ActiveSupport::TestCase
   fixtures :patients
 
   def setup
-    @max = patients(:max)
+    @moritz = patients(:moritz)
     @silke = patients(:silke)
-    @relationship = Relationship.new(parent_id: @silke.id, patient_id: @max.id)
+    @relationship = Relationship.new(parent_id: @silke.id, patient_id: @moritz.id)
   end
 
   test "should be valid" do
@@ -18,7 +18,7 @@ class RelationshipTest < ActiveSupport::TestCase
     assert_not @relationship.valid?
   end
 
-  test "should require child_id" do
+  test "should require patient_id" do
     @relationship.patient_id = nil
     assert_not @relationship.valid?
   end
