@@ -53,4 +53,12 @@ class PatientEditTest < ActionDispatch::IntegrationTest
     assert_equal @max.street, street
   end
 
+  test "modal contains patients" do
+    get edit_patient_path(@max)
+    log_in_as(@admin)
+    assert_redirected_to edit_patient_path(@max)
+    follow_redirect!
+    assert_select 'table#parent-table tbody tr'
+  end
+
 end
