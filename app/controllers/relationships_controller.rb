@@ -13,10 +13,9 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    @patient = Patient.find(params[:patient_id])
-    @patient.relationships.find(params[:parent_id]).destroy
+    Relationship.find(params[:id]).destroy
     flash[:success] = "Parent removed"
-    render 'patients/edit'
+    redirect_to 'patients/edit'
   end
 
   private
