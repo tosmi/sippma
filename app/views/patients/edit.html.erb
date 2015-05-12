@@ -9,7 +9,7 @@
     <section class="parents_list">
       <h4>Parents</h4>
       <div id="parent-info">
-	<%= render(collection: @patient.parents, partial: 'parent', as: 'parent') || "There are currently no parents assigned" %>
+	<%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
       </div>
       <hr/>
       <%= button_tag 'Add parent', class: "btn btn-sm", id: "add-parent" %>

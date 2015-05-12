@@ -1,13 +1,13 @@
 <div class="row">
-  <%= parent.firstname %> <%= parent.lastname %>
+  <%= relationship.parent.firstname %> <%= relationship.parent.lastname %>
 </div>
 <div class="row">
-  <%= parent.zip %> <%= parent.city %>, <%= parent.street %>
+  <%= relationship.parent.zip %> <%= relationship.parent.city %>, <%= relationship.parent.street %>
 </div>
 <div class="row">
-  <%= parent.ssn %> <%= parent.birthdate %><br/>
+  <%= relationship.parent.ssn %> <%= relationship.parent.birthdate %><br/>
 </div>
 <div class="row">
-  <%= link_to 'Remove', relationship_path, class: 'btn btn-sm', method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to 'Remove', relationship, class: 'btn btn-sm', method: :delete, data: { confirm: "Are you sure?" } %>
 </div>
 <hr/>
