@@ -62,14 +62,12 @@ var selectedParent = function (e) {
     type: "POST",
     url: postURI,
     data: postData,
-    dataType: 'application/json'
+    dataType: 'application/json',
+    complete: function(data) {
+      $("#parent-info").replaceWith(data);
+    }
   });
 
-  // if (parentAlreadyAssigned(tableData[tableData.length - 1])) {
-  //     return;
-  // }
-  // $('#parent-info').replaceWith(parentHtml(tableData));
-  // $('#parent-data').replaceWith(parentData(tableData));
 };
 
 var addEvents = function() {

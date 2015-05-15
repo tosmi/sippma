@@ -8,10 +8,7 @@
   <aside class="col-md-2">
     <section class="parents_list">
       <h4>Parents</h4>
-      <div id="parent-info">
-	<%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
-      </div>
-      <hr/>
+      <%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
       <%= button_tag 'Add parent', class: "btn btn-sm", id: "add-parent" %>
     </section>
   </aside>
