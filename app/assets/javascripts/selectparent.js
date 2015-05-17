@@ -64,7 +64,8 @@ var selectedParent = function (e) {
     data: postData,
     dataType: 'application/json',
     complete: function(data) {
-      $("#parent-info").replaceWith(data);
+      $("#parent-info").replaceWith(data.responseText);
+      alert(data.responseText);
     }
   });
 
