@@ -9,9 +9,15 @@ class RelationshipsController < ApplicationController
       flash[:notice]  = "Unable to add parent"
     end
 
-    respond_to do |format|
+    @patient.reload
 
-      format.js   { render 'patients/_parent' }
+    respond_to do |format|
+      format.html { render partial: 'patients/parent',
+                           layout: false,
+                           collection: @patient.relationships,
+                           as: 'relationship'
+      }
+      format.js
     end
   end
 
