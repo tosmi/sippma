@@ -43,7 +43,7 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', new_patient_invoice_path(@moritz)
   end
 
-  test "create a new invoice for patient with consultation" do
+  test "create new invoice for patient with consultation" do
     get new_patient_invoice_url(@max)
     assert_redirected_to login_url
     log_in_as(@admin)
@@ -55,8 +55,10 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     assert_difference 'Invoice.count', 1 do
       post patient_invoices_path(@max), @new_invoice_data
     end
-    assert_redirected_to patients_path
+    invoice = assigns[:invoice]
+    assert_redirected_to invoice_url(invoice.id)
     follow_redirect!
+    assert_template 'invoices/show'
     assert_select 'div.alert'
     assert_select 'div.alert-success', { :count => 1, :text => 'Invoice successfully saved'}
   end
