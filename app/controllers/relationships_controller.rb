@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  before_action :logged_in_user
 
   def create
     @patient = Patient.find(params[:patient_id])
@@ -6,19 +7,9 @@ class RelationshipsController < ApplicationController
     if @relationship.save
       flash[:success] = "Parent added"
     else
-      flash[:notice]  = "Unable to add parent"
+      flash[:danger]  = "Unable to add parent"
     end
-
-    @patient.reload
-
-    respond_to do |format|
-      format.html { render partial: 'patients/parent',
-                           layout: false,
-                           collection: @patient.relationships,
-                           as: 'relationship'
-      }
-      format.js
-    end
+    redirect_to edit_patient_path(@patient)
   end
 
   def destroy
