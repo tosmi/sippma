@@ -4,4 +4,6 @@ class Relationship < ActiveRecord::Base
 
   validates :parent_id, presence: true
   validates :patient_id,  presence: true
+
+  validates :parent_id, uniqueness: {scope: :patient_id}
 end
