@@ -1,19 +1,13 @@
-<% if @relationship %>
-  <% relationship = @relationship %>
-<% end %>
-
-<div id="parent-info">
-  <div class="row">
-    <%= relationship.parent.firstname %> <%= relationship.parent.lastname %>
-  </div>
-  <div class="row">
-    <%= relationship.parent.zip %> <%= relationship.parent.city %>, <%= relationship.parent.street %>
-  </div>
-  <div class="row">
-    <%= relationship.parent.ssn %> <%= relationship.parent.birthdate %><br/>
-  </div>
-  <div class="row">
-    <%= link_to 'Remove', relationship, class: 'btn btn-sm', method: :delete, data: { confirm: "Are you sure?" } %>
-  </div>
-  <hr/>
+<div class="row">
+  <%= relationship.parent.firstname %> <%= relationship.parent.lastname %>
 </div>
+<div class="row">
+  <%= relationship.parent.zip %> <%= relationship.parent.city %>, <%= relationship.parent.street %>
+</div>
+<div class="row">
+  <%= relationship.parent.ssn %> <%= relationship.parent.birthdate %><br/>
+</div>
+<div class="row">
+  <%= link_to 'Remove', relationship, class: 'btn btn-sm', method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
+<hr/>
