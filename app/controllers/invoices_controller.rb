@@ -14,7 +14,7 @@ class InvoicesController < ApplicationController
     if invoice.save
       Setting.create_invoicenumber
       flash[:success] = 'Invoice successfully saved'
-      redirect_to patients_url
+      redirect_to invoice_url(invoice)
     else
       invoice.entry_lines.build if invoice.entry_lines.empty?
       render 'new'
