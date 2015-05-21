@@ -27,6 +27,9 @@ class InvoicesController < ApplicationController
 
   def show
     @patient = Patient.find(invoice.patient_id)
+    if params[:print]
+      @print = true
+    end
   end
 
   def edit
