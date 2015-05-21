@@ -65,7 +65,6 @@ var selectedParent = function (e) {
     dataType: 'application/json',
     complete: function(data) {
       $("#parent-info").replaceWith(data.responseText);
-      alert(data.responseText);
     }
   });
 
@@ -77,7 +76,7 @@ var addEvents = function() {
     return false;
   });
 
-  $('#parent-table').delegate('tr','click', selectedParent);
+  // $('#parent-table').delegate('tr','click', selectedParent);
 };
 
 $(document).ready(function() {
