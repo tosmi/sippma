@@ -61,7 +61,8 @@ class InvoicesControllerTest < ActionController::TestCase
       end
       setting.reload
     end
-    assert_redirected_to patients_url
+    invoice = assigns[:invoice]
+    assert_redirected_to invoice_url(invoice.id)
   end
 
   test 'displaying an invoice' do
