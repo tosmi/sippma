@@ -22,4 +22,10 @@ class RelationshipTest < ActiveSupport::TestCase
     @relationship.patient_id = nil
     assert_not @relationship.valid?
   end
+
+  test "should be unique" do
+    the_same_relationship = Relationship.new(parent_id: @silke.id, patient_id: @moritz.id)
+    @relationship.save
+    assert_not the_same_relationship.valid?
+  end
 end
