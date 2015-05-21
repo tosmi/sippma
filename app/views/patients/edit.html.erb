@@ -5,14 +5,21 @@
 <%= render 'parent_search_modal' %>
 
 <div class="container center">
+
   <aside class="col-md-2">
     <section class="parents_list">
       <h4>Parents</h4>
-      <%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
+      <div id="parent-info">
+	<%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
+      </div>
       <%= button_tag 'Add parent', class: "btn btn-sm", id: "add-parent" %>
     </section>
   </aside>
   <div class="col-md-8">
+    <div class="row">
+      <%= render 'shared/the_flash' %>
+    </div>
+
     <h1>Edit Patient</h1>
     <%= render 'shared/error_messages', object: @relationship if @relationship %>
     <%= render 'patient_input' %>
