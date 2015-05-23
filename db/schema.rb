@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150507174528) do
 
   create_table "consultations", force: :cascade do |t|
     t.text     "content"
-    t.text     "diagnosis"
+    t.text     "diagnosis",  null: false
     t.integer  "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,15 +72,15 @@ ActiveRecord::Schema.define(version: 20150507174528) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "parent_id",                       null: false
-    t.integer  "patient_id",                        null: false
+    t.integer  "patient_id",                      null: false
     t.boolean  "primary_contact", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
 
-  add_index "relationships", ["patient_id"], name: "index_relationships_on_patient_id"
   add_index "relationships", ["parent_id", "patient_id"], name: "index_relationships_on_parent_id_and_patient_id", unique: true
   add_index "relationships", ["parent_id"], name: "index_relationships_on_parent_id"
+  add_index "relationships", ["patient_id"], name: "index_relationships_on_patient_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "title"
@@ -98,13 +98,13 @@ ActiveRecord::Schema.define(version: 20150507174528) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "fullname",        null: false
-    t.string   "email",           null: false
+    t.string   "username"
+    t.string   "email"
     t.string   "password_digest"
     t.integer  "permissions"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "fullname"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true
