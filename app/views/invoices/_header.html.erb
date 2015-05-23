@@ -18,11 +18,23 @@
     <%= patient.zip %> <%= patient.city %>
   </div>
 </div>
+
 <div class="row" id="invoicenumber">
   <div class="col-md-5 text-left">
     <strong>Wahlarzt-Honorarnote: <%= invoice.invoicenumber %></strong>
   </div>
   <div class="col-md-3 col-md-offset-2 text-right">
     Grafenwoerth, <%= Date.today %>
+  </div>
+</div>
+
+<div class="row" id="examinationdate">
+  <div class="col-md-5 text-left">
+    Untersuchung am
+    <% if invoice.created_at %>
+      <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
+    <% else %>
+      <%= Time.now.strftime("%-d.%-m.%Y") %>
+    <% end %>
   </div>
 </div>
