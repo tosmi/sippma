@@ -1,40 +1,37 @@
-<div class="row">
-  <div class="col-xs-8 col-md-4 text-left">
-    <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
-  </div>
-  <div class="col-xs-offset-8 col-md-4 col-md-offset-4 text-left">
-    <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
-    <%= settings.street %><br/>
-    <%= settings.zip %> <%= settings.city %><br/>
-    Tel. <%= settings.phonenumber %><br/>
-    <%= settings.email %><br/>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4 text-left" id="invoice_recipient">
-    <%= patient.firstname %> <%= patient.lastname %><br/>
-    <%= patient.insurance %><br/>
-    <%= patient.street %><br/>
-    <%= patient.zip %> <%= patient.city %>
-  </div>
+<div class="invoice-logo">
+  <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
 </div>
 
-<div class="row" id="invoicenumber">
-  <div class="col-xs-8 col-md-5 text-left">
+<div class="invoice-issuer">
+  <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
+  <%= settings.street %><br/>
+  <%= settings.zip %> <%= settings.city %><br/>
+  Tel. <%= settings.phonenumber %><br/>
+  <%= settings.email %><br/>
+</div>
+
+<div class="invoice-receiver">
+  <%= patient.firstname %> <%= patient.lastname %><br/>
+  <%= patient.insurance %><br/>
+  <%= patient.street %><br/>
+  <%= patient.zip %> <%= patient.city %>
+</div>
+
+<div class="invoice-number-date">
+  <div class="invoice-number">
     <strong>Wahlarzt-Honorarnote: <%= invoice.invoicenumber %></strong>
   </div>
-  <div class="col-xs-4 col-md-3 col-md-offset-2 text-right">
+
+  <div class="invoice-date">
     Grafenwoerth, <%= Date.today %>
   </div>
 </div>
 
-<div class="row" id="examinationdate">
-  <div class="col-md-5 text-left">
-    Untersuchung am
-    <% if invoice.created_at %>
-      <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
-    <% else %>
-      <%= Time.now.strftime("%-d.%-m.%Y") %>
-    <% end %>
-  </div>
+<div class="invoice-examination-date">
+  Untersuchung am
+  <% if invoice.created_at %>
+    <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
+  <% else %>
+    <%= Time.now.strftime("%-d.%-m.%Y") %>
+  <% end %>
 </div>

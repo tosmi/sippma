@@ -14,9 +14,47 @@ body {
   height: 100%; padding: 0; margin: 0;
 }
 
-#top {
-  height: 70%;
+.invoice-top {
+  width: 100%;
+  height: 40%;
 }
+
+.invoice-logo {
+  width: 70%;
+  float: left;
+}
+
+.invoice-issuer {
+  width: 30%;
+  float: right;
+}
+
+.invoice-receiver {
+  margin-top: 20mm;
+  float: left;
+  width: 100%;
+}
+
+.invoice-number-date {
+  float: left;
+  width: 100%;
+  margin-top: 15mm;
+}
+
+.invoice-number {
+  float: left;
+}
+
+.invoice-date {
+  float: right;
+}
+
+.invoice-examination-date {
+  margin-top: 10mm;
+  float: left;
+  width: 100%;
+}
+
 
 #bottom {
   height: 20%;
