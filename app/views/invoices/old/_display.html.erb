@@ -1,0 +1,30 @@
+<div class="row" id="diagnosis">
+  <div class="col-xs-2 col-md-1 text-left">
+    <strong>Diagnose:</strong>
+  </div>
+  <div class="col-xs-10 col-md-8 text-left">
+    <%= @invoice.diagnosis %>
+  </div>
+</div>
+<hr/>
+<div class="row col-md-8 col-md-offset-1">
+  <%= render partial: 'entry_line', collection:  @invoice.entry_lines %>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr/>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 text-left">
+    <strong>
+      Gesamthonorar: <%= @invoice.totalfee %>.-
+    </strong>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr id="totalline">
+  </div>
+</div>
