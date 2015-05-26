@@ -1,27 +1,24 @@
 <%= stylesheet_link_tag "print", media: 'all' %>
 
-
 <% unless @print %>
-      <%= render 'shared/the_flash' %>
+  <%= render 'shared/the_flash' %>
   <h1>Show invoice</h1>
 <% end %>
 
 
-</div>
-
-<div class="invoice-top">
+<div class="invoice-header">
   <%= render 'header' %>
 </div>
 
-<%= render 'display' %>
+<div class="invoice-main">
+  <%= render 'display' %>
+</div>
 
-<div id="bottom">
+<div class="invoice-footer">
   <%= render 'refund' %>
 
   <% unless @print %>
     <%= link_to 'Back', patient_invoices_path(@patient), class: 'btn btn-primary' %>
     <%= link_to 'Print', { controller: 'invoices', action: 'show', print: true }, class: 'btn btn-primary', target: '_blank', name: 'print-invoice' %>
   <% end %>
-</div>
-
 </div>
