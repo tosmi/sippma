@@ -21,12 +21,12 @@ gem 'thin', '~> 1.6.0'
 group :development do
   gem 'guard'
   gem 'guard-minitest'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
   gem 'byebug'
   gem 'spring'
-  gem 'web-console', '~> 2.0'
 end
 
 group :test do
