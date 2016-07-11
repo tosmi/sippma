@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -33,6 +33,7 @@ group :test do
   gem 'minitest-reporters', '~> 1.0.0'
   gem 'mini_backtrace', '0.1.3'
   gem 'coveralls', require: false
+  gem 'rails-controller-testing'
 
   # rake gem is required by travis
   gem 'rake'
