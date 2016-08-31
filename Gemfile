@@ -38,3 +38,7 @@ group :test do
   # rake gem is required by travis
   gem 'rake'
 end
+
+group :production do
+  gem 'pg', '~> 0.18.4'
+end
