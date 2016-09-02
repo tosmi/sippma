@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,14 +21,13 @@ ActiveRecord::Schema.define(version: 20150507174528) do
 
   create_table "consultations", force: :cascade do |t|
     t.text     "content"
-    t.text     "diagnosis",  null: false
+    t.text     "diagnosis"
     t.integer  "patient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["patient_id", "created_at"], name: "index_consultations_on_patient_id_and_created_at"
+    t.index ["patient_id"], name: "index_consultations_on_patient_id"
   end
-
-  add_index "consultations", ["patient_id", "created_at"], name: "index_consultations_on_patient_id_and_created_at"
-  add_index "consultations", ["patient_id"], name: "index_consultations_on_patient_id"
 
   create_table "entry_lines", force: :cascade do |t|
     t.integer  "invoice_id"
@@ -37,9 +35,8 @@ ActiveRecord::Schema.define(version: 20150507174528) do
     t.float    "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_entry_lines_on_invoice_id"
   end
-
-  add_index "entry_lines", ["invoice_id"], name: "index_entry_lines_on_invoice_id"
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "patient_id"
@@ -49,10 +46,9 @@ ActiveRecord::Schema.define(version: 20150507174528) do
     t.date     "date",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
+    t.index ["patient_id"], name: "index_invoices_on_patient_id"
   end
-
-  add_index "invoices", ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
-  add_index "invoices", ["patient_id"], name: "index_invoices_on_patient_id"
 
   create_table "patients", force: :cascade do |t|
     t.string   "firstname",    null: false
@@ -76,11 +72,10 @@ ActiveRecord::Schema.define(version: 20150507174528) do
     t.boolean  "primary_contact", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.index ["parent_id", "patient_id"], name: "index_relationships_on_parent_id_and_patient_id", unique: true
+    t.index ["parent_id"], name: "index_relationships_on_parent_id"
+    t.index ["patient_id"], name: "index_relationships_on_patient_id"
   end
-
-  add_index "relationships", ["parent_id", "patient_id"], name: "index_relationships_on_parent_id_and_patient_id", unique: true
-  add_index "relationships", ["parent_id"], name: "index_relationships_on_parent_id"
-  add_index "relationships", ["patient_id"], name: "index_relationships_on_patient_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "title"
@@ -98,15 +93,14 @@ ActiveRecord::Schema.define(version: 20150507174528) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
+    t.string   "username",        null: false
+    t.string   "fullname",        null: false
+    t.string   "email",           null: false
     t.string   "password_digest"
     t.integer  "permissions"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "fullname"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
-
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
