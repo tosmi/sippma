@@ -3,18 +3,22 @@
 </div>
 
 <div class="invoice-issuer">
-  <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
-  <%= settings.street %><br/>
-  <%= settings.zip %> <%= settings.city %><br/>
-  Tel. <%= settings.phonenumber %><br/>
-  <%= settings.email %><br/>
+  <textarea id="customer">
+    <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %>
+    <%= settings.street %>
+    <%= settings.zip %> <%= settings.city %>
+    Tel. <%= settings.phonenumber %>
+    <%= settings.email %>
+  </textarea>
 </div>
 
 <div class="invoice-receiver">
+  <textarea id="customer">
   <%= patient.firstname %> <%= patient.lastname %><br/>
   <%= patient.insurance %><br/>
   <%= patient.street %><br/>
-  <%= patient.zip %> <%= patient.city %>
+    <%= patient.zip %> <%= patient.city %>
+  </textarea>
 </div>
 
 <div class="invoice-number-date">
