@@ -5,19 +5,21 @@
   <%= render 'shared/the_flash' %>
 <% end %>
 
-<div class="invoice-header">
-  <%= render 'header' %>
-</div>
+<div class="invoice-page">
+  <div class="invoice-header">
+    <%= render 'header' %>
+  </div>
 
-<div class="invoice-main">
-  <%= render 'display' %>
-</div>
+  <div class="invoice-main">
+    <%= render 'display' %>
+  </div>
 
-<div class="invoice-footer">
-  <%= render 'refund' %>
+  <div class="invoice-footer">
+    <%= render 'refund' %>
 
-  <% unless @print %>
-    <%= link_to 'Back', patient_invoices_path(@patient), class: 'btn btn-primary' %>
-    <%= link_to 'Print', { controller: 'invoices', action: 'show', print: true }, class: 'btn btn-primary', target: '_blank', name: 'print-invoice' %>
-  <% end %>
+    <% unless @print %>
+      <%= link_to 'Back', patient_invoices_path(@patient), class: 'btn btn-primary' %>
+      <%= link_to 'Print', { controller: 'invoices', action: 'show', print: true }, class: 'btn btn-primary', target: '_blank', name: 'print-invoice' %>
+    <% end %>
+  </div>
 </div>

@@ -6,3 +6,53 @@ textarea {
   overflow: hidden;
   resize: none;
 }
+
+.invoice-page {
+  width: 210mm;
+  position: relative;
+  font: 14px Georgia, Serif;
+}
+
+.invoice-header {
+  height: 500px;
+  width: 100%;
+  margin: 20px 0;
+  //background: #222;
+  //text-align: center;
+  //color: white;
+  //font: bold 15px Helvetica, Sans-Serif;
+  //text-transform: uppercase;
+  //letter-spacing: 20px;
+  padding: 8px 0px;
+}
+
+#invoice-identity {
+  height: 250px;
+}
+
+#invoice-address {
+  width: 250px;
+  height: 100px;
+  float: left;
+}
+
+#invoice-logo {
+  text-align: right;
+  float: right;
+  position: relative;
+  margin-top: 25px;
+  border: 1px solid #fff;
+  max-width: 540px;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+#invoice-customer {
+  width: 250px;
+  height: 100px;
+}
+
+#invocie-number-date {
+  height: 150px;
+  float: left;
+}

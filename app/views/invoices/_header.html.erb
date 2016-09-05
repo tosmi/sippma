@@ -1,25 +1,26 @@
-<div class="invoice-logo">
-  <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
-</div>
-
-<div class="invoice-issuer">
-  <textarea id="customer">
+<div id="invoice-identity">
+  <textarea readonly="true" id="invoice-address">
     <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %>
     <%= settings.street %>
     <%= settings.zip %> <%= settings.city %>
     Tel. <%= settings.phonenumber %>
     <%= settings.email %>
   </textarea>
-</div>
 
-<div class="invoice-receiver">
-  <textarea id="customer">
-  <%= patient.firstname %> <%= patient.lastname %><br/>
-  <%= patient.insurance %><br/>
-  <%= patient.street %><br/>
+  <div id="invoice-logo">
+    <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
+  </div>
+
+  <div style="clear:both"></div>
+
+  <textarea readonly="true" id="invoice-customer">
+    <%= patient.firstname %> <%= patient.lastname %>
+    <%= patient.insurance %>
+    <%= patient.street %>
     <%= patient.zip %> <%= patient.city %>
   </textarea>
 </div>
+
 
 <div class="invoice-number-date">
   <div class="invoice-number">
@@ -31,11 +32,11 @@
   </div>
 </div>
 
-<div class="invoice-examination-date">
-  Untersuchung am
-  <% if invoice.created_at %>
-    <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
-  <% else %>
-    <%= Time.now.strftime("%-d.%-m.%Y") %>
-  <% end %>
-</div>
+<!-- <div class="invoice-examination-date">
+     Untersuchung am
+     <% if invoice.created_at %>
+     <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
+     <% else %>
+     <%= Time.now.strftime("%-d.%-m.%Y") %>
+     <% end %>
+     </div> -->
