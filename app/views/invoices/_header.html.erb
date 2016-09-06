@@ -1,11 +1,11 @@
 <div id="invoice-identity">
-  <textarea readonly="true" id="invoice-address">
-    <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %>
-    <%= settings.street %>
-    <%= settings.zip %> <%= settings.city %>
-    Tel. <%= settings.phonenumber %>
-    <%= settings.email %>
-  </textarea>
+  <div id="invoice-address">
+    <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
+    <%= settings.street %><br/>
+    <%= settings.zip %> <%= settings.city %><br/>
+    Tel. <%= settings.phonenumber %><br/>
+    <%= settings.email %><br/>
+  </div>
 
   <div id="invoice-logo">
     <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
@@ -13,12 +13,12 @@
 
   <div style="clear:both"></div>
 
-  <textarea readonly="true" id="invoice-customer">
-    <%= patient.firstname %> <%= patient.lastname %>
-    <%= patient.insurance %>
-    <%= patient.street %>
-    <%= patient.zip %> <%= patient.city %>
-  </textarea>
+  <div id="invoice-customer">
+    <%= patient.firstname %> <%= patient.lastname %><br/>
+    <%= patient.insurance %><br/>
+    <%= patient.street %><br/>
+    <%= patient.zip %> <%= patient.city %><br/>
+  </div>
 </div>
 
 

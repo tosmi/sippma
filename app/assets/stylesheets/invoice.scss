@@ -11,6 +11,8 @@ textarea {
   width: 210mm;
   position: relative;
   font: 14px Georgia, Serif;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .invoice-header {
@@ -27,7 +29,7 @@ textarea {
 }
 
 #invoice-identity {
-  height: 250px;
+  height: 200px;
 }
 
 #invoice-address {
