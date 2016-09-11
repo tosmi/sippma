@@ -51,3 +51,56 @@ textarea {
 #invocie-number-date {
   height: 40px;
 }
+
+#invoice-diagnosis-text {
+  width: 300px;
+}
+
+.invoice-textfield {
+  border: none;
+}
+
+.invoice-textfield:hover, .invoice-textfield:focus {
+  background-color:#EEFF88;
+}
+
+table td, table th { border: 1px solid black; padding: 5px; }
+
+#invoice-items th {
+  background: #eee;
+}
+
+.invoice-service {
+  width: 550px;
+}
+
+#invoice-items td.invoice-total-line {
+  border-right: 0;
+  text-align: right;
+}
+
+#invoice-items td.invoice-total-value {
+  border-left: 0;
+  padding: 10px;
+}
+
+.delete-wpr {
+  position: relative;
+}
+
+.invoice-delete-entry {
+  display: block;
+  color: #000;
+  text-decoration: none;
+  position: absolute;
+  background: #EEEEEE;
+  font-weight: bold;
+  padding: 0px 3px;
+  border: 1px solid;
+  top: -6px;
+  left: -22px;
+  font-family: Verdana;
+  font-size: 12px;
+}
+
+// textarea:hover, textarea:focus, #items td.total-value textarea:hover, #items td.total-value textarea:focus, .delete:hover { background-color:#EEFF88; }
