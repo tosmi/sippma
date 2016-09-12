@@ -11,6 +11,7 @@ class InvoicesController < ApplicationController
   end
 
   def create
+    p invoice
     if invoice.save
       Setting.create_invoicenumber
       flash[:success] = 'Invoice successfully saved'
@@ -78,16 +79,18 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     if params.has_key?(:invoice)
-      params.require(:invoice).permit(:diagnosis,
-                                      :sum,
-                                      :date,
-                                      :invoicenumber,
-                                      :totalfee,
-                                      entry_lines_attributes: [
-                                        :id,
-                                        :text,
-                                        :fee,
-                                      ])
+      params.require(:invoice).permit(
+        :diagnosis,
+        :sum,
+        :date,
+        :invoicenumber,
+        :totalfee,
+        entry_lines_attributes: [
+          :id,
+          :amount,
+          :text,
+          :fee,
+        ])
     end
   end
 end
