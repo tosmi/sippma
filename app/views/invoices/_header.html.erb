@@ -1,14 +1,15 @@
 <div id="invoice-identity">
+
+  <div id="invoice-logo">
+    <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
+  </div>
+
   <div id="invoice-address">
     <%= settings.title%> <%= settings.firstname %> <%= settings.lastname %><br/>
     <%= settings.street %><br/>
     <%= settings.zip %> <%= settings.city %><br/>
     Tel. <%= settings.phonenumber %><br/>
     <%= settings.email %><br/>
-  </div>
-
-  <div id="invoice-logo">
-    <img src="/assets/springbrunn.jpg" alt="Springbrunn Logog" id="springbrunnimg">
   </div>
 
   <div style="clear:both"></div>
@@ -28,7 +29,7 @@
   </div>
 
   <div class="invoice-date">
-    Grafenwoerth, <%= Date.today %>
+    Grafenwoerth, <%= Date.today.strftime("%-d.%-m.%Y") %>
   </div>
 </div>
 

@@ -12,32 +12,43 @@
 
     <tr>
       <th>Anzahl</th>
-      <th>Leistung (Pos. Nr.)</th>
+      <th colspan="2">Leistung (Pos. Nr.)</th>
     </tr>
 
     <%= f.fields_for :entry_lines do |entryline| %>
       <tr class="invoice-item-row">
 	<td class="invoice-amount">
 	  <div class="delete-wpr">
-	    <%= entryline.text_field :amount, value: '1', class: 'invoice-textfield' %>
+	    <%= entryline.number_field :amount, value: '1', class: 'invoice-textfield' %>
 	    <a class="invoice-delete-entry" href="javascript:;" title="Remove row">X</a>
 	  </div>
 	</td>
-	<td class="invoice-service"><%= entryline.text_field :text, value: "Ordination (F1, 12)", class: 'invoice-textfield' %></td>
+	<td colspan="2" class="invoice-service"><%= entryline.text_field :text, value: "Ordination (F1, 12)", class: 'invoice-textfield' %></td>
       </tr>
     <% end %>
 
     <tr id="hiderow">
-      <td colspan="2"><a id="invoice-addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+      <td colspan="3"><a id="invoice-addrow" href="javascript:;" title="Add a row">Add a row</a></td>
     </tr>
 
     <tr>
-      <td colspan="1" class="invoice-total-line">Total</td>
-      <td class="invoice-total-value"><div id="invoice-total">0.00</div></td>
+      <td colspan="2" class="invoice-total-line">Gesamthonoar: </td>
+      <td id="invoice-total-value"><%= f.text_field :totalfee, class: 'invoice-textfield', placeholder: '0.0' %></td>
     </tr>
+
   </table>
 
-  <%= f.submit "Save", class: "btn btn-primary btn-block "%>
-  <%= f.submit "Save and Print", class: "btn btn-primary btn-block", name: 'print' %>
-  <%= link_to "Cancel", patients_url, class: "btn btn-primary btn-block "%>
+  <div id="invoice-buttons">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+	<%= f.submit "Save", class: "btn btn-primary btn-block "%>
+      </div>
+      <div class="col-md-3">
+	<%= f.submit "Save and Print", class: "btn btn-primary btn-block", name: 'print' %>
+      </div>
+      <div class="col-md-3">
+	<%= link_to "Cancel", patients_url, class: "btn btn-primary btn-block "%>
+      </div>
+    </div>
+  </div>
 <% end %>
