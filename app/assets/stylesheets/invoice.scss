@@ -1,5 +1,3 @@
-// scss only includes in the invoice views
-
 textarea {
   border: 0;
   font: 14px Georgia, Serif;
@@ -16,29 +14,37 @@ textarea {
 }
 
 .invoice-header {
-  height: 250px;
+  height: 280px;
   width: 100%;
-  margin: 20px 0;
   padding: 8px 0px;
+  margin-bottom: 20px;
+}
+
+.invoice-main {
+  margin-top: 20px;
 }
 
 #invoice-identity {
   height: 200px;
+  margin-bottom: 20px;
 }
 
 #invoice-address {
   width: 250px;
   height: 100px;
-  float: left;
+  margin-bottom: 30px;
+  float: right;
+  font-size: small;
 }
 
 #invoice-logo {
   text-align: right;
-  float: right;
+  float: left;
   position: relative;
   margin-top: 25px;
+  margin-top: 25px;
   border: 1px solid #fff;
-  max-width: 540px;
+  max-width: 400px;
   max-height: 100px;
   overflow: hidden;
 }
@@ -54,6 +60,7 @@ textarea {
 
 #invoice-diagnosis-text {
   width: 300px;
+  margin-bottom: 20px;
 }
 
 .invoice-textfield {
@@ -101,6 +108,24 @@ table td, table th { border: 1px solid black; padding: 5px; }
   left: -22px;
   font-family: Verdana;
   font-size: 12px;
+}
+
+#invoice-buttons {
+  margin-top: 20px;
+}
+
+#invoice-thanks {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#invoice-greetings {
+  margin-top: 40px;
+}
+
+#invoice-signature {
+  position: relative;
+  left: 350px;
 }
 
 // textarea:hover, textarea:focus, #items td.total-value textarea:hover, #items td.total-value textarea:focus, .delete:hover { background-color:#EEFF88; }
