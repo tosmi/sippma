@@ -11,8 +11,8 @@
   <table id="invoice-items">
 
     <tr>
-      <th>Anzahl</th>
-      <th colspan="2">Leistung (Pos. Nr.)</th>
+      <th class="invoice-amount">Anzahl</th>
+      <th class="invoice-service">Leistung (Pos. Nr.)</th>
     </tr>
 
     <%= f.fields_for :entry_lines do |entryline| %>
@@ -23,7 +23,7 @@
 	    <a class="invoice-delete-entry" href="javascript:;" title="Remove row">X</a>
 	  </div>
 	</td>
-	<td colspan="2" class="invoice-service"><%= entryline.text_field :text, value: "Ordination (F1, 12)", class: 'invoice-textfield' %></td>
+	<td  class="invoice-service"><%= entryline.text_field :text, value: "Ordination (F1, 12)", class: 'invoice-textfield' %></td>
       </tr>
     <% end %>
 
@@ -32,8 +32,8 @@
     </tr>
 
     <tr>
-      <td colspan="2" class="invoice-total-line">Gesamthonoar: </td>
-      <td id="invoice-total-value"><%= f.text_field :totalfee, class: 'invoice-textfield', placeholder: '0.0' %></td>
+      <td id="invoice-table-blank"></td>
+      <td id="invoice-total-value">Gesamthonorar: <%= f.text_field :totalfee, id: 'invoice-sum', class: 'invoice-textfield', placeholder: '0.00' %> Eur</td>
     </tr>
 
   </table>

@@ -35,6 +35,7 @@ textarea {
   margin-bottom: 30px;
   float: right;
   font-size: small;
+  color: grey;
 }
 
 #invoice-logo {
@@ -67,7 +68,7 @@ textarea {
   border: none;
 }
 
-.invoice-textfield:hover, .invoice-textfield:focus {
+.invoice-textfield:hover, .invoice-textfield:focus, #invoice-consultation-date:hover, #invoice-consultation-date:focus {
   background-color:#EEFF88;
 }
 
@@ -78,7 +79,12 @@ table td, table th { border: 1px solid black; padding: 5px; }
 }
 
 .invoice-service {
-  width: 550px;
+  width: 600px;
+  border-left: none;
+}
+
+.invoice-amount {
+  border-right: none;
 }
 
 #invoice-items td.invoice-total-line {
@@ -115,7 +121,6 @@ table td, table th { border: 1px solid black; padding: 5px; }
 }
 
 #invoice-thanks {
-  margin-top: 40px;
   margin-bottom: 40px;
 }
 
@@ -126,6 +131,39 @@ table td, table th { border: 1px solid black; padding: 5px; }
 #invoice-signature {
   position: relative;
   left: 350px;
+}
+
+#invoice-table-blank {
+  border: none;
+}
+
+#invoice-totalfee {
+  margin-top: 30px;
+}
+
+#invoice-date {
+  text-align: right;
+}
+
+#invoice-consultation {
+  margin-top: 10px;
+}
+
+#invoice-consultation-date {
+  width: 85px;
+  border: none;
+}
+
+#invoice-iban {
+  margin-top: 10px;
+}
+
+#invoice-bank {
+  margin-top: 10px;
+}
+
+#invoice-sum {
+  width: 50px;
 }
 
 // textarea:hover, textarea:focus, #items td.total-value textarea:hover, #items td.total-value textarea:focus, .delete:hover { background-color:#EEFF88; }

@@ -6,14 +6,16 @@
 <table id="invoice-items">
 
   <tr>
-    <th>Anzahl</th>
-    <th colspan="2">Leistung (Pos. Nr.)</th>
+    <th class="invoice-amount">Anzahl</th>
+    <th class="invoice-service">Leistung (Pos. Nr.)</th>
   </tr>
 
   <%= render partial: 'entry_line', collection:  @invoice.entry_lines %>
 
-  <tr>
-    <td colspan="2" class="invoice-total-line">Gesamthonoar: </td>
-    <td id="invoice-total-value"><%= @invoice.totalfee  %></td>
-  </tr>
 </table>
+
+<div id="invoice-totalfee">
+  <strong>
+    Gesamthonorar: <%= @invoice.totalfee %> Eur
+  </strong>
+</div>

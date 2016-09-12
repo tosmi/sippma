@@ -35,6 +35,7 @@ textarea {
   margin-bottom: 30px;
   float: right;
   font-size: small;
+  color: grey !important;
 }
 
 #invoice-logo {
@@ -73,11 +74,16 @@ textarea {
 table td, table th { border: 1px solid black; padding: 5px; }
 
 #invoice-items th {
-  background: #eee;
+  background: #eee !important;
 }
 
 .invoice-service {
   width: 550px;
+  border-left: none;
+}
+
+.invoice-amount {
+  border-right: none;
 }
 
 #invoice-items td.invoice-total-line {
@@ -110,7 +116,6 @@ table td, table th { border: 1px solid black; padding: 5px; }
 }
 
 #invoice-thanks {
-  margin-top: 40px;
   margin-bottom: 40px;
 }
 
@@ -121,4 +126,29 @@ table td, table th { border: 1px solid black; padding: 5px; }
 #invoice-signature {
   position: relative;
   left: 350px;
+}
+
+#invoice-totalfee {
+  margin-top: 30px;
+}
+
+#invoice-date {
+  text-align: right;
+}
+
+#invoice-consultation {
+  margin-top: 10px;
+}
+
+#invoice-consultation-date {
+  width: 85px;
+  border: none;
+}
+
+#invoice-iban {
+  margin-top: 10px;
+}
+
+#invoice-bank {
+  margin-top: 10px;
 }

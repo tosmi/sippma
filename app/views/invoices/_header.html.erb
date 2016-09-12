@@ -24,13 +24,22 @@
 
 
 <div class="invoice-number-date">
+  <div id="invoice-date">
+    <%= settings.city %>, <%= Date.today.strftime("%-d.%-m.%Y") %>
+  </div>
+
   <div class="invoice-number">
     <strong>Wahlarzt-Honorarnote: <%= invoice.invoicenumber %></strong>
   </div>
 
-  <div class="invoice-date">
-    Grafenwoerth, <%= Date.today.strftime("%-d.%-m.%Y") %>
+  <div id="invoice-consultation">
+    <% unless @print  %>
+      Untersuchung am <%= Date.today.strftime("%-d.%-m.%Y") %>
+    <% else %>
+      Untersuchung am <input id="invoice-consultation-date" type="text" rows="1" value="<%= Date.today.strftime("%-d.%-m.%Y") %>">
+    <% end %>
   </div>
+
 </div>
 
 <!-- <div class="invoice-examination-date">
