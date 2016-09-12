@@ -1,24 +1,32 @@
-<%= stylesheet_link_tag "print", media: 'all' %>
+<%= stylesheet_link_tag "invoice" %>
+<%= stylesheet_link_tag "invoice_print", media: 'print' %>
 
 <% unless @print %>
   <%= render 'shared/the_flash' %>
-  <h1>Show invoice</h1>
 <% end %>
 
+<div class="invoice-page">
+  <div class="invoice-header">
+    <%= render 'header' %>
+  </div>
 
-<div class="invoice-header">
-  <%= render 'header' %>
-</div>
+  <div class="invoice-main">
+    <%= render 'display' %>
+  </div>
 
-<div class="invoice-main">
-  <%= render 'display' %>
-</div>
+  <div class="invoice-footer">
+    <%= render 'refund' %>
 
-<div class="invoice-footer">
-  <%= render 'refund' %>
-
-  <% unless @print %>
-    <%= link_to 'Back', patient_invoices_path(@patient), class: 'btn btn-primary' %>
-    <%= link_to 'Print', { controller: 'invoices', action: 'show', print: true }, class: 'btn btn-primary', target: '_blank', name: 'print-invoice' %>
-  <% end %>
+    <% unless @print %>
+      <div id="invoice-buttons">
+	<div class="row">
+	  <div class="col-md-2 col-md-offset-3">
+	    <%= link_to 'Back', patient_invoices_path(@patient), class: 'btn btn-primary' %>
+	  </div>
+	  <div class="col-md-1">
+	    <%= link_to 'Print', { controller: 'invoices', action: 'show', print: true }, class: 'btn btn-primary', target: '_blank', name: 'print-invoice' %>
+	  </div>
+	</div>
+    <% end %>
+  </div>
 </div>

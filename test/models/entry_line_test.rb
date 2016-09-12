@@ -11,7 +11,7 @@ class EntryLineTest < ActiveSupport::TestCase
                                        date: '01-01-1970',
                                        patient_id: @patient.id)
     @line    = @invoice.entry_lines.build(text: 'the first line',
-                                          fee: 10.25)
+                                          amount: 1)
   end
 
   test "saves a valid entryline" do
@@ -23,10 +23,10 @@ class EntryLineTest < ActiveSupport::TestCase
     assert_not @line.valid?
   end
 
-  test 'allow empty fee' do
-    @line.fee = ''
-    assert @line.valid?
-  end
+  # test 'allow empty fee' do
+  #   @line.fee = ''
+  #   assert @line.valid?
+  # end
 
   test "does not save an entry line if no corresponding invoice" do
     assert_raises ActiveRecord::RecordInvalid do

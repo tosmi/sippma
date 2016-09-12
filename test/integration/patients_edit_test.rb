@@ -16,7 +16,7 @@ class PatientEditTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Edit Patient'
     assert_select 'input[value=?]', @max.lastname
     @max.lastname = ''
-    patch patient_path(@max), patient: { street: '' }
+    patch patient_path(@max), params: { patient: { street: '' } }
     assert_template 'patients/edit'
     assert_template 'patients/_parent_search_modal'
     assert_select 'div#error_explanation'
@@ -32,17 +32,20 @@ class PatientEditTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Edit Patient'
     assert_select 'input[value=?]', @max.lastname
     street = 'Mustergasse 9'
-    patch patient_path(@max), patient: {
-            firstname: @max.firstname,
-            lastname: @max.lastname,
-            birthdate: @max.birthdate,
-            ssn: @max.ssn,
-            zip: @max.zip,
-            city: @max.city,
-            phonenumber1: @max.phonenumber1,
-            phonenumber2: @max.phonenumber2,
-            email: @max.email,
-            street: 'Mustergasse 9' }
+    patch patient_path(@max), params: {
+      patient: {
+        firstname: @max.firstname,
+        lastname: @max.lastname,
+        birthdate: @max.birthdate,
+        ssn: @max.ssn,
+        zip: @max.zip,
+        city: @max.city,
+        phonenumber1: @max.phonenumber1,
+        phonenumber2: @max.phonenumber2,
+        email: @max.email,
+        street: 'Mustergasse 9'
+      }
+    }
     assert_redirected_to patients_path
     assert_not flash.empty?
     follow_redirect!

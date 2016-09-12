@@ -1,9 +1,18 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'addentry' %>
-<% end %>
+<%= stylesheet_link_tag "invoice" %>
+<%= stylesheet_link_tag "invoice_print", media: 'print' %>
 
-<div class="container center">
-  <h1>Create a new invoice</h1>
-  <%= render 'edit_header' %>
-  <%= render 'input' %>
+
+<!-- <div class="container center">
+     <%= render 'edit_header' %>
+     <%= render 'input' %>
+     </div> -->
+
+<div class="invoice-page">
+  <div class="invoice-header">
+    <%= render 'header' %>
+  </div>
+
+  <div class="invoice-main">
+    <%= render 'input' %>
+  </div>
 </div>

@@ -1,57 +1,61 @@
 var ready = function() {
-  function addEntry() {
-    var lastentry = $('.entry').last();
-    var newentry = $(lastentry).clone(true, true);
-    var formsonpage = $('.entry').length;
 
-    $(newentry).find('input').each(function(input) {
-      var oldid = $(this).attr('id');
-      var oldname = $(this).attr('name');
+    function addRow(event) {
 
-      var id = '_' + formsonpage + '_';
-      var newid = oldid.replace(new RegExp(/_\d+_/), id);
+	if ($(".invoice-delete-entry").length > 0) $(".invoice-delete-entry").show();
 
-      var name = '[' + formsonpage + ']';
-      var newname = oldname.replace(new RegExp(/\[\d+\]/), name);
+	event.preventDefault();
+	event.stopPropagation();
 
-      $(this).attr('id', newid);
-      $(this).attr('name', newname);
-      $(this).val('');
+	var lastentry = $('.invoice-item-row').last();
+	var newentry = $(lastentry).clone(true, true);
+	var formsonpage = $('.invoice-item-row').length;
 
-      if( $(this).hasClass('fee') ) {
-	$(this).keyup(updateTotal);
-      }
-    });
+	$(newentry).find('input').each(function(input) {
+	    var oldid = $(this).attr('id');
+	    var oldname = $(this).attr('name');
 
-    $(lastentry).find('a').text('Remove entry');
-    $(lastentry).find('a').removeClass('addentry')
-      .addClass('removeentry')
-      .off('click')
-      .click(removeEntry);
+	    var id = '_' + formsonpage + '_';
+	    var newid = oldid.replace(new RegExp(/_\d+_/), id);
 
-    $(newentry).insertAfter(lastentry);
-  }
+	    var name = '[' + formsonpage + ']';
+	    var newname = oldname.replace(new RegExp(/\[\d+\]/), name);
 
-  function removeEntry() {
-    $(this).closest('.entry').slideUp().remove();
-    updateTotal();
-  }
+	    $(this).attr('id', newid);
+	    $(this).attr('name', newname);
+	    $(this).val('');
 
-  function updateTotal() {
-    var sum = 0;
-    $('.fee').each(function() {
-      var fee = parseFloat($(this).val());
-      if(isNaN(fee)) {
-    	return;
-      }
-      sum += fee;
-    });
-    $('#invoice_totalfee').val(sum);
-  }
+	    if( $(this).hasClass('fee') ) {
+		$(this).keyup(updateTotal);
+	    }
+	});
 
-  $('.addentry').click(addEntry);
-  $('.fee').keyup(updateTotal);
+	$(newentry).insertAfter(lastentry);
+    }
+
+    function removeEntry( event ) {
+	$(this).parents('.invoice-item-row').remove();
+	if ($(".invoice-delete-entry").length < 2) $(".invoice-delete-entry").hide();
+    }
+
+    function updateTotal() {
+	var sum = 0;
+	$('.fee').each(function() {
+	    var fee = parseFloat($(this).val());
+	    if(isNaN(fee)) {
+    		return;
+	    }
+	    sum += fee;
+	});
+	$('#invoice-total').val(sum);
+    }
+
+    $('#invoice-addrow').click(addRow);
+    $('.fee').keyup(updateTotal);
+    $( ".invoice-delete-entry" ).click(removeEntry);
+    $(".invoice-delete-entry").hide();
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+document.addEventListener("turbolinks:load", function() {
+    ready();
+});

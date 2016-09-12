@@ -3,58 +3,52 @@
   <%= hidden_field_tag 'invoice[invoicenumber]', invoice.invoicenumber %>
   <%= hidden_field_tag 'invoice[date]', Date.today %>
 
-  <div class="row" id="diagnosis">
-    <div class="col-md-1 text-left">
-      <strong><%= f.label 'Diagnosis' %></strong>
-    </div>
-    <div class="col-md-8">
-      <%= f.text_field :diagnosis, class: 'form-control'%>
-    </div>
+  <div id="invoice-diagnosis">
+    <strong><%= f.label 'Diagnose: ' %></strong>
+    <%= f.text_field :diagnosis, class: 'invoice-textfield', id: 'invoice-diagnosis-text' %>
   </div>
 
-  <hr/>
-  <div class="row col-md-offset-1">
+  <table id="invoice-items">
+
+    <tr>
+      <th class="invoice-amount">Anzahl</th>
+      <th class="invoice-service">Leistung (Pos. Nr.)</th>
+    </tr>
+
     <%= f.fields_for :entry_lines do |entryline| %>
-      <div class="entry">
-	<div class="row">
-	  <div class="col-md-6">
-	    <%= entryline.text_field :text, class: 'form-control' %>
+      <tr class="invoice-item-row">
+	<td class="invoice-amount">
+	  <div class="delete-wpr">
+	    <%= entryline.number_field :amount, value: '1', class: 'invoice-textfield' %>
+	    <a class="invoice-delete-entry" href="javascript:;" title="Remove row">X</a>
 	  </div>
-	  <div class="col-md-2">
-	    <%= entryline.text_field :fee, class: 'form-control fee' %>
-	  </div>
-	  <div class="col-md-2">
-	    <%= link_to 'Add entry', '#', class: 'btn btn-sm btn-success addentry'%>
-	  </div>
-	</div>
-      </div>
+	</td>
+	<td  class="invoice-service"><%= entryline.text_field :text, value: "Ordination (F1, 12)", class: 'invoice-textfield' %></td>
+      </tr>
     <% end %>
 
-    <div class="row">
-      <div class="col-md-8">
-	<hr/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 text-right">
-	Sum
-      </div>
-      <div class="col-md-2">
-	<%= f.text_field :totalfee, class: 'form-control', placeholder: '0.0' %>
+    <tr id="hiderow">
+      <td colspan="3"><a id="invoice-addrow" href="javascript:;" title="Add a row">Add a row</a></td>
+    </tr>
 
-      </div>
-    </div>
-  </div>
+    <tr>
+      <td id="invoice-table-blank"></td>
+      <td id="invoice-total-value">Gesamthonorar: <%= f.text_field :totalfee, id: 'invoice-sum', class: 'invoice-textfield', placeholder: '0.00' %> Eur</td>
+    </tr>
 
-  <div class="row">
-    <div class="col-md-2 col-md-offset-2">
-      <%= f.submit "Save", class: "btn btn-primary btn-block "%>
-    </div>
-    <div class="col-md-2">
-      <%= f.submit "Save and Print", class: "btn btn-primary btn-block", name: 'print' %>
-    </div>
-    <div class="col-md-2">
-      <%= link_to "Cancel", patients_url, class: "btn btn-primary btn-block "%>
+  </table>
+
+  <div id="invoice-buttons">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1">
+	<%= f.submit "Save", class: "btn btn-primary btn-block "%>
+      </div>
+      <div class="col-md-3">
+	<%= f.submit "Save and Print", class: "btn btn-primary btn-block", name: 'print' %>
+      </div>
+      <div class="col-md-3">
+	<%= link_to "Cancel", patients_url, class: "btn btn-primary btn-block "%>
+      </div>
     </div>
   </div>
 <% end %>

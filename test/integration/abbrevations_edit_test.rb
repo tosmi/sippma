@@ -16,7 +16,7 @@ class AbbrevationsEditTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert assigns(:abbrevation)
     assert_template 'abbrevations/edit'
-    patch abbrevation_path(@one), abbrevation: { text: 'Anton Paul Schmidbauer' }
+    patch abbrevation_path(@one), params: { abbrevation: { text: 'Anton Paul Schmidbauer' } }
     assert_redirected_to abbrevations_path
     follow_redirect!
     assert_select 'div.alert'
@@ -33,7 +33,7 @@ class AbbrevationsEditTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert assigns(:abbrevation)
     assert_template 'abbrevations/edit'
-    patch abbrevation_path(@one), abbrevation: { text: '' }
+    patch abbrevation_path(@one), params: { abbrevation: { text: '' } }
     assert_template 'abbrevations/edit'
     assert_not flash.empty?
     assert_select 'div#error_explanation'

@@ -35,8 +35,13 @@ class AbbrevationsControllerTest < ActionController::TestCase
   test "creating a new abbrevation" do
     log_in_as(@admin)
     assert_difference 'Abbrevation.count', 1 do
-      post :create, abbrevation: { abbrev: 'ct',
-                                   text: 'Controller Test' }
+      post :create, params: {
+        abbrevation:
+        {
+          abbrev: 'ct',
+          text: 'Controller Test'
+        }
+      }
     end
     assert_redirected_to abbrevations_url
   end
@@ -44,7 +49,7 @@ class AbbrevationsControllerTest < ActionController::TestCase
   test "deleting an abbrevation" do
     log_in_as(@admin)
     assert_difference 'Abbrevation.count', -1 do
-      delete :destroy, id: @one.id
+      delete :destroy, params: { id: @one.id }
     end
     assert_redirected_to abbrevations_path
   end

@@ -15,10 +15,12 @@ class SettingsEditTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'a[href=?]', settings_path
     assert_template 'settings/show'
-    patch settings_path, setting: {
-            firstname: 'Max',
-            initial_invoicenumber: 99
-          }
+    patch settings_path, params: {
+      setting: {
+        firstname: 'Max',
+        initial_invoicenumber: 99
+      }
+    }
     settings = Setting.instance
     assert_equal 'Max', settings.firstname
     assert_equal 99, settings.initial_invoicenumber

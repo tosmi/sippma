@@ -79,8 +79,6 @@ var addEvents = function() {
   // $('#parent-table').delegate('tr','click', selectedParent);
 };
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   addEvents();
 });
-
-$(document).on('page:load', addEvents);

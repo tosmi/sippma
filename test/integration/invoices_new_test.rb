@@ -7,23 +7,24 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
     @max   = patients(:max)
     @moritz  = patients(:moritz)
-    @new_invoice_data = { invoice: {
-                            diagnosis: 'a test',
-                            invoicenumber: '66-30-01-14',
-                            date: '30-01-14,',
-                            totalfee: 300,
-                            entry_lines_attributes: [
-                              {
-                                text: 'first',
-                                fee: 100,
-                              },
-                              {
-                                text: 'second',
-                                fee: 200,
-                              }
-                            ]
-                          }
-                        }
+    @new_invoice_data = {
+      invoice: {
+        diagnosis: 'a test',
+        invoicenumber: '66-30-01-14',
+        date: '30-01-14,',
+        totalfee: 300,
+        entry_lines_attributes: [
+          {
+            text: 'first',
+            amount: '1',
+          },
+          {
+            text: 'second',
+            amount: '2',
+          }
+        ]
+      }
+    }
 
     @invalid_invoice_data = { invoice:
                                 {
@@ -51,9 +52,9 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'invoices/new'
     assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_text/
-    assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
+    # assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
     assert_difference 'Invoice.count', 1 do
-      post patient_invoices_path(@max), @new_invoice_data
+      post patient_invoices_path(@max), params: @new_invoice_data
     end
     invoice = assigns[:invoice]
     assert_redirected_to invoice_url(invoice.id)
@@ -71,13 +72,13 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'invoices/new'
     assert_difference 'Invoice.count', 0 do
-      post patient_invoices_path(@max), @invalid_invoice_data
+      post patient_invoices_path(@max), params: @invalid_invoice_data
     end
     assert_template 'invoices/new'
     assert_select 'div.alert'
     assert_select 'div.alert-danger', { :count => 1, :text => /form.*error/ }
     assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_text/
-    assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
+    # assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
   end
 
   test "create a new invoice for patient without consultation" do

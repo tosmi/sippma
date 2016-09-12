@@ -1,17 +1,21 @@
-<div class="invoice-diagnosis">
+<div id="invoice-diagnosis-text">
   <strong>Diagnose:</strong>
   <%= @invoice.diagnosis %>
 </div>
 
-<div class="invoice-entry-lines">
-  <table>
-    <tbody>
-      <%= render partial: 'entry_line', collection:  @invoice.entry_lines %>
-    </tbody>
-  </table>
+<table id="invoice-items">
+
+  <tr>
+    <th class="invoice-amount">Anzahl</th>
+    <th class="invoice-service">Leistung (Pos. Nr.)</th>
+  </tr>
+
+  <%= render partial: 'entry_line', collection:  @invoice.entry_lines %>
+
+</table>
+
+<div id="invoice-totalfee">
+  <strong>
+    Gesamthonorar: <%= @invoice.totalfee %> Eur
+  </strong>
 </div>
-
-
-<strong>Gesamthonorar: <%= @invoice.totalfee %>.-</strong>
-
-<strong><hr id="totalline"></strong>
