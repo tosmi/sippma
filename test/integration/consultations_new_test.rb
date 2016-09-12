@@ -14,10 +14,12 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     assert_redirected_to new_patient_consultation_path(@max)
     assert_difference 'Consultation.count', 1 do
-      post patient_consultations_path(@max), consultation: {
-             diagnosis: 'test diagnosis',
-             content: 'a diagnosis during testing'
-           }
+      post patient_consultations_path(@max), params: {
+        consultation: {
+          diagnosis: 'test diagnosis',
+          content: 'a diagnosis during testing'
+        }
+      }
     end
     assert_redirected_to patients_path
   end
@@ -26,10 +28,12 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get new_patient_consultation_path(@max)
     assert_difference 'Consultation.count', 1 do
-      post patient_consultations_path(@max), consultation: {
-             diagnosis: '',
-             content: ''
-           }
+      post patient_consultations_path(@max), params: {
+        consultation: {
+          diagnosis: '',
+          content: ''
+        }
+      }
     end
     assert_redirected_to patients_path
   end
@@ -38,10 +42,12 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get new_patient_consultation_path(@max)
     assert_difference 'Consultation.count', 0 do
-      post patient_consultations_path(@max), consultation: {
-             diagnosis: 'a' * 201,
-             content: ''
-           }
+      post patient_consultations_path(@max), params: {
+        consultation: {
+          diagnosis: 'a' * 201,
+          content: ''
+        }
+      }
     end
     assert_template 'new'
   end

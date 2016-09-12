@@ -7,21 +7,24 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
     @max   = patients(:max)
     @moritz  = patients(:moritz)
-    @new_invoice_data = { invoice: {
-                            diagnosis: 'a test',
-                            invoicenumber: '66-30-01-14',
-                            date: '30-01-14,',
-                            totalfee: 300,
-                            entry_lines_attributes: [
-                              {
-                                text: 'first',
-                              },
-                              {
-                                text: 'second',
-                              }
-                            ]
-                          }
-                        }
+    @new_invoice_data = {
+      invoice: {
+        diagnosis: 'a test',
+        invoicenumber: '66-30-01-14',
+        date: '30-01-14,',
+        totalfee: 300,
+        entry_lines_attributes: [
+          {
+            text: 'first',
+            amount: '1',
+          },
+          {
+            text: 'second',
+            amount: '2',
+          }
+        ]
+      }
+    }
 
     @invalid_invoice_data = { invoice:
                                 {

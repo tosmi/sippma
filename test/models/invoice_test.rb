@@ -65,8 +65,8 @@ class InvoiceTest < ActiveSupport::TestCase
                                          invoicenumber: '02-01-01-70',
                                          date: '1-1-1970',
                                          entry_lines_attributes: [
-                                           { text: 'first', fee: '100'},
-                                           { text: 'first', fee: '200'},
+                                           { text: 'first', amount: '1'},
+                                           { text: 'first', amount: '2'},
                                          ])
     end
 

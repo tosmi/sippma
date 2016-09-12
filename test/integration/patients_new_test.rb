@@ -31,7 +31,7 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     assert_template 'patients/new'
     assert_template 'patients/_parent_search_modal'
     assert_difference 'Patient.count', 1 do
-      post patients_path, @new_patient
+      post patients_path, params: @new_patient
     end
     assert_redirected_to patients_url
     follow_redirect!
@@ -54,7 +54,7 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_patient_path
     assert_no_difference 'Patient.count' do
       @new_patient[:patient][:firstname] = ''
-      post patients_path, @new_patient
+      post patients_path, params: @new_patient
     end
     assert_template 'patients/new'
     assert_template 'patients/_parent_search_modal'

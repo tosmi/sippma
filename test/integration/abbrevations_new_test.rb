@@ -16,10 +16,12 @@ class AbbrevationsNewTest < ActionDispatch::IntegrationTest
     assert_select 'form input', 4
     assert_select 'input[name^=abbrev]', 2
     assert_difference 'Abbrevation.count', 1 do
-      post abbrevations_path, abbrevation: {
-             abbrev: 'it',
-             text: 'Integration Test',
-           }
+      post abbrevations_path, params: {
+        abbrevation: {
+          abbrev: 'it',
+          text: 'Integration Test',
+        }
+      }
     end
     assert_redirected_to abbrevations_path
     follow_redirect!
@@ -42,10 +44,12 @@ class AbbrevationsNewTest < ActionDispatch::IntegrationTest
     assert_select 'form input', 4
     assert_select 'input[name^=abbrev]', 2
     assert_difference 'Abbrevation.count', 0 do
-      post abbrevations_path, abbrevation: {
-             abbrev: '',
-             text: 'Integration Test',
-           }
+      post abbrevations_path, params: {
+        abbrevation: {
+          abbrev: '',
+          text: 'Integration Test',
+        }
+      }
     end
     assert_template 'abbrevations/new'
     assert_select 'div#error_explanation'

@@ -15,9 +15,11 @@ class ConsultationEditDeleteTestTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     assert_redirected_to edit_consultation_path(@first)
     follow_redirect!
-    patch consultation_path(@first), consultation: {
+    patch consultation_path(@first), params: {
+      consultation: {
             diagnosis: 'another diagnosis'
-          }
+      }
+    }
     assert_redirected_to patient_consultations_path(@max)
     follow_redirect!
     assert_match 'another diagnosis', response.body
@@ -27,9 +29,11 @@ class ConsultationEditDeleteTestTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     get new_patient_consultation_path(@max)
     assert_difference 'Consultation.count', 0 do
-      patch consultation_path(@first), consultation: {
-             diagnosis: 'a' * 201,
-           }
+      patch consultation_path(@first), params: {
+        consultation: {
+          diagnosis: 'a' * 201,
+        }
+      }
     end
     assert_template 'edit'
   end

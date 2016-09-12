@@ -51,10 +51,12 @@ class InvoicesListTest < ActionDispatch::IntegrationTest
     follow_redirect!
     diagnosis = 'changed'
     totalfee  = 500
-    patch invoice_path(@first), invoice: {
-            diagnosis: diagnosis,
-            totalfee: totalfee,
-          }
+    patch invoice_path(@first), params: {
+      invoice: {
+        diagnosis: diagnosis,
+        totalfee: totalfee,
+      }
+    }
     assert_not flash.empty?
     assert_redirected_to patient_invoices_path(@max)
     @first.reload
@@ -68,9 +70,11 @@ class InvoicesListTest < ActionDispatch::IntegrationTest
     log_in_as(@admin)
     assert_redirected_to edit_invoice_path(@first)
     follow_redirect!
-    patch invoice_path(@first), invoice: {
-           diagnosis: ''
-         }
+    patch invoice_path(@first), params: {
+      invoice: {
+        diagnosis: ''
+      }
+    }
     assert_template 'invoices/edit'
     assert_not flash.empty?
     assert_select 'div#error_explanation'

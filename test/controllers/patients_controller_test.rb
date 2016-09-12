@@ -37,7 +37,7 @@ class PatientsControllerTest < ActionController::TestCase
     get :index
     assert_template 'welcome'
     assert_difference 'Patient.count', 1 do
-      post :create, @new_patient_data
+      post :create, params: @new_patient_data
     end
     get :index
     assert_template 'index'
@@ -47,7 +47,7 @@ class PatientsControllerTest < ActionController::TestCase
     log_in_as(@admin)
     @new_patient_data[:patient][:firstname] = ''
     assert_no_difference 'Patient.count' do
-      post :create, @new_patient_data
+      post :create, params: @new_patient_data
     end
   end
 
