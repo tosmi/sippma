@@ -18,9 +18,8 @@
     <%= patient.firstname %> <%= patient.lastname %><br/>
     <%= patient.insurance %> <%= patient.ssn %> <%= patient.birthdate.strftime("%d%m%y") %><br/>
     <% unless @parents.nil? %>
-      <%= f.select(:parent_id, options_from_collection_for_select(@parents, :id, :firstname), :include_blank => true) %>
+      <%= f.select(:parent_id, options_from_collection_for_select(@parents, :id, :firstname), { :include_blank => true }, { :class => 'form-control' }) %>
     <% end %>
-    <%#= select_tag(:parent_id, options_from_collection_for_select(@parents, :id, :firstname), :include_blank => true) %>
     <%= patient.street %><br/>
     <%= patient.zip %> <%= patient.city %><br/>
   </div>
