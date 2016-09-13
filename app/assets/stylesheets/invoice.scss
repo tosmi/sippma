@@ -22,6 +22,7 @@ textarea {
 
 .invoice-main {
   margin-top: 20px;
+  height: 280px;
 }
 
 #invoice-identity {
@@ -30,7 +31,7 @@ textarea {
 }
 
 #invoice-address {
-  width: 250px;
+  //width: 250px;
   height: 100px;
   margin-bottom: 30px;
   float: right;
@@ -74,16 +75,21 @@ textarea {
 
 table td, table th { border: 1px solid black; padding: 5px; }
 
+#invoice-items {
+  margin: 0 auto;
+}
+
 #invoice-items th {
   background: #eee;
 }
 
 .invoice-service {
-  width: 600px;
+  width: 620px;
   border-left: none;
 }
 
 .invoice-amount {
+  width: 110px;
   border-right: none;
 }
 

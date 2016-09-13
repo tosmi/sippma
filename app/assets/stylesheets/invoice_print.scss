@@ -1,3 +1,7 @@
+body {
+  padding-top: 0px !important;
+}
+
 textarea {
   border: 0;
   font: 14px Georgia, Serif;
@@ -22,6 +26,7 @@ textarea {
 
 .invoice-main {
   margin-top: 20px;
+  height: 320px;
 }
 
 #invoice-identity {
@@ -30,7 +35,7 @@ textarea {
 }
 
 #invoice-address {
-  width: 250px;
+  // width: 250px;
   height: 100px;
   margin-bottom: 30px;
   float: right;
@@ -73,6 +78,10 @@ textarea {
 
 table td, table th { border: 1px solid black; padding: 5px; }
 
+#invoice-items {
+  margin: 0 auto;
+}
+
 #invoice-items th {
   background: #eee !important;
 }
@@ -83,6 +92,7 @@ table td, table th { border: 1px solid black; padding: 5px; }
 }
 
 .invoice-amount {
+  with: 100px;
   border-right: none;
 }
 
