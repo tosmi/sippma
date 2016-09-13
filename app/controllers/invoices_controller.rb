@@ -24,7 +24,11 @@ class InvoicesController < ApplicationController
   end
 
   def index
-    @invoices = patient.invoices.all
+    unless patient.invoices.any?
+      render 'welcome'
+    else
+      @invoices = patient.invoices.all
+    end
   end
 
   def show
