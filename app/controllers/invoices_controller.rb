@@ -3,6 +3,7 @@ class InvoicesController < ApplicationController
 
   def new
     invoice.entry_lines.build
+    @parents = Patient.where id: patient.parent_ids
     if not patient.consultations.empty?
       invoice.diagnosis = patient.consultations.first.diagnosis
     end
@@ -11,13 +12,13 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    p invoice
     if invoice.save
       Setting.create_invoicenumber
       flash[:success] = 'Invoice successfully saved'
       redirect_to invoice_url(invoice)
     else
       invoice.entry_lines.build if invoice.entry_lines.empty?
+      @parents = Patient.where id: patient.parent_ids
       render 'new'
     end
   end
@@ -34,6 +35,8 @@ class InvoicesController < ApplicationController
   end
 
   def edit
+    @patient = Patient.find(invoice.patient_id)
+    @parents = Patient.where id: patient.parent_ids
     invoice
   end
 
@@ -85,6 +88,7 @@ class InvoicesController < ApplicationController
         :date,
         :invoicenumber,
         :totalfee,
+        :parent_id,
         entry_lines_attributes: [
           :id,
           :amount,

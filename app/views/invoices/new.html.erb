@@ -2,17 +2,14 @@
 <%= stylesheet_link_tag "invoice_print", media: 'print' %>
 
 
-<!-- <div class="container center">
-     <%= render 'edit_header' %>
-     <%= render 'input' %>
-     </div> -->
-
 <div class="invoice-page">
-  <div class="invoice-header">
-    <%= render 'header' %>
-  </div>
+  <%= form_for([@patient, invoice]) do |f| %>
+    <div class="invoice-header">
+      <%= render partial: 'header_input', locals: { f: f} %>
+    </div>
 
-  <div class="invoice-main">
-    <%= render 'input' %>
-  </div>
+    <div class="invoice-main">
+      <%= render partial: 'input', locals: { f: f} %>
+    </div>
+  <% end %>
 </div>

@@ -17,12 +17,10 @@
   <div id="invoice-customer">
     <%= patient.firstname %> <%= patient.lastname %><br/>
     <%= patient.insurance %> <%= patient.ssn %> <%= patient.birthdate.strftime("%d%m%y") %><br/>
-
-    <% unless invoice.parent.nil? %>
-      <%= invoice.parent.firstname %> <%= invoice.parent.lastname %><br/>
-      <%= invoice.parent.insurance %> <%= invoice.parent.ssn %> <%= invoice.parent.birthdate.strftime("%d%m%y") %><br/>
-    <% end  %>
-
+    <% unless @parents.nil? %>
+      <%= f.select(:parent_id, options_from_collection_for_select(@parents, :id, :firstname), :include_blank => true) %>
+    <% end %>
+    <%#= select_tag(:parent_id, options_from_collection_for_select(@parents, :id, :firstname), :include_blank => true) %>
     <%= patient.street %><br/>
     <%= patient.zip %> <%= patient.city %><br/>
   </div>
@@ -47,12 +45,3 @@
   </div>
 
 </div>
-
-<!-- <div class="invoice-examination-date">
-     Untersuchung am
-     <% if invoice.created_at %>
-     <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
-     <% else %>
-     <%= Time.now.strftime("%-d.%-m.%Y") %>
-     <% end %>
-     </div> -->

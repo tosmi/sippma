@@ -1,5 +1,13 @@
-<div class="container center">
-  <h1>Edit Invoice</h1>
-  <%= render 'edit_header' %>
-  <%= render 'input' %>
+<%= stylesheet_link_tag "invoice" %>
+
+<div class="invoice-page">
+  <%= form_for(invoice) do |f| %>
+    <div class="invoice-header">
+      <%= render partial: 'header_input', locals: { f: f} %>
+    </div>
+
+    <div class="invoice-main">
+      <%= render partial: 'input', locals: { f: f} %>
+    </div>
+  <% end %>
 </div>

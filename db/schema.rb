@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160911110542) do
+ActiveRecord::Schema.define(version: 20160913153742) do
 
   create_table "abbrevations", force: :cascade do |t|
     t.string   "abbrev"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160911110542) do
     t.date     "date",          null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "parent_id"
     t.index ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
     t.index ["patient_id"], name: "index_invoices_on_patient_id"
   end
