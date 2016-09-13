@@ -8,7 +8,11 @@ class ConsultationsController < ApplicationController
 
   def index
     @patient = Patient.find(params[:patient_id])
-    @consultations = @patient.consultations.all
+    unless @patient.consultations.any?
+      render 'welcome'
+    else
+      @consultations = @patient.consultations.all
+    end
   end
 
   def create
