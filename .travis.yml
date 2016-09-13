@@ -3,3 +3,7 @@ cache: bundler
 bundler_args: --without production --without development
 rvm:
   - "2.2.5"
+before_script:
+  - bundle exec db:create db:migrate
+script:
+  - bundle exec rails test
