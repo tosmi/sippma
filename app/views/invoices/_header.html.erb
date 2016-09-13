@@ -16,7 +16,7 @@
 
   <div id="invoice-customer">
     <%= patient.firstname %> <%= patient.lastname %><br/>
-    <%= patient.insurance %><br/>
+    <%= patient.insurance %> <%= patient.ssn %> <%= patient.birthdate.strftime("%d%m%y") %><br/>
     <%= patient.street %><br/>
     <%= patient.zip %> <%= patient.city %><br/>
   </div>
