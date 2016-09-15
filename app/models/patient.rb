@@ -51,7 +51,7 @@ class Patient < ActiveRecord::Base
 
   def self.search(search)
     if search and not search.empty?
-      where("lastname like ? or firstname like ?", "#{search}", "#{search}")
+      where("lastname like ? or firstname like ?", "#{search}%", "#{search}%")
     else
       all
     end
