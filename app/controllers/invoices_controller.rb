@@ -93,6 +93,7 @@ class InvoicesController < ApplicationController
         :invoicenumber,
         :totalfee,
         :parent_id,
+        :print,
         entry_lines_attributes: [
           :id,
           :amount,
