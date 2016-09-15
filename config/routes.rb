@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   # we never create or delete a  setting.
   # there is just one
-  resource  :settings, exept: [:new, :delete ]
+  resource  :settings, except: [:new, :delete ]
 end
