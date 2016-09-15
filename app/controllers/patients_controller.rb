@@ -50,6 +50,9 @@ class PatientsController < ApplicationController
 
   def parent_search
     @patients = Patient.search(params[:search].titleize)
+    p params[:patient_id]
+    @patient_id = params[:patient_id]
+    p @patient_id
     respond_to do |format|
       format.html
       format.js
@@ -59,16 +62,18 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:firstname,
-                                    :lastname,
-                                    :zip,
-                                    :city,
-                                    :street,
-                                    :ssn,
-                                    :insurance,
-                                    :phonenumber1,
-                                    :phonenumber2,
-                                    :birthdate,
-                                    :email)
+    params.require(:patient).permit(
+      :firstname,
+      :lastname,
+      :zip,
+      :city,
+      :street,
+      :ssn,
+      :insurance,
+      :phonenumber1,
+      :phonenumber2,
+      :birthdate,
+      :email,
+      :patient_id,)
   end
 end
