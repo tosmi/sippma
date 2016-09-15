@@ -1,0 +1,50 @@
+<% provide(:title, 'Create user') %>
+
+<div class="container">
+  <h1 class="text-center">Create a new user</h1>
+
+  <%= form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :username, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+	<%= f.text_field :username, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :fullname, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+	<%= f.text_field :fullname, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+	<%= f.text_field :email, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+	<%= f.password_field :password, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+	<%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+	<%= f.submit "Create user", class: 'btn btn-primary center' %>
+      </div>
+    </div>
+  <% end %>
+</div>

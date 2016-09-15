@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'parent/search' => 'patients#parent_search'
 
   resources :abbrevations
+  resources :users, except: [:show]
 
   # we never create or delete a  setting.
   # there is just one
