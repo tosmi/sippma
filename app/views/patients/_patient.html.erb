@@ -1,6 +1,6 @@
 <tr>
-  <td><%= patient.firstname %></td>
-  <td><%= patient.lastname %></td>
+  <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.firstname %></td>
+  <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.lastname %></td>
   <td><%= patient.zip %> <%= patient.city %>, <%= patient.street %></td>
   <td><%= patient.ssn %> <%= patient.birthdate %></td>
   <td>
