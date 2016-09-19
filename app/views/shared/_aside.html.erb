@@ -3,7 +3,7 @@
     <div class="col-md-11">
 
       <%= link_to new_patient_consultation_path(@patient), title: "Create new consultation", class: 'btn btn-default btn-large', 'aria-label': 'Left Align' do %>
-	<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
       <% end %>
 
       <%= link_to new_patient_invoice_path(@patient), title: "Create new invoice", class: 'btn btn-default btn-large' do %>
@@ -11,7 +11,7 @@
       <% end %>
 
       <%= link_to patient_consultations_path(@patient), title: "List consultations", class: 'btn btn-default btn-large' do %>
-	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+	<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
       <% end %>
 
       <%= link_to patient_invoices_path(@patient), title: "List invoices", class: 'btn btn-default btn-large' do %>
