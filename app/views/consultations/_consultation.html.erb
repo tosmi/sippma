@@ -1,7 +1,7 @@
 <div class="row">
-  Date: <%= consultation.created_at %><br/>
-  Diagnosis: <%= consultation.diagnosis %><br/>
-  <%= consultation.content %>
+  Date: <%= consultation.created_at.in_time_zone.strftime("%m.%d.%Y %H:%M") %><br/>
+  <strong>Diagnosis:</strong> <%= consultation.diagnosis %><br/>
+  <pre><%= consultation.content %></pre>
 </div>
 <div class="row text-right">
   <%= link_to "Edit", edit_consultation_path(consultation), class: "btn btn-default btn-sm" %>

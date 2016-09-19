@@ -1,68 +1,19 @@
 <div class="container">
   <div class="row">
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
+    <%= render 'shared/the_flash' %>
   </div>
   <div class="row">
-    <aside class="col-md-2">
-      <section class="patient_info">
-	<div class="row">
-	  <%= @patient.firstname %>
-	  <%= @patient.lastname  %>
-	</div>
-	<div class="row">
-	  <%= @patient.birthdate %> <%= @patient.ssn%>
-	</div>
-	<div class="row">
-	  <%= @patient.zip %> <%= @patient.city%>
-	</div>
-	<div class="row">
-	  <%= @patient.street %>
-	</div>
-	<div class="row">
-	  <%= @patient.phonenumber1 %>
-	</div>
-	<div class="row">
-	  <%= @patient.phonenumber2 %>
-	</div>
-	<div class="row">
-	  <%= mail_to @patient.email %>
-	</div>
-	<div class="row top5">
-	  <div class="col-md-10">
-	      <%= link_to 'New Consultation', new_patient_consultation_path(@patient), class: 'btn btn-primary btn-block' %>
-	  </div>
-	</div>
-	<div class="row top5">
-	  <div class="col-md-10">
-	    <%= link_to 'New Invoice', new_patient_invoice_path(@patient), class: 'btn btn-primary btn-block' %>
-	  </div>
-	</div>
-	<div class="row top5">
-	  <div class="col-md-10">
-	    <%= link_to 'List Invoices', patient_invoices_path(@patient), class: 'btn btn-primary btn-block' %>
-	  </div>
-	</div>
-	<div class="row top5">
-	  <div class="col-md-10">
-	    <%= link_to 'Edit', edit_patient_path(@patient), class: 'btn btn-primary btn-block' %>
-	  </div>
-	</div>
-      </section>
-    </aside>
+    <%= render 'shared/aside' %>
+
     <div class="col-md-8">
       <% if @consultations.empty? %>
-	<h3>There are currently no consulations</h3>
+	<div class="center jumbotron">
+	  <h3>There are currently no consulations for this patient, please feel free and</h3>
+	  <%= link_to "Create a new consultation", new_patient_consultation_path, class: "btn btn-lg btn-primary" %>
+	</div>
       <% else %>
 	<%= render @consultations %>
       <% end %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3 col-md-offset-3">
-      <%= link_to 'Back', patients_path, class: 'btn btn-primary btn-block' %>
     </div>
   </div>
 </div>

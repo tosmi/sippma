@@ -1,24 +1,19 @@
 <tr>
   <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.firstname %></td>
   <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.lastname %></td>
-  <td><%= patient.zip %> <%= patient.city %>, <%= patient.street %></td>
-  <td><%= patient.ssn %> <%= patient.birthdate %></td>
+  <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.zip %> <%= patient.city %>, <%= patient.street %></td>
+  <td class="patient-click" data-link="<%= patient_consultations_path(patient) %>"><%= patient.ssn %> <%= patient.birthdate.strftime("%d.%m.%Y") %></td>
   <td>
     <div class="btn-toolbar">
       <div class="btn-group">
 	<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	  Options<span class="caret"></span>
+	  <span class="glyphicon glyphicon-option-horizontal"></span>
 	</button>
 	<ul class="dropdown-menu" role="menu">
-	  <li><%= link_to 'New Consultation', new_patient_consultation_path(patient) %></li>
-	  <li><%= link_to 'List Consultation', patient_consultations_path(patient) %></li>
-	  <li><%= link_to 'New Invoice', new_patient_invoice_path(patient)%></li>
-	  <li><%= link_to 'List Invoices', patient_invoices_path(patient) %>
-	    <li><%= link_to 'Show details', patient %></li>
-	    <li><%= link_to 'Edit', edit_patient_path(patient) %></li>
-	    <li><%= link_to 'Delete', patient, method: :delete, data: { confirm: "Are you sure?"} %></li>
+	  <li><%= link_to 'Edit', edit_patient_path(patient) %></li>
+	  <li><%= link_to 'Delete', patient, method: :delete, data: { confirm: "Are you sure?"} %></li>
 	</ul>
       </div>
     </div>
-  </td>
+</td>
 </tr>

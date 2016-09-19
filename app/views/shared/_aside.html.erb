@@ -1,0 +1,65 @@
+<aside class="col-md-3">
+  <div class="row top5">
+    <div class="col-md-11">
+
+      <%= link_to new_patient_consultation_path(@patient), title: "Create new consultation", class: 'btn btn-default btn-large', 'aria-label': 'Left Align' do %>
+	<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+      <% end %>
+
+      <%= link_to new_patient_invoice_path(@patient), title: "Create new invoice", class: 'btn btn-default btn-large' do %>
+	<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+      <% end %>
+
+      <%= link_to patient_consultations_path(@patient), title: "List consultations", class: 'btn btn-default btn-large' do %>
+	<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+      <% end %>
+
+      <%= link_to patient_invoices_path(@patient), title: "List invoices", class: 'btn btn-default btn-large' do %>
+	<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+      <% end %>
+
+
+      <%= link_to edit_patient_path(@patient), title: "Edit patient", class: 'btn btn-default btn-large' do %>
+	<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      <% end %>
+      <hr/>
+    </div>
+  </div>
+
+  <section class="patient_info">
+    <div class="col-md-10">
+      <div class="row">
+	<strong>
+	  <%= @patient.firstname %>
+	  <%= @patient.lastname  %>
+	</strong>
+      </div>
+      <div class="row">
+	<%= @patient.insurance %> <%= @patient.ssn%>  <%= @patient.birthdate.strftime("%d.%m.%Y") %>
+      </div>
+      <div class="row">
+	<%= @patient.zip %> <%= @patient.city%>
+      </div>
+      <div class="row">
+	<%= @patient.street %>
+      </div>
+      <div class="row">
+	<%= @patient.phonenumber1 %>
+      </div>
+      <div class="row">
+	<%= @patient.phonenumber2 %>
+      </div>
+      <div class="row">
+	<%= mail_to @patient.email %>
+      </div>
+      <hr/>
+      <div class="row">
+	<h4>Parents</h4>
+	<div id="parent-info">
+	  <%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
+	</div>
+      </div>
+    </div>
+  </section>
+
+</aside>
