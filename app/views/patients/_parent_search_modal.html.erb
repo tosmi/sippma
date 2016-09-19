@@ -38,7 +38,9 @@
 	    </thead>
 	    <tbody>
 	      <%= render partial: 'select_parent', collection: @patients, as: :parent %>
-	      <%= will_paginate @patients %>
+	      <div class="paginate">
+		<%= paginate @patients, remote: true %>
+	      </div>
 	    </tbody>
 	  </table>
 	</div>
