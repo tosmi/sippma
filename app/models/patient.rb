@@ -51,7 +51,16 @@ class Patient < ActiveRecord::Base
 
   def self.search(search)
     if search and not search.empty?
-      where("lastname like ? or firstname like ?", "#{search}%", "#{search}%")
+      searchterms = search.split
+      if searchterms.length > 1
+        *f, lastname = searchterms
+        firstname = f.join(' ')
+        result = where("firstname like ? and lastname like ?", "#{firstname}%", "#{lastname}%")
+      else
+        result = where("firstname like ? or lastname like ?", "#{searchterms[0]}%", "#{searchterms[0]}%")
+      end
+      puts "\n\n\nsearchterms: <#{searchterms}> firstname: <#{firstname}> lastname: <#{lastname}>\n\n\n"
+      result
     else
       all
     end
