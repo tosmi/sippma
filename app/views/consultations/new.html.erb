@@ -1,8 +1,15 @@
 <div class="container">
-  <div class="jumbotron">
-    <h3>New consultation for <%= @patient.firstname %> <%= @patient.lastname %></h3>
-    <%= form_for(@consultation, url: patient_consultations_path(@patient)) do |f| %>
-      <%= render 'edit_consultation', f: f %>
-    <% end %>
+  <div class="row">
+    <%= render 'shared/aside' %>
+
+    <div class="col-md-8">
+
+      <div class="jumbotron">
+	<h3>New consultation for <%= @patient.firstname %> <%= @patient.lastname %></h3>
+	<%= form_for(@consultation, url: patient_consultations_path(@patient)) do |f| %>
+	  <%= render 'edit_consultation', f: f %>
+	<% end %>
+      </div>
+    </div>
   </div>
 </div>
