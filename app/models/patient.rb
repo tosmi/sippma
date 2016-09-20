@@ -59,7 +59,6 @@ class Patient < ActiveRecord::Base
       else
         result = where("firstname like ? or lastname like ?", "#{searchterms[0]}%", "#{searchterms[0]}%")
       end
-      puts "\n\n\nsearchterms: <#{searchterms}> firstname: <#{firstname}> lastname: <#{lastname}>\n\n\n"
       result
     else
       all
