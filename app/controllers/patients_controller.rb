@@ -29,7 +29,7 @@ class PatientsController < ApplicationController
 
   def edit
     @patient  = Patient.find(params[:id])
-    @patients = Patient.page(params[:page]).per(2)
+    @patients = Patient.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html
@@ -54,7 +54,7 @@ class PatientsController < ApplicationController
   end
 
   def parent_search
-    @patients = Patient.search(params[:search].titleize).page(params[:page]).per(2)
+    @patients = Patient.search(params[:search].titleize).page(params[:page]).per(5)
 #    @patients = Patient.page(params[:page]).per(2)
     @patient_id = params[:patient_id]
 
