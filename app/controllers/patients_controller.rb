@@ -39,6 +39,7 @@ class PatientsController < ApplicationController
 
   def update
     @patient = Patient.find(params[:id])
+    @patients = Patient.page(params[:page]).per(5)
     if @patient.update_attributes(patient_params)
       flash[:success] = "Patient updated"
       redirect_to patients_url
