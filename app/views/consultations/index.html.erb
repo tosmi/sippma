@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
-    <%= render 'shared/the_flash' %>
-  </div>
-  <div class="row">
     <%= render 'shared/aside' %>
 
     <div class="col-md-8">
+      <div class="row">
+	<%= render 'shared/the_flash' %>
+      </div>
+
       <% if @consultations.empty? %>
 	<div class="center jumbotron">
 	  <h3>There are currently no consulations for this patient, please feel free and</h3>
