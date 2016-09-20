@@ -21,7 +21,7 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to patients_path
+    assert_redirected_to patient_consultations_path
   end
 
   test "allow empty consultation and diagnosis" do
@@ -35,7 +35,7 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to patients_path
+    assert_redirected_to patient_consultations_path
   end
 
   test "does not save if diagnosis is not valid" do

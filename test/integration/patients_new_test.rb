@@ -29,7 +29,6 @@ class PatientNewTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_patient_path
     follow_redirect!
     assert_template 'patients/new'
-    assert_template 'patients/_parent_search_modal'
     assert_difference 'Patient.count', 1 do
       post patients_path, params: @new_patient
     end
@@ -57,7 +56,6 @@ class PatientNewTest < ActionDispatch::IntegrationTest
       post patients_path, params: @new_patient
     end
     assert_template 'patients/new'
-    assert_template 'patients/_parent_search_modal'
     assert_select 'div#error_explanation'
     assert_select 'div.alert'
     assert_select 'div.alert-danger'
