@@ -15,10 +15,10 @@ class PatientEditTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'h1', 'Edit Patient'
     assert_select 'input[value=?]', @max.lastname
-    @max.lastname = ''
-    patch patient_path(@max), params: { patient: { street: '' } }
     assert_template 'patients/edit'
     assert_template 'patients/_parent_search_modal'
+    @max.lastname = ''
+    patch patient_path(@max), params: { patient: { street: '' } }
     assert_select 'div#error_explanation'
     assert_select 'div.alert'
     assert_select 'div.alert-danger'

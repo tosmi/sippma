@@ -29,11 +29,17 @@ class PatientsController < ApplicationController
 
   def edit
     @patient  = Patient.find(params[:id])
-    @patients = Patient.all
+    @patients = Patient.page(params[:page]).per(5)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
     @patient = Patient.find(params[:id])
+    @patients = Patient.page(params[:page]).per(5)
     if @patient.update_attributes(patient_params)
       flash[:success] = "Patient updated"
       redirect_to patients_url
@@ -49,7 +55,9 @@ class PatientsController < ApplicationController
   end
 
   def parent_search
-    @patients = Patient.search(params[:search].titleize)
+    @patients = Patient.search(params[:search].titleize).page(params[:page]).per(5)
+    @patient_id = params[:patient_id]
+
     respond_to do |format|
       format.html
       format.js
@@ -59,16 +67,19 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:firstname,
-                                    :lastname,
-                                    :zip,
-                                    :city,
-                                    :street,
-                                    :ssn,
-                                    :insurance,
-                                    :phonenumber1,
-                                    :phonenumber2,
-                                    :birthdate,
-                                    :email)
+    params.require(:patient).permit(
+      :firstname,
+      :lastname,
+      :zip,
+      :city,
+      :street,
+      :ssn,
+      :insurance,
+      :phonenumber1,
+      :phonenumber2,
+      :birthdate,
+      :email,
+      :patient_id,
+      :page)
   end
 end

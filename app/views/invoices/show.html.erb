@@ -1,13 +1,15 @@
 <%= stylesheet_link_tag "invoice" %>
 <%= stylesheet_link_tag "invoice_print", media: 'print' %>
 
-<% unless @print %>
-  <%= render 'shared/the_flash' %>
-<% else %>
+<% if @print %>
   <%= javascript_tag "$(document).ready(function() {window.print();})"%>
 <% end %>
 
 <div class="invoice-page">
+  <% unless @print %>
+    <%= render 'shared/the_flash' %>
+  <% end %>
+
   <div class="invoice-header">
     <%= render 'header' %>
   </div>

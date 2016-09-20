@@ -1,5 +1,11 @@
+<% unless @patient.nil? %>
+  <% patient_id = @patient.id %>
+<% else %>
+  <% patient_id = @patient_id %>
+<% end %>
+
 <tr class="parent-row">
-  <td><%= button_to 'Add', { controller: "relationships", action: "create", patient_id: @patient.id, relationship: { parent_id: parent.id, }, user_id: session[:user_id]}, method: :post, class: 'btn btn-sm' %></td>
+   <td><%= button_to 'Add', { controller: "relationships", action: "create", patient_id: patient_id, relationship: { parent_id: parent.id, }, user_id: session[:user_id]}, method: :post, class: 'btn btn-sm' %></td>
   <td><%= parent.firstname %></td>
   <td><%= parent.lastname %></td>
   <td><%= parent.zip %> <%= parent.city %>, <%= parent.street %></td>

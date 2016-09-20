@@ -8,11 +8,7 @@ class ConsultationsController < ApplicationController
 
   def index
     @patient = Patient.find(params[:patient_id])
-    unless @patient.consultations.any?
-      render 'welcome'
-    else
-      @consultations = @patient.consultations.all
-    end
+    @consultations = @patient.consultations.all
   end
 
   def create
@@ -20,7 +16,7 @@ class ConsultationsController < ApplicationController
     @consultation = @patient.consultations.build(consultation_params)
     if @consultation.save
       flash[:success] = "Consultation for #{@patient.firstname} #{@patient.lastname} saved!"
-      redirect_to patients_path
+      redirect_to patient_consultations_path(@patient)
     else
       render 'new'
     end
