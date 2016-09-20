@@ -35,15 +35,6 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
                             }
   end
 
-  test "patient has link to new invoice" do
-    get patients_url(@max)
-    assert_redirected_to login_url
-    log_in_as(@admin)
-    assert_redirected_to patients_path(@max)
-    follow_redirect!
-    assert_select 'a[href=?]', new_patient_invoice_path(@moritz)
-  end
-
   test "create new invoice for patient with consultation" do
     get new_patient_invoice_url(@max)
     assert_redirected_to login_url
