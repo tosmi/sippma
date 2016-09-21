@@ -68,14 +68,19 @@ input {
   height: 800px;
 }
 
-.sippma {
+.sippma, sippmafull {
   text-align: right;
   font-weight: bold;
-  font-size: 10em;
+  color: #A9A9A9;
+  font-size: 15em;
+  margin-right: 5%;;
 }
 
 .loginform {
-  margin-top: 20px;
+  //margin-top: 80%;
+  margin-left: 2%;
+  margin-right: 80%;
+  padding-top: 25%;
 }
 
 /* header */
@@ -232,4 +237,11 @@ div.line {
 
 td.patient-click:hover {
   background-color:#EEFF88;
+}
+
+.login-page {
+  background: black;
+  padding-top: 0px !important;
+  background-image: url('heart.jpg');
+  background-size: cover;
 }
