@@ -19,6 +19,8 @@ class PatientsController < ApplicationController
 
   def create
     @patient = Patient.new(patient_params)
+    @mother  = Patient.new(patient_params)
+    @father  = Patient.new(patient_params)
     if @patient.save
       flash[:success] = 'Successfully saved new patient'
       redirect_to patients_url
@@ -70,6 +72,8 @@ class PatientsController < ApplicationController
     params.require(:patient).permit(
       :firstname,
       :lastname,
+      :mother_firstname,
+      :mother_lastname,
       :zip,
       :city,
       :street,
