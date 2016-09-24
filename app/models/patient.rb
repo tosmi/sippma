@@ -51,7 +51,7 @@ class Patient < ActiveRecord::Base
 
   def self.search(search)
     if search and not search.empty?
-      searchterms = search.split
+      searchterms = search.titleize.split
       if searchterms.length > 1
         *f, lastname = searchterms
         firstname = f.join(' ')

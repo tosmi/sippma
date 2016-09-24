@@ -1,9 +1,0 @@
-<strong>
-    <%= relationship.parent.firstname %> <%= relationship.parent.lastname %>
-</strong><br/>
-<%= relationship.parent.insurance%> <%= relationship.parent.ssn %> <%= relationship.parent.birthdate.strftime("%d.%m.%Y") %><br/>
-<%= relationship.parent.zip %> <%= relationship.parent.city %><br/>
-<%= relationship.parent.street %><br/>
-<%= relationship.parent.phonenumber1 %><br/>
-<%= relationship.parent.phonenumber2 %><br/>
-<%= mail_to relationship.parent.email %>

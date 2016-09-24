@@ -55,7 +55,7 @@ class PatientsController < ApplicationController
   end
 
   def parent_search
-    @patients = Patient.search(params[:search].titleize).page(params[:page]).per(5)
+    @patients = Patient.search(params[:search]).page(params[:page]).per(5)
     @patient_id = params[:patient_id]
 
     respond_to do |format|

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @login_page = true
     if logged_in?
       redirect_to patients_path
     end
@@ -12,12 +13,14 @@ class SessionsController < ApplicationController
       redirect_back_or patients_path
     else
       flash.now[:danger] = 'Invalid username/password!'
+      @login_page = true
       render 'new'
     end
   end
 
   def destroy
     log_out
+    @login_page = true
     redirect_to root_url
   end
 

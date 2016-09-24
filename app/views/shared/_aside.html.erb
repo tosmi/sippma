@@ -56,7 +56,7 @@
       <div class="row">
 	<h4>Parents</h4>
 	<div id="parent-info">
-	  <%= render(collection: @patient.relationships, partial: 'parent', as: 'relationship') || "There are currently no parents assigned" %>
+	  <%= render(collection: @patient.relationships, partial: 'shared/parent', as: 'relationship') || "There are currently no parents assigned" %>
 	</div>
       </div>
     </div>
