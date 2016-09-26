@@ -22,19 +22,15 @@ class PatientsController < ApplicationController
   def create
     @inputerror = false
 
-    p patient_params
     @patient = Patient.new(patient_params.except(:mother).except(:father))
     @mother  = Patient.new(patient_params[:mother])
     @father  = Patient.new(patient_params[:father])
 
     @inputerror = true unless @patient.valid?
 
-    p @mother
     unless @mother.firstname.nil?
       @inputerror = true unless @mother.valid?
     end
-
-    p "inputerror: #{@inputerror}"
 
     # inputerror = true unless @father.valid?
 
