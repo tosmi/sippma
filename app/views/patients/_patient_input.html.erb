@@ -1,5 +1,11 @@
 <%= form_for(@patient) do |f| %>
+
   <%= render 'shared/error_messages', object: f.object %>
+
+  <% if @mother.errors.any? %>
+    <%= render 'shared/error_messages', object: @mother %>
+  <% end %>
+
   <div class="row">
     <div class="col-md-4">
       <%= f.text_field :firstname, class: 'form-control', placeholder: 'Firstname', autofocus: true %>
