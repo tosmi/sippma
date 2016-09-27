@@ -49,6 +49,15 @@ class Patient < ActiveRecord::Base
     parents.include?(parent)
   end
 
+  # copy missing fields from source
+  def sync_missing(source, except: [])
+    attributes.keys.each do |k|
+      unless except.include? k
+        self[k] = source[k] if (self[k].nil? and not source[k].nil?)
+      end
+    end
+  end
+
   def self.search(search)
     if search and not search.empty?
       searchterms = search.titleize.split
