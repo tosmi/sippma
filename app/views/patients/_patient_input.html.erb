@@ -1,8 +1,11 @@
 <%= form_for(@patient) do |f| %>
 
   <%= render 'shared/error_messages', object: f.object %>
+  <% if (not @mother.nil?) and @mother.errors.any? %>
+    <%= render 'shared/error_messages', object: @mother %>
+  <% end %>
 
-  <% if @mother.errors.any? %>
+  <% if (not @father.nil?) and @father.errors.any? %>
     <%= render 'shared/error_messages', object: @mother %>
   <% end %>
 
@@ -27,7 +30,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <%= date_field "patient", "birthdate", placeholder: 'DD/MM/YYYY', class: 'form-control' %>
+      <%= date_field "patient", "birthdate", placeholder: 'DD.MM.YYYY', class: 'form-control' %>
     </div>
     <div class="col-md-2">
       <%= f.text_field :ssn, class: 'form-control', placeholder: 'SSN' %>
@@ -62,9 +65,12 @@
 	  <%= m.text_field :lastname, class: 'form-control', placeholder: 'Mother Lastname' %>
 	</div>
 	<div class="col-md-2">
+	  <%= m.date_field :birthdate, class: 'form-control', placeholder: 'DD.MM.YYYY' %>
+	</div>
+	<div class="col-md-2">
 	  <%= m.text_field :ssn, class: 'form-control', placeholder: 'Mother SSN' %>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	  <%= m.text_field :insurance, class: 'form-control', placeholder: 'Mother Insurance' %>
 	</div>
       <% end %>
@@ -79,9 +85,12 @@
 	  <%= fa.text_field :lastname, class: 'form-control', placeholder: 'Father Lastname' %>
 	</div>
 	<div class="col-md-2">
+	  <%= fa.date_field :birthdate, class: 'form-control', placeholder: 'DD.MM.YYYY' %>
+	</div>
+	<div class="col-md-2">
 	  <%= fa.text_field :ssn, class: 'form-control', placeholder: 'Father SSN' %>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-2">
 	  <%= fa.text_field :insurance, class: 'form-control', placeholder: 'Father Insurance' %>
 	</div>
       <% end %>

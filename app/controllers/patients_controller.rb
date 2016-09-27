@@ -20,26 +20,17 @@ class PatientsController < ApplicationController
   end
 
   def create
-    @inputerror = false
-
     @patient = Patient.new(patient_params.except(:mother).except(:father))
     @mother  = Patient.new(patient_params[:mother])
     @father  = Patient.new(patient_params[:father])
 
-    @inputerror = true unless @patient.valid?
-
-    unless @mother.firstname.nil?
-      @inputerror = true unless @mother.valid?
-    end
-
-    # inputerror = true unless @father.valid?
-
-    if @inputerror
+    unless @patient.valid? and check_parent(@mother) and check_parent(@father)
       render 'new'
     else
       @patient.save
-      @mother.save if @mother.firstname
-      @father.save if @father.firstname
+
+      save_parent @mother
+      save_parent @father
 
       flash[:success] = 'Successfully saved new patient'
       redirect_to patients_url
@@ -85,6 +76,20 @@ class PatientsController < ApplicationController
 
   private
 
+  def check_parent(parent)
+    return true if parent.firstname.blank?
+    parent.sync_missing @patient, except: ['firstname', 'lastname', 'birthdate','ssn', 'insurance']
+    p parent
+    parent.valid?
+  end
+
+  def save_parent(parent)
+    unless parent.firstname.blank?
+      parent.save
+      @patient.parent(parent)
+    end
+  end
+
   def patient_params
     params.require(:patient).permit(
       :firstname,
@@ -103,12 +108,14 @@ class PatientsController < ApplicationController
       mother: [
         :firstname,
         :lastname,
+        :birthdate,
         :ssn,
         :insurance
       ],
       father: [
         :firstname,
         :lastname,
+        :birthdate,
         :ssn,
         :insurance
       ]
