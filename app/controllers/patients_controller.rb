@@ -24,7 +24,7 @@ class PatientsController < ApplicationController
     @mother  = Patient.new(patient_params[:mother])
     @father  = Patient.new(patient_params[:father])
 
-    unless @patient.valid? and check_parent(@mother) and check_parent(@father)
+    unless @patient.valid? and parent_valid?(@mother) and parent_valid?(@father)
       render 'new'
     else
       @patient.save
@@ -76,7 +76,7 @@ class PatientsController < ApplicationController
 
   private
 
-  def check_parent(parent)
+  def parent_valid?(parent)
     return true if parent.firstname.blank?
     parent.sync_missing @patient, except: ['firstname', 'lastname', 'birthdate','ssn', 'insurance']
     p parent
