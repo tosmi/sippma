@@ -6,7 +6,7 @@
     <ul>
       <% object.errors.full_messages.each do |msg| %>
 	<li>
-	  <% if locals[:parent] %>
+	  <% if defined? locals and locals[:parent] %>
 	    <%= locals[:parent] %>
 	  <% end %>
 	    <%= msg %>
