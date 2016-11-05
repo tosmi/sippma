@@ -37,8 +37,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     get patients_path
     assert_redirected_to login_path
     follow_redirect!
-    assert_not flash.empty?
-    assert_match 'Please log in.', response.body
+    assert_match 'loginform', response.body
     log_in_as(@admin)
     follow_redirect!
     if Patient.any?
