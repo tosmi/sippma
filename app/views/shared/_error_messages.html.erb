@@ -5,7 +5,12 @@
     </div>
     <ul>
       <% object.errors.full_messages.each do |msg| %>
-	<li><%= msg %></li>
+	<li>
+	  <% if locals[:parent] %>
+	    <%= locals[:parent] %>
+	  <% end %>
+	    <%= msg %>
+	</li>
       <% end %>
     </ul>
   </div>
