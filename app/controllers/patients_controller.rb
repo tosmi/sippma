@@ -79,7 +79,6 @@ class PatientsController < ApplicationController
   def parent_valid?(parent)
     return true if parent.firstname.blank?
     parent.sync_missing @patient, except: ['firstname', 'lastname', 'birthdate','ssn', 'insurance']
-    p parent
     parent.valid?
   end
 
