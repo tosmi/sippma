@@ -1,5 +1,5 @@
 <div class="row">
-  Date: <%= consultation.created_at.in_time_zone.strftime("%m.%d.%Y %H:%M") %><br/>
+  Date: <%= consultation.date.in_time_zone.strftime("%m.%d.%Y %H:%M") %><br/>
   <strong>Diagnosis:</strong> <%= consultation.diagnosis %><br/>
   <pre><%= consultation.content %></pre>
 </div>
