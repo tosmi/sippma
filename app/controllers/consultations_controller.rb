@@ -49,6 +49,6 @@ class ConsultationsController < ApplicationController
   private
 
   def consultation_params
-    params.require(:consultation).permit(:content, :diagnosis)
+    params.require(:consultation).permit(:content, :diagnosis, :date)
   end
 end
