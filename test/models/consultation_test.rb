@@ -14,7 +14,7 @@ class ConsultationTest < ActiveSupport::TestCase
                            phonenumber2: '0676-123456',
                            ssn: '1234',
                            insurance: 'GG')
-    @consultation = @patient.consultations.create!(content: 'The First', diagnosis: 'The Diagnosis')
+    @consultation = @patient.consultations.create!(content: 'The First', diagnosis: 'The Diagnosis', date: DateTime.now)
   end
 
   test "consultation should be valid" do
@@ -32,8 +32,8 @@ class ConsultationTest < ActiveSupport::TestCase
   end
 
   test "consultations should be most recent first" do
-    @consultation2 = @patient.consultations.build(content: 'The Second', diagnosis: 'The Diagnosis')
-    @consultation2.created_at = Date.yesterday
+    @consultation2 = @patient.consultations.build(content: 'The Second', diagnosis: 'The Diagnosis', date: DateTime.now)
+    @consultation2.date = Date.yesterday
     @consultation2.save
     assert_equal Consultation.first, @consultation
   end

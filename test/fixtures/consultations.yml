@@ -2,9 +2,11 @@
 first:
   diagnosis: the diagnosis 1
   content: the content 1
+  date: <%= 5.days.ago %>
   patient: max
 
 second:
   diagnosis: the diagnosis 1
   content: the content 1
+  date: <%= DateTime.now %>
   patient: max

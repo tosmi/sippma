@@ -17,7 +17,8 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
       post patient_consultations_path(@max), params: {
         consultation: {
           diagnosis: 'test diagnosis',
-          content: 'a diagnosis during testing'
+          content: 'a diagnosis during testing',
+          date: DateTime.now
         }
       }
     end
@@ -31,7 +32,8 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
       post patient_consultations_path(@max), params: {
         consultation: {
           diagnosis: '',
-          content: ''
+          content: '',
+          date: DateTime.now
         }
       }
     end
@@ -45,7 +47,8 @@ class ConsultationNewTest < ActionDispatch::IntegrationTest
       post patient_consultations_path(@max), params: {
         consultation: {
           diagnosis: 'a' * 201,
-          content: ''
+          content: '',
+          date: DateTime.now
         }
       }
     end
