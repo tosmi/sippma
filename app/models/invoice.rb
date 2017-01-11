@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  has_many :entry_lines, inverse_of: :invoice
+  has_many :entry_lines, inverse_of: :invoice, dependent: :destroy
   belongs_to :patient
 
   belongs_to :parent, class_name: Patient, foreign_key: 'parent_id'
