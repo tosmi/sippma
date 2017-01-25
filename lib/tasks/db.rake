@@ -25,7 +25,7 @@ namespace :db do
     desc "Tarsnap backups"
     task :backup => :environment do
       keyfile = "#{ENV['HOME']}/etc/kinderarzt.key"
-      date = DateTime.now.strftime("-%Y-%m-%d_%H-%M-%S")
+      date = DateTime.now.strftime("%Y-%m-%d_%H-%M-%S")
       cachedir = "#{ENV['HOME']}/tmp"
 
       puts "calling tarsnap --keyfile #{keyfile} --cachedir #{cachedir} -c -f sippma-#{date}.dump ~/sippma/db/backups/"
