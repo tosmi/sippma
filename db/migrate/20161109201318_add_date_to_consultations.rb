@@ -1,4 +1,4 @@
-class AddDateToConsultations < ActiveRecord::Migration[5.0]
+class AddDateToConsultations < ActiveRecord::Migration[5.1]
   def up
     add_column :consultations, :date, :datetime
 

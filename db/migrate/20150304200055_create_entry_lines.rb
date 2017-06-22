@@ -1,4 +1,4 @@
-class CreateEntryLines < ActiveRecord::Migration
+class CreateEntryLines < ActiveRecord::Migration[5.1]
   def change
     create_table :entry_lines do |t|
       t.references :invoice, index: true
