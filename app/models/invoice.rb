@@ -2,7 +2,7 @@ class Invoice < ActiveRecord::Base
   has_many :entry_lines, inverse_of: :invoice, dependent: :destroy
   belongs_to :patient
 
-  belongs_to :parent, class_name: Patient, foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Patient', foreign_key: 'parent_id'
 
   accepts_nested_attributes_for :entry_lines, allow_destroy: true, reject_if: :all_blank
 
