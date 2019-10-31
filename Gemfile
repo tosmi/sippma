@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.2.0'
-gem 'sass-rails', '~> 5.0'
+gem 'rails', '~> 5.2.3'
+gem 'sass-rails', '~> 5.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer',  platforms: :ruby
-gem 'kaminari', '~> 1.1.0'
+gem 'kaminari', '~> 1.1.1'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'jbuilder', '~> 2.9'
+gem 'sdoc', '~> 1.0.0',          group: :doc
 
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 gem 'bcrypt', '~> 3.1'
 
@@ -37,6 +37,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '~> 1.0.0'
-  gem 'puma', '~> 3.11.0'
+  gem 'pg', '~> 1.1.4'
+  gem 'puma', '~> 4.2.0'
 end
