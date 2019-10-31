@@ -2,7 +2,7 @@ language: ruby
 cache: bundler
 bundler_args: --without production --without development
 rvm:
-  - "2.2.5"
+  - "2.6.5"
 before_script:
   - bundle exec rails db:create db:migrate
 script:
