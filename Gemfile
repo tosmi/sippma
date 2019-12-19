@@ -38,5 +38,5 @@ end
 
 group :production do
   gem 'pg', '~> 1.1.4'
-  gem 'puma', '~> 4.2.0'
+  gem "puma", ">= 4.3.1"
 end
