@@ -2,6 +2,11 @@
 
 <div class="invoice-page">
   <%= form_for(invoice) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= hidden_field_tag 'invoice[invoicenumber]', invoice.invoicenumber %>
+    <%= hidden_field_tag 'invoice[date]', invoice.date %>
+
     <div class="invoice-header">
       <%= render partial: 'header_input', locals: { f: f} %>
     </div>
