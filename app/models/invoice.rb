@@ -11,6 +11,8 @@ class Invoice < ActiveRecord::Base
   validates :patient_id, presence: true
   validates :diagnosis, length: { maximum: 200 }, presence: true
 
+  validates :totalfee, presence: true
+
   validates_numericality_of :parent_id, allow_blank: true
 
   VALID_INVOICE_NUMBER = /\A\d+-\d{2}-\d{2}-\d{2}\z/
