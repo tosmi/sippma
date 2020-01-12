@@ -35,8 +35,10 @@ class InvoicesController < ApplicationController
 
   def show
     @patient = Patient.find(invoice.patient_id)
-    if params[:print]
+    if params[:print] == 'true'
       @print = true
+    else
+      @print = false
     end
   end
 
