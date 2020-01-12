@@ -21,11 +21,4 @@ class Invoice < ActiveRecord::Base
   validates :date, presence: true
   validates :consultation_date, presence: true
 
-  validate :consultation_date_is_valid_date
-
-  def consultation_date_is_valid_date
-    print consultation_date
-    errors.add(:consultation_date, 'must be a valid date') if consultation_date.nil?
-  end
-
 end
