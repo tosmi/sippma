@@ -34,13 +34,8 @@
   <div class="invoice-number">
     <strong>Wahlarzt-Honorarnote: <%= invoice.invoicenumber %></strong>
   </div>
+</div>
 
-  <div id="invoice-consultation">
-    <% unless @print  %>
-      Untersuchung am <%= invoice.date.strftime("%d.%m.%Y") %>
-    <% else %>
-      Untersuchung am <input id="invoice-consultation-date" type="text" rows="1" value="<%= Date.today.strftime("%-d.%-m.%Y") %>">
-    <% end %>
-  </div>
-
+<div id="invoice-consultation">
+    Untersuchung am <%= f.text_field :consuldation_date, class: 'invoice-textfield', id: 'invoice-diagnosis-text', :value => invoice.consuldation_date.strftime("%d.%m.%Y") %>
 </div>

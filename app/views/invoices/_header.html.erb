@@ -39,20 +39,7 @@
   </div>
 
   <div id="invoice-consultation">
-    <% unless @print  %>
-      Untersuchung am <%= invoice.date.strftime("%-d.%-m.%Y") %>
-    <% else %>
-      Untersuchung am <input id="invoice-consultation-date" type="text" rows="1" value="<%= Date.today.strftime("%-d.%-m.%Y") %>">
-    <% end %>
+      Untersuchung am <%= invoice.consuldation_date.strftime("%-d.%-m.%Y") %>
   </div>
 
 </div>
-
-<!-- <div class="invoice-examination-date">
-     Untersuchung am
-     <% if invoice.created_at %>
-     <%= invoice.created_at.strftime("%-d.%-m.%Y") %>
-     <% else %>
-     <%= Time.now.strftime("%-d.%-m.%Y") %>
-     <% end %>
-     </div> -->
