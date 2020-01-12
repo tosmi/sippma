@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bcrypt', '~> 3.1'
 
 group :development do
+  gem 'listen'
   gem 'guard'
   gem 'guard-minitest'
   gem 'web-console', '~> 2.0'
