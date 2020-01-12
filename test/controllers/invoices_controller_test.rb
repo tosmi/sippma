@@ -55,10 +55,11 @@ class InvoicesControllerTest < ActionController::TestCase
         post :create, params: {
           patient_id: @max,
           invoice: {
-               diagnosis: 'test',
-               invoicenumber: '01-01-01-70',
-               date: '1-1-1970',
-               totalfee: 100,
+            diagnosis: 'test',
+            invoicenumber: '01-01-01-70',
+            date: '1-1-1970',
+            consultation_date: '1-1-1970',
+            totalfee: 100,
           }
         }
       end

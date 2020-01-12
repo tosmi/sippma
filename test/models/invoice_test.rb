@@ -5,7 +5,7 @@ class InvoiceTest < ActiveSupport::TestCase
 
   def setup
     @patient = patients(:max)
-    @invoice = @patient.invoices.build(diagnosis: 'bad', totalfee: 100, invoicenumber: '01-01-01-70', date: '1-1-1970', patient_id: @patient.id )
+    @invoice = @patient.invoices.build(diagnosis: 'bad', totalfee: 100, invoicenumber: '01-01-01-70', date: '1-1-1970', consultation_date: '1-1-1970', patient_id: @patient.id )
   end
 
   test "invoice should be valid" do
@@ -24,6 +24,11 @@ class InvoiceTest < ActiveSupport::TestCase
 
   test "date should be present" do
     @invoice.date = nil
+    assert_not @invoice.valid?
+  end
+
+  test "consultation date should be present" do
+    @invoice.consultation_date = nil
     assert_not @invoice.valid?
   end
 
@@ -61,13 +66,14 @@ class InvoiceTest < ActiveSupport::TestCase
   test "building an invoice with entry lines works" do
     assert_difference 'EntryLine.count', 2 do
       @invoice = @patient.invoices.create!(diagnosis: 'very bad',
-                                         totalfee: '200',
-                                         invoicenumber: '02-01-01-70',
-                                         date: '1-1-1970',
-                                         entry_lines_attributes: [
-                                           { text: 'first', amount: '1'},
-                                           { text: 'first', amount: '2'},
-                                         ])
+        totalfee: '200',
+        invoicenumber: '02-01-01-70',
+        date: '1-1-1970',
+        consultation_date: '1-1-1970',
+        entry_lines_attributes: [
+          { text: 'first', amount: '1'},
+          { text: 'first', amount: '2'},
+        ])
     end
 
   end

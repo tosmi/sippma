@@ -6,6 +6,7 @@ one:
   totalfee: 1.5
   invoicenumber: 01-01-01-80
   date: <%= 10.minutes.ago %>
+  consultation_date: <%= 10.minutes.ago %>
   created_at: <%= 10.minutes.ago %>
 
 two:
@@ -14,6 +15,7 @@ two:
   totalfee: 1.5
   invoicenumber: 02-01-01-80
   date: <%= 1.year.ago %>
+  consultation_date: <%= 1.year.ago %>
   created_at: <%= 1.year.ago %>
 
 most_recent:
@@ -22,4 +24,5 @@ most_recent:
   totalfee: 1.5
   invoicenumber: 03-01-01-80
   date: <%= Time.zone.now %>
+  consultation_date: <%= Time.zone.now %>
   created_at: <%= Time.zone.now %>
