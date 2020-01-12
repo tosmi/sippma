@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_153346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
-    t.date "consuldation_date", null: false
+    t.date "consultation_date", null: false
     t.index ["patient_id", "created_at"], name: "index_invoices_on_patient_id_and_created_at"
     t.index ["patient_id"], name: "index_invoices_on_patient_id"
   end

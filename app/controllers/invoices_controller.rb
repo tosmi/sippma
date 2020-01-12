@@ -10,7 +10,7 @@ class InvoicesController < ApplicationController
 
     invoice.invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
     invoice.date = Date.today
-    invoice.consuldation_date = Date.today
+    invoice.consultation_date = Date.today
   end
 
   def create
@@ -94,7 +94,7 @@ class InvoicesController < ApplicationController
         :diagnosis,
         :sum,
         :date,
-        :consuldation_date,
+        :consultation_date,
         :invoicenumber,
         :totalfee,
         :parent_id,

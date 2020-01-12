@@ -17,7 +17,7 @@ class Invoice < ActiveRecord::Base
   validates :invoicenumber, presence: true, format: { with: VALID_INVOICE_NUMBER }
 
   validates :date, presence: true
-  validates :consuldation_date, presence: true
+  validates :consultation_date, presence: true
 
   validates :totalfee, presence: true
 
