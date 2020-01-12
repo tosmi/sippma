@@ -9,6 +9,7 @@ class InvoicesController < ApplicationController
     end
 
     invoice.invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
+    invoice.date = Date.today
   end
 
   def create
