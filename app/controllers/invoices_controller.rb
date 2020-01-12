@@ -49,7 +49,7 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    if invoice.update_attributes(invoice_params)
+    if invoice.update(invoice_params)
       flash[:success] = 'Invoice updated'
       redirect_to patient_invoices_path(invoice.patient_id)
     else
