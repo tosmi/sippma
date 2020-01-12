@@ -69,6 +69,8 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     end
     assert_template 'invoices/new'
     assert_select 'div.alert'
+    assert_select "input[type=hidden][name='invoice[invoicenumber]']"
+    assert_select "input[type=hidden][name='invoice[date]']"
     assert_select 'div.alert-danger', { :count => 1, :text => /form.*error/ }
     assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_text/
     # assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/
