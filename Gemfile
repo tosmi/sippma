@@ -12,7 +12,7 @@ gem 'sdoc', '~> 1.0.0',          group: :doc
 
 gem 'bootstrap-sass', '~> 3.4.1'
 
-gem 'bcrypt', '~> 3.1'
+gem 'bcrypt', '= 3.1.13'
 
 group :development do
   gem 'listen'
