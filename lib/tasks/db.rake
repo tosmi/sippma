@@ -8,7 +8,11 @@ namespace :db do
     cmd = nil
     with_config do |app, host, db, user|
       file_name = Time.now.strftime("%Y%m%d%H%M%S") + "_" + db + '.' + dump_sfx
-      cmd = "pg_dump -w -F #{dump_fmt} -v -h #{host} -d #{db} -f #{backup_dir}/#{file_name}"
+      if host.nil?
+        cmd = "pg_dump -w -F #{dump_fmt} -v -d #{db} -f #{backup_dir}/#{file_name}"
+      else
+        cmd = "pg_dump -w -F #{dump_fmt} -v -h #{host} -d #{db} -f #{backup_dir}/#{file_name}"
+      end
     end
     puts cmd
     exec cmd

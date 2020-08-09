@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.2.3'
-gem 'sass-rails', '~> 5.1'
+gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'kaminari', '~> 1.1.1'
@@ -12,9 +12,10 @@ gem 'sdoc', '~> 1.0.0',          group: :doc
 
 gem 'bootstrap-sass', '~> 3.4.1'
 
-gem 'bcrypt', '~> 3.1'
+gem 'bcrypt', '= 3.1.13'
 
 group :development do
+  gem 'listen'
   gem 'guard'
   gem 'guard-minitest'
   gem 'web-console', '~> 2.0'

@@ -12,6 +12,7 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
         diagnosis: 'a test',
         invoicenumber: '66-30-01-14',
         date: '30-01-14,',
+        consultation_date: '30-01-14,',
         totalfee: 300,
         entry_lines_attributes: [
           {
@@ -27,12 +28,13 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     }
 
     @invalid_invoice_data = { invoice:
-                                {
-                                  diagnosis: 'does not work',
-                                  invoicenumber: 'wrong',
-                                  date: Date.today
-                                }
-                            }
+      {
+        diagnosis: 'does not work',
+        invoicenumber: 'wrong',
+        date: Date.today,
+        consultation_date: Date.today
+      }
+    }
   end
 
   test "create new invoice for patient with consultation" do
@@ -67,6 +69,8 @@ class InvoiceNewTestTest < ActionDispatch::IntegrationTest
     end
     assert_template 'invoices/new'
     assert_select 'div.alert'
+    assert_select "input[type=hidden][name='invoice[invoicenumber]']"
+    assert_select "input[type=hidden][name='invoice[date]']"
     assert_select 'div.alert-danger', { :count => 1, :text => /form.*error/ }
     assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_text/
     # assert_select ":match('id',?)", /invoice_entry_lines_attributes_\d+_fee/

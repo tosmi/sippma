@@ -9,6 +9,8 @@ class InvoicesController < ApplicationController
     end
 
     invoice.invoicenumber = "#{Setting.new_invoicenumber}-#{Date.today.strftime('%d-%m-%y')}"
+    invoice.date = Date.today
+    invoice.consultation_date = Date.today
   end
 
   def create
@@ -33,8 +35,10 @@ class InvoicesController < ApplicationController
 
   def show
     @patient = Patient.find(invoice.patient_id)
-    if params[:print]
+    if params[:print] == 'true'
       @print = true
+    else
+      @print = false
     end
   end
 
@@ -45,7 +49,7 @@ class InvoicesController < ApplicationController
   end
 
   def update
-    if invoice.update_attributes(invoice_params)
+    if invoice.update(invoice_params)
       flash[:success] = 'Invoice updated'
       redirect_to patient_invoices_path(invoice.patient_id)
     else
@@ -90,6 +94,7 @@ class InvoicesController < ApplicationController
         :diagnosis,
         :sum,
         :date,
+        :consultation_date,
         :invoicenumber,
         :totalfee,
         :parent_id,
